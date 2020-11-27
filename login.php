@@ -1,5 +1,4 @@
 <?php
-include_once('config/connect_db.php');
 include_once('config/bootstrap.php');
 ?>
 <!DOCTYPE html>
