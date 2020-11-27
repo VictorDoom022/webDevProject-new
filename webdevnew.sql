@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2020 at 08:22 AM
+-- Generation Time: Nov 27, 2020 at 02:29 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -32,7 +32,7 @@ CREATE TABLE `cart` (
   `id` int(255) NOT NULL,
   `crt_user` varchar(255) NOT NULL,
   `crt_product` varchar(255) NOT NULL,
-  `crt_addDate` varchar(255) NOT NULL
+  `crt_addDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -95,7 +95,7 @@ CREATE TABLE `users` (
   `password` varchar(225) NOT NULL,
   `email` varchar(30) NOT NULL,
   `position` varchar(30) NOT NULL,
-  `create_date` varchar(100) NOT NULL
+  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -103,9 +103,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `position`, `create_date`) VALUES
-(1, 'admin', 'admin9450', 'admin@admin.com', 'admin', ''),
-(2, 'seller', 'seller9450', 'seller@sell.com', 'seller', ''),
-(3, 'customer', 'customer9450', 'customer@customer.com', 'customer', '');
+(1, 'admin', 'admin9450', 'admin@admin.com', 'admin', '0000-00-00 00:00:00'),
+(2, 'seller', 'seller9450', 'seller@sell.com', 'seller', '0000-00-00 00:00:00'),
+(3, 'customer', 'customer9450', 'customer@customer.com', 'customer', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
