@@ -64,7 +64,7 @@ session_start();
                                                 </div>
 
                                                 <div class="text-right">
-                                                    <button href="#" class="btn btn-sm btn-outline-warning">Edit</button>
+                                                    <a href="sellerEditProduct.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-warning">Edit</a>
                                                     <button href="#" class="btn btn-sm btn-outline-danger">Delete</button>
                                                 </div>
                                             </div>    
