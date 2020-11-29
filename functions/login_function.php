@@ -18,7 +18,7 @@ if(isset($_POST['login'])){
             if($position == 'admin'){
                 echo "admin";
             }else if ($position == 'seller'){
-                echo "seller";
+                header("Location: ../seller/sellerHome.php");
             }else if ($position == 'customer'){
                 echo "customer";
             }else{
