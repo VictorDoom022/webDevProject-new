@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2020 at 11:51 AM
+-- Generation Time: Nov 30, 2020 at 03:28 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -80,7 +80,9 @@ CREATE TABLE `promo` (
   `promo_code` varchar(50) NOT NULL,
   `promo_startDate` varchar(50) NOT NULL,
   `promo_dueDate` varchar(50) NOT NULL,
-  `promo_discount` int(10) NOT NULL
+  `promo_desc` varchar(255) NOT NULL,
+  `promo_prdt` varchar(30) NOT NULL,
+  `promo_discount` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -112,6 +114,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `position`, `create_
 --
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `chat`
 --
 ALTER TABLE `chat`
@@ -125,6 +133,12 @@ ALTER TABLE `product`
   ADD UNIQUE KEY `prdt_code` (`prdt_code`);
 
 --
+-- Indexes for table `promo`
+--
+ALTER TABLE `promo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -133,6 +147,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `chat`
@@ -144,7 +164,13 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `promo`
+--
+ALTER TABLE `promo`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
