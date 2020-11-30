@@ -1,5 +1,10 @@
 # WebDev Project (Apple)
 
+#### Bug List
+`````
+1) Add/edit product image (unsolved)
+`````
+
 #### File Structure
 ###### Place the files according to proper user
 `````
@@ -24,7 +29,7 @@ login function
 |    | Chat with seller and customer | TH  |
 |    | Manage/give seller commission | LC  |
 | **Seller**   |  | **VIC**  |
-|    | Add edit delete product | VIC  |
+|    | Add edit delete product | VIC  | Done |
 |    | Chat with customer and admin | TH  |
 |    | View and download sales report (CSV) | VIC  |
 |    | Promo code (Manual type promo code, code due date and discount percentage | VIC  |
