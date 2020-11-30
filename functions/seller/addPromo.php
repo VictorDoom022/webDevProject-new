@@ -12,6 +12,7 @@ if(isset($_POST['addPromo'])){
     $promo_prdt = $_POST['promo_prdt'];
     $promo_discount = $_POST['promo_discount'];
     $promo_desc = $_POST['promo_desc'];
+    $promo_seller = $_SESSION["user_id"];
 
     if($promo_startDate > $promo_dueDate){
         header('location: ../../seller/sellerAddPromo.php');
@@ -21,8 +22,8 @@ if(isset($_POST['addPromo'])){
         header('location: ../../seller/sellerAddPromo.php');
     }
 
-	$sql = "INSERT INTO promo(promo_code, promo_startDate, promo_dueDate, promo_prdt, promo_discount , promo_desc) 
-    VALUES ('$promo_code','$promo_startDate','$promo_dueDate','$promo_prdt','$promo_discount', '$promo_desc')";
+	$sql = "INSERT INTO promo(promo_code, promo_startDate, promo_dueDate, promo_prdt, promo_discount , promo_desc, promo_seller) 
+    VALUES ('$promo_code','$promo_startDate','$promo_dueDate','$promo_prdt','$promo_discount', '$promo_desc','$promo_seller')";
 	mysqli_query($conn, $sql);
 	mysqli_close($conn);
 	header('location: ../../seller/sellerPromo.php');
