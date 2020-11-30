@@ -82,6 +82,12 @@ session_start();
                                     </div>
                                 <?php
                                         }
+                                    }else{
+                                ?> 
+                                    <div class="col-md-12">
+                                        <p class="text-center my-4" style="font-size: 35px">No Product</p>
+                                    </div>
+                                <?php
                                     }
                                 ?>
                             </div>
