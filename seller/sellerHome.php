@@ -10,7 +10,7 @@ include_once('../config/bootstrap.php');
     <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
     <?php
-        $pageName = 'Home';
+        $pageName = $pageTitle = 'Home';
         include 'layouts/sellerSideNav.php';
         include 'layouts/sellerTopNav.php';
     ?>

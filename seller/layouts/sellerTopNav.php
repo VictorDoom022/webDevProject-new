@@ -9,7 +9,7 @@
         <?php }elseif ($pageName == 'Promo'){ ?>
             <i class="fas fa-ad"></i>
         <?php } ?>
-        <span class="d-none d-lg-inline-flex ml-3"><?php echo $pageName; ?></span>
+        <span class="d-none d-lg-inline-flex ml-3"><?php echo $pageTitle; ?></span>
         
     </span>
 	<ul class="navbar-nav px-4">

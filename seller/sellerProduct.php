@@ -12,7 +12,7 @@ session_start();
     <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
     <?php
-        $pageName = 'Product';
+        $pageName = $pageTitle = 'Product';
         include 'layouts/sellerSideNav.php';
         include 'layouts/sellerTopNav.php';
     ?>

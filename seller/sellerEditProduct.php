@@ -33,6 +33,7 @@ if(isset($_GET['id'])){
 <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
     <?php
+        $pageTitle = 'Edit Product';
         $pageName = 'Product';
         include 'layouts/sellerSideNav.php';
         include 'layouts/sellerTopNav.php';
