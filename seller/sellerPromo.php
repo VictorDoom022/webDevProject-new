@@ -1,10 +1,7 @@
 <?php
 include_once('../config/bootstrap.php');
-<<<<<<< HEAD
-=======
 require_once('../config/connect_db.php');
 session_start();
->>>>>>> 8114151bef8cd7301a459b24485db89178f9e220
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,12 +12,6 @@ session_start();
     <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
     <?php
-<<<<<<< HEAD
-        $pageName = 'Promo';
-        include 'layouts/sellerSideNav.php';
-        include 'layouts/sellerTopNav.php';
-    ?>
-=======
         $pageName = $pageTitle = 'Promo';
         include 'layouts/sellerSideNav.php';
         include 'layouts/sellerTopNav.php';
@@ -81,6 +72,5 @@ session_start();
             </main>
         </div>
     </div>
->>>>>>> 8114151bef8cd7301a459b24485db89178f9e220
 </body>
 </html>

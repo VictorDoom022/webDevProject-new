@@ -12,11 +12,7 @@ session_start();
     <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
     <?php
-<<<<<<< HEAD
-        $pageName = 'Product';
-=======
         $pageName = $pageTitle = 'Product';
->>>>>>> 8114151bef8cd7301a459b24485db89178f9e220
         include 'layouts/sellerSideNav.php';
         include 'layouts/sellerTopNav.php';
     ?>
@@ -69,9 +65,6 @@ session_start();
 
                                                 <div class="text-right">
                                                     <a href="sellerEditProduct.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-warning">Edit</a>
-<<<<<<< HEAD
-                                                    <button href="#" class="btn btn-sm btn-outline-danger">Delete</button>
-=======
                                                     <button class="btn btn-sm btn-outline-danger" data-toggle="collapse" href="#collapseDeleteOption" role="button" aria-expanded="false" aria-controls="collapseDeleteOption">Delete</button>
                                                     <div class="collapse" id="collapseDeleteOption">
                                                         <form action="../functions/seller/addProduct.php" method="POST">
@@ -83,22 +76,18 @@ session_start();
                                                             </div>
                                                         </form>
                                                     </div>
->>>>>>> 8114151bef8cd7301a459b24485db89178f9e220
                                                 </div>
                                             </div>    
                                         </div>
                                     </div>
                                 <?php
                                         }
-<<<<<<< HEAD
-=======
                                     }else{
                                 ?> 
                                     <div class="col-md-12">
                                         <p class="text-center my-4" style="font-size: 35px">No Product</p>
                                     </div>
                                 <?php
->>>>>>> 8114151bef8cd7301a459b24485db89178f9e220
                                     }
                                 ?>
                             </div>
