@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Nov 29, 2020 at 11:51 AM
-=======
 -- Generation Time: Nov 30, 2020 at 04:16 PM
->>>>>>> 8114151bef8cd7301a459b24485db89178f9e220
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -143,15 +139,12 @@ ALTER TABLE `chat`
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `prdt_code` (`prdt_code`);
-<<<<<<< HEAD
-=======
 
 --
 -- Indexes for table `promo`
 --
 ALTER TABLE `promo`
   ADD PRIMARY KEY (`id`);
->>>>>>> 8114151bef8cd7301a459b24485db89178f9e220
 
 --
 -- Indexes for table `users`
@@ -179,9 +172,6 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-<<<<<<< HEAD
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-=======
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
@@ -189,7 +179,6 @@ ALTER TABLE `product`
 --
 ALTER TABLE `promo`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> 8114151bef8cd7301a459b24485db89178f9e220
 
 --
 -- AUTO_INCREMENT for table `users`
