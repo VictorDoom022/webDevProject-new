@@ -46,10 +46,26 @@ session_start();
                                                 </h5>
                                             
                                                 <div class="card-text">
+                                                    ID: <?php echo $row['id']; ?> <br>
                                                     Start Date: <?php echo $row['promo_startDate']; ?> <br>
                                                     Due Date: <?php echo $row['promo_dueDate'] ?> <br>
                                                     Promo Product: <?php echo $row['prdt_name']; ?> <br>
                                                     Promo Discount: <?php echo $row['promo_discount']; ?>
+                                                </div>
+
+                                                <div class="text-right">
+                                                    <a href="sellerEditPromo.php?promo_code=<?php echo $row['promo_code']; ?>" class="btn btn-sm btn-outline-warning">Edit</a>
+                                                    <button class="btn btn-sm btn-outline-danger" data-toggle="collapse" href="#collapseDeleteOption" role="button" aria-expanded="false" aria-controls="collapseDeleteOption">Delete</button>
+                                                    <div class="collapse" id="collapseDeleteOption">
+                                                        <form action="../functions/seller/addPromo.php" method="POST">
+                                                            <div class="card card-body mt-2 px-1 py-1 text-left">
+                                                                Are you sure you want to delete?
+                                                                <input type="button" data-toggle="collapse" role="button" aria-expanded="false" href="#collapseDeleteOption" aria-controls="collapseDeleteOption" class="btn btn-sm btn-outline-primary my-1" name="noDetele" value="No">
+                                                                <input type="hidden" name="id" value="<?php echo $row['id']?>">
+                                                                <input type="submit" class="btn btn-sm btn-outline-danger" name="deletePromo" value="Delete">
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
 
                                             </div>    
