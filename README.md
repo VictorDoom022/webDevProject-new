@@ -1,10 +1,13 @@
 # WebDev Project (Apple)
 
+#### Bug List
+`````
 1) Add/edit product image (unsolved)
 `````
 
 #### File Structure
 ###### Place the files according to proper user
+`````
 /admin
 /seller
 /customer
