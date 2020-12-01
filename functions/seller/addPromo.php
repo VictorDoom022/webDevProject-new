@@ -54,4 +54,13 @@ if (isset($_POST['editPromo'])){
     header('location: ../../seller/sellerPromo.php');
 }
 
+//delete Promo
+if (isset($_POST['deletePromo'])){
+    $id = $_POST['id'];
+    $sql = "DELETE FROM promo where id='".$id."'";
+    mysqli_query($conn, $sql);
+    mysqli_close($conn);
+    header('location: ../../seller/sellerPromo.php');
+}
+
 ?>
