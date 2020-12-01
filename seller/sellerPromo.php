@@ -33,7 +33,8 @@ session_start();
                             
                             <div class="row">
                                 <?php
-                                    $sql = "SELECT * FROM promo LEFT JOIN product ON promo.promo_prdt = product.id WHERE promo_seller = '".$_SESSION["user_id"]."'";
+                                    $sql = "SELECT promo.id AS id, promo.promo_code AS promo_code, promo.promo_startDate AS promo_startDate, promo.promo_dueDate AS promo_dueDate,promo.promo_desc AS promo_desc, promo.promo_discount AS promo_discount, promo.promo_seller AS promo_seller, product.prdt_name AS prdt_name
+                                    FROM promo LEFT JOIN product ON promo.promo_prdt = product.id WHERE promo_seller = '".$_SESSION["user_id"]."'";
                                     $result = mysqli_query($conn, $sql);
                                     if(mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
@@ -54,7 +55,7 @@ session_start();
                                                 </div>
 
                                                 <div class="text-right">
-                                                    <a href="sellerEditPromo.php?promo_code=<?php echo $row['promo_code']; ?>" class="btn btn-sm btn-outline-warning">Edit</a>
+                                                    <a href="sellerEditPromo.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-warning">Edit</a>
                                                     <button class="btn btn-sm btn-outline-danger" data-toggle="collapse" href="#collapseDeleteOption" role="button" aria-expanded="false" aria-controls="collapseDeleteOption">Delete</button>
                                                     <div class="collapse" id="collapseDeleteOption">
                                                         <form action="../functions/seller/addPromo.php" method="POST">

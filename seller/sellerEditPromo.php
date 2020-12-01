@@ -4,9 +4,9 @@ require_once('../config/connect_db.php');
 
 session_start();
 
-if(isset($_GET['promo_code'])){
-    $promo_code = $_GET['promo_code'];
-    $sql = "SELECT * FROM promo WHERE promo_code ='$promo_code' AND promo_seller = '".$_SESSION["user_id"]."'";
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM promo WHERE id ='$id' AND promo_seller = '".$_SESSION["user_id"]."'";
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_array($result)){
