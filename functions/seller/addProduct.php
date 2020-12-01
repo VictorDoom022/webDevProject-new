@@ -51,4 +51,16 @@ if(isset($_POST['editProduct'])){
 	mysqli_close($conn);
 	header('location: ../../seller/sellerProduct.php');
 }
+<<<<<<< HEAD
+=======
+
+//delete Product
+if(isset($_POST['deleteProduct'])){
+    $id = $_POST['id'];
+    $sql = "DELETE FROM product where id='".$id."'";
+    mysqli_query($conn, $sql);
+    mysqli_close($conn);
+    header('location: ../../seller/sellerProduct.php');
+}
+>>>>>>> 8114151bef8cd7301a459b24485db89178f9e220
 ?>
