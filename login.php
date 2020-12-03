@@ -10,6 +10,7 @@ if(isset($_SESSION['username'])) {
 	}
 }
 
+
 do_html_head('APP NAME', $bootstrapCSS, $bootstrapJS);
 do_component_topnav('APP NAME');
 ?>
