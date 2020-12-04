@@ -1,8 +1,8 @@
 <?php
 include_once('../config/bootstrap.php');
 require_once('../config/connect_db.php');
-
 session_start();
+include_once('../functions/checkSession.php');
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
@@ -78,7 +78,7 @@ if(isset($_GET['id'])){
                                     </div>
                                     <div class="col-md-6">
                                         Product Image
-                                        <input class="form-control form-control-sm border-dark" type="file" name="prdt_image" value="<?php echo $prdt_image; ?>" readonly>
+                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_image" value="<?php echo $prdt_image; ?>">
                                     </div>
                                     <div class="col-md-6">
                                         Availablility

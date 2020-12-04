@@ -11,7 +11,7 @@ if(isset($_POST['addProduct'])){
     $prdt_sellPrice = $_POST['prdt_sellPrice'];
     $prdt_type = $_POST['prdt_type'];
     $prdt_quantity = $_POST['prdt_quantity'];
-    $prdt_image = "https://as1.ftcdn.net/jpg/02/44/83/32/500_F_244833214_bBmRijbyEmtKrm7Q5zdcMc4ks3tpTmVu.jpg";
+    $prdt_image = $_POST['prdt_image'];
     if(($_POST['prdt_available'] != null) || ($_POST['prdt_available']) == '1'){
         $prdt_available = '1';
     }else{

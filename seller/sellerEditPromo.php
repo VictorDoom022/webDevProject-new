@@ -1,8 +1,8 @@
 <?php
 include_once('../config/bootstrap.php');
 require_once('../config/connect_db.php');
-
 session_start();
+include_once('../functions/checkSession.php');
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
@@ -50,11 +50,11 @@ if(isset($_GET['id'])){
                                     </div>
                                     <div class="col-md-6">
                                         Promo Start Date
-                                        <input class="form-control form-control-sm border-dark" type="date" name="promo_startDate" value="<?php echo $promo_startDate; ?>">
+                                        <input class="form-control form-control-sm border-dark" onchange="dateCheck();" type="date" id="promo_startDate" name="promo_startDate" value="<?php echo $promo_startDate; ?>">
                                     </div>
                                     <div class="col-md-6">
                                         Promo Due Date
-                                        <input class="form-control form-control-sm border-dark" type="date" name="promo_dueDate" value="<?php echo $promo_dueDate; ?>">
+                                        <input class="form-control form-control-sm border-dark" onchange="dateCheck();" type="date" id="promo_dueDate" name="promo_dueDate" value="<?php echo $promo_dueDate; ?>">
                                     </div>
                                     <div class="col-md-6">
                                         Promo Desc
@@ -95,4 +95,20 @@ if(isset($_GET['id'])){
         </div>
     </div>
 </body>
+<script>
+function dateCheck() {
+    promo_startDate = document.getElementById('promo_startDate').value;
+    promo_dueDate = document.getElementById('promo_dueDate').value;
+
+    if(promo_startDate!="" && promo_dueDate!=""){
+        if(promo_startDate > promo_dueDate) {
+            alert('Invalid date!');
+            $('input[type=date]').val('');
+        }else{
+            // Do nothing
+            console.log('Valid date');
+        }
+    }
+}
+</script>
 </html>
