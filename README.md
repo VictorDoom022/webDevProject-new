@@ -2,7 +2,7 @@
 
 #### Bug List
 `````
-1) Add/edit product image (unsolved)
+
 `````
 
 #### File Structure
@@ -32,7 +32,7 @@ login function
 |    | Add edit delete product | VIC  | Done |
 |    | Chat with customer and admin | TH  |
 |    | View and download sales report (CSV) | VIC  |
-|    | Promo code (Manual type promo code, code due date and discount percentage | VIC  |
+|    | Promo code (Manual type promo code, code due date and discount percentage | VIC  | Done |
 |  **Customer**  |  | **TH**  |
 |    | Add to cart | TH  |
 |    | View available discount code & enter discount code when checkout | TH  |
