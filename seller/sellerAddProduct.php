@@ -1,5 +1,7 @@
 <?php
 include_once('../config/bootstrap.php');
+session_start();
+include_once('../functions/checkSession.php');
 ?>
 <!DOCTYPE html>
 <html>
