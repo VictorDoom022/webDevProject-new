@@ -58,8 +58,8 @@ include_once('../functions/checkSession.php');
                                         <input class="form-control form-control-sm border-dark" type="number" name="prdt_quantity">
                                     </div>
                                     <div class="col-md-6">
-                                        Product Image
-                                        <input class="form-control form-control-sm border-dark" type="file" name="prdt_image" readonly>
+                                        Product Image (Url)
+                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_image">
                                     </div>
                                     <div class="col-md-6">
                                         Availablility
