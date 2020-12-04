@@ -35,11 +35,11 @@ include_once('../functions/checkSession.php');
                                     </div>
                                     <div class="col-md-6">
                                         Promo Start Date
-                                        <input class="form-control form-control-sm border-dark" type="date" name="promo_startDate">
+                                        <input class="form-control form-control-sm border-dark" onchange="dateCheck();" id="promo_startDate" type="date" name="promo_startDate">
                                     </div>
                                     <div class="col-md-6">
                                         Promo Due Date
-                                        <input class="form-control form-control-sm border-dark" type="date" name="promo_dueDate">
+                                        <input class="form-control form-control-sm border-dark" onchange="dateCheck();" id="promo_dueDate" type="date" name="promo_dueDate">
                                     </div>
                                     <div class="col-md-6">
                                         Promo Product
@@ -78,4 +78,21 @@ include_once('../functions/checkSession.php');
         </div>
     </div>
 </body>
+<script>
+function dateCheck() {
+    promo_startDate = document.getElementById('promo_startDate').value;
+    promo_dueDate = document.getElementById('promo_dueDate').value;
+
+    if(promo_startDate!="" && promo_dueDate!=""){
+        if(promo_startDate > promo_dueDate) {
+            alert('Invalid date!');
+            $('input[type=date]').val('');
+        }else{
+            // Do nothing
+            console.log('Valid date');
+        }
+    }
+    
+}
+</script>
 </html>
