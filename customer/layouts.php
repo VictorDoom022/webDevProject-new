@@ -12,7 +12,7 @@ function do_html_head(String $title, String $cssLink = null, String $jsLink = nu
             $cssLink
             $jsLink
         </head>
-        <body class="bg-light">
+        <body class="">
     _HEAD;
 }
 
@@ -79,25 +79,19 @@ function do_component_topnav($appName)
                     </li>
                     <?php if(isset($_SESSION['username']) && $_SESSION['position'] == 'customer'): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.php">Cart</a>
+                        <a class="nav-link" href="cart.php">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user_acc"><?= $_SESSION['username'] ?></a>
-                        <div class="dropdown-menu border-0 shadow"  aria-labelledby="user_acc" style="min-width: 200px;">
-                            <ul class="nav flex-column pl-3">
-                                <li class="nav-item">
-                                    <a href="./function/logout.php" class="nav-link">
-                                        Logout
-                                    </a>
-                                </li>
-                                <!-- @foreach(\$PRODUCT_CATEGORIES as \$product_category) -->
-                                <li class="nav-item">
-                                    <a href="{{ route('product_category.product_list', ['product_category'=> \$product_category]) }}" class="nav-link">
-                                        <!-- {{ \$product_category->category_title }} -->
-                                    </a>
-                                </li>
-                                <!-- @endforeach -->
-                            </ul>
+                        <a class="nav-link" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user_acc">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right border-0 shadow"  aria-labelledby="user_acc" style="min-width: 200px;">
+                            <h5 class="dropdown-header">Welcome, <?= strtoupper($_SESSION['username']); ?>!</h5>
+                            <a href="./function/logout.php" class="dropdown-item">
+                                Logout
+                            </a>
                         </div>
                     </li>
                     <?php else: ?>
@@ -112,5 +106,35 @@ function do_component_topnav($appName)
             </div>
         </div>
     </nav>
+<?php
+}
+
+function do_component_top_sale_product(Array $products)
+{
+?>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <h3>Top Selling Products</h3>
+        </div>
+        <div class="row">
+            <?php
+            if(count($products) > 0):
+            ?>
+                <div class="col-3">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            product image
+                            product name
+                            product price
+                        </div>
+                    </div>
+                </div>
+            <?php else: ?>
+            <div class="col-12 pt-3 d-flex justify-content-center">
+                <p class="text-muted">Not have product yet</p>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
 <?php
 }
