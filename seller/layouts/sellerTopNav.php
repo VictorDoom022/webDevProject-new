@@ -14,7 +14,9 @@
     </span>
 	<ul class="navbar-nav px-4">
 		<li class="nav-item">
-			<a href="#" class="btn btn-outline-dark" role="button" aria-pressed="true">Log Out</a>
+            <form action="../functions/logout_function.php" method="POST">
+			    <input type="submit"class="btn btn-outline-dark" name="logout" aria-pressed="true" value="Log Out">
+            </form>
 		</li>
 	</ul>
 </nav>
