@@ -20,7 +20,7 @@ if(isset($_POST['login'])){
             }else if ($position == 'seller'){
                 header("Location: ../seller/sellerHome.php");
             }else if ($position == 'customer'){
-                echo "customer";
+                header('location: ../index.php');
             }else{
                 echo "who da fuq are you";
             }
