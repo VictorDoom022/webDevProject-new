@@ -114,12 +114,28 @@ main {
 }
 
 @media (max-width: 479px) {
-  /* start of phone styles */
+  /* start of normal phone styles */
   .k-side-nav {
     width: 30%;
   }
+  .nav-link {
+    padding-left: 10px;
+  }
   main {
-    margin-left: 80px;
+    margin-left: 57px;
+  }
+}
+
+@media (max-width: 320px) {
+  /* start of super small phone styles */
+  .k-side-nav {
+    width: 30%;
+  }
+  .nav-link {
+    padding-left: 7px;
+  }
+  main {
+    margin-left: 55px;
   }
 }
 /*# sourceMappingURL=navBar.css.map */
