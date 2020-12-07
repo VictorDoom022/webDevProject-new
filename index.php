@@ -16,7 +16,10 @@ if(!$result) {
     $top_selling_products = array();
     
     if(mysqli_num_rows($result) > 0) {
-        $top_selling_products = mysqli_fetch_array($result);
+        for($i = 0; $i < mysqli_num_rows($result); $i ++){
+            $product = mysqli_fetch_assoc($result);
+            array_push($top_selling_products, $product);
+        }
     }
 }
 

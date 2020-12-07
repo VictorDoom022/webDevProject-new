@@ -119,16 +119,29 @@ function do_component_top_sale_product(Array $products)
         <div class="row">
             <?php
             if(count($products) > 0):
+                foreach($products as $product)
             ?>
-                <div class="col-3">
-                    <div class="card border-0 shadow">
-                        <div class="card-body">
-                            product image
-                            product name
-                            product price
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card border-0 shadow">
+                    <div class="card-img">
+                        <a href="#" class="card-img-hover card-actions align-items-center">
+                            <img src="<?= $product['prdt_image'] ?>" alt="" class="card-img-top">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <small>
+                            <a href="#" class="text-muted text-decoration-none"><?= $product['prdt_type'] ?></a>
+                        </small>
+                        <div class="font-weight-bold">
+                            <a href="#" class="text-dark text-decoration-none"><?= $product['prdt_name'] ?></a>
+                        </div>
+                        <!-- price -->
+                        <div class="font-weight-bold text-muted">
+                            <small>RM <?= number_format(floatval($product['prdt_sellPrice']), 2) ?></small>
                         </div>
                     </div>
                 </div>
+            </div>
             <?php else: ?>
             <div class="col-12 pt-3 d-flex justify-content-center">
                 <p class="text-muted">Not have product yet</p>
