@@ -48,7 +48,7 @@ function do_component_topnav($appName)
                         <div class="dropdown-menu border-0 shadow"  aria-labelledby="product-categry" style="min-width: 250px;">
                             <ul class="nav flex-column pl-3">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link" style="font-size: .93rem;font-weight: 400;">
+                                    <a href="product.php" class="nav-link" style="font-size: .93rem;font-weight: 400;">
                                         All
                                     </a>
                                 </li>
