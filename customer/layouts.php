@@ -89,9 +89,11 @@ function do_component_topnav($appName)
                         </a>
                         <div class="dropdown-menu dropdown-menu-right border-0 shadow"  aria-labelledby="user_acc" style="min-width: 200px;">
                             <h5 class="dropdown-header">Welcome, <?= strtoupper($_SESSION['username']); ?>!</h5>
-                            <a href="./function/logout.php" class="dropdown-item">
-                                Logout
-                            </a>
+                            <a class="dropdown-item" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="./functions/logout_function.php" method="POST">
+                                <input name="logout" hidden>
+                            </form>
                         </div>
                     </li>
                     <?php else: ?>
