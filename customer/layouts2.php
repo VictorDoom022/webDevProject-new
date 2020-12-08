@@ -117,7 +117,7 @@ function do_component_product_card(Array $product, string $size="col-6 col-md-4 
     <div class="<?= $size ?>">
         <div class="card border-0 shadow">
             <div class="card-img">
-                <a href="#" class="card-img-hover card-actions align-items-center">
+                <a href="detail.php" class="card-img-hover card-actions align-items-center">
                     <img src="<?= $product['prdt_image'] ?>" alt="" class="card-img-top">
                 </a>
             </div>

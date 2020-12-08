@@ -39,6 +39,9 @@ if(!$result) {
             </div>
             <?php endif; ?>
         </div>
+        <div class="py-4 d-flex">
+            <a class="btn btn-block" href="product.php">View More</a>
+        </div>
     </div>
 <?php
 
