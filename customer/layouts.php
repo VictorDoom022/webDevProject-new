@@ -55,7 +55,7 @@ a , a:visited
                         <div class="dropdown-menu border-0 shadow"  aria-labelledby="product-categry" style="min-width: 250px;">
                             <ul class="nav flex-column pl-3">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link" style="font-size: .93rem;font-weight: 400;">
+                                    <a href="product.php" class="nav-link" style="font-size: .93rem;font-weight: 400;">
                                         All
                                     </a>
                                 </li>
@@ -86,25 +86,21 @@ a , a:visited
                     </li>
                     <?php if(isset($_SESSION['username']) && $_SESSION['position'] == 'customer'): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.php">Cart</a>
+                        <a class="nav-link" href="cart.php">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user_acc"><?= $_SESSION['username'] ?></a>
-                        <div class="dropdown-menu border-0 shadow"  aria-labelledby="user_acc" style="min-width: 200px;">
-                            <ul class="nav flex-column pl-3">
-                                <li class="nav-item">
-                                    <a href="./function/logout.php" class="nav-link text-light">
-                                        Logout
-                                    </a>
-                                </li>
-                                <!-- @foreach(\$PRODUCT_CATEGORIES as \$product_category) -->
-                                <li class="nav-item">
-                                    <a href="{{ route('product_category.product_list', ['product_category'=> \$product_category]) }}" class="nav-link">
-                                        <!-- {{ \$product_category->category_title }} -->
-                                    </a>
-                                </li>
-                                <!-- @endforeach -->
-                            </ul>
+                        <a class="nav-link" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user_acc">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right border-0 shadow"  aria-labelledby="user_acc" style="min-width: 200px;">
+                            <h5 class="dropdown-header">Welcome, <?= strtoupper($_SESSION['username']); ?>!</h5>
+                            <a class="dropdown-item" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="./functions/logout_function.php" method="POST">
+                                <input name="logout" hidden>
+                            </form>
                         </div>
                     </li>
                     <?php else: ?>
@@ -112,7 +108,7 @@ a , a:visited
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="register.php">Register</a>
+                        <a class="nav-link" href="{{ route('register') }}">Register</a>
                     </li>
                     <?php endif; ?>
                 </ul>
