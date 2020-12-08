@@ -22,7 +22,25 @@ if(!$result) {
         }
     }
 }
-
-do_component_top_sale_product($top_selling_products);
+?>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-center">
+            <h3>Top Selling Products</h3>
+        </div>
+        <div class="row">
+            <?php
+            if(count($top_selling_products) > 0):
+                foreach($top_selling_products as $product)
+                    do_component_product_card($product, 'col-6 col-md-4 col-lg-3');
+            ?>
+            <?php else: ?>
+            <div class="col-12 pt-3 d-flex justify-content-center">
+                <p class="text-muted">Not have product yet</p>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+<?php
 
 do_html_end();
+?>

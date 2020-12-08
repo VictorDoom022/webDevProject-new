@@ -111,44 +111,28 @@ function do_component_topnav($appName)
 <?php
 }
 
-function do_component_top_sale_product(Array $products)
+function do_component_product_card(Array $product, string $size="col-6 col-md-4 col-lg-4")
 {
 ?>
-    <div class="container mt-5">
-        <div class="d-flex justify-content-center">
-            <h3>Top Selling Products</h3>
-        </div>
-        <div class="row">
-            <?php
-            if(count($products) > 0):
-                foreach($products as $product)
-            ?>
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="card border-0 shadow">
-                    <div class="card-img">
-                        <a href="#" class="card-img-hover card-actions align-items-center">
-                            <img src="<?= $product['prdt_image'] ?>" alt="" class="card-img-top">
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <small>
-                            <a href="#" class="text-muted text-decoration-none"><?= $product['prdt_type'] ?></a>
-                        </small>
-                        <div class="font-weight-bold">
-                            <a href="#" class="text-dark text-decoration-none"><?= $product['prdt_name'] ?></a>
-                        </div>
-                        <!-- price -->
-                        <div class="font-weight-bold text-muted">
-                            <small>RM <?= number_format(floatval($product['prdt_sellPrice']), 2) ?></small>
-                        </div>
-                    </div>
+    <div class="<?= $size ?>">
+        <div class="card border-0 shadow">
+            <div class="card-img">
+                <a href="#" class="card-img-hover card-actions align-items-center">
+                    <img src="<?= $product['prdt_image'] ?>" alt="" class="card-img-top">
+                </a>
+            </div>
+            <div class="card-body">
+                <small>
+                    <a href="#" class="text-muted text-decoration-none"><?= $product['prdt_type'] ?></a>
+                </small>
+                <div class="font-weight-bold">
+                    <a href="#" class="text-dark text-decoration-none"><?= $product['prdt_name'] ?></a>
+                </div>
+                <!-- price -->
+                <div class="font-weight-bold text-muted">
+                    <small>RM <?= number_format(floatval($product['prdt_sellPrice']), 2) ?></small>
                 </div>
             </div>
-            <?php else: ?>
-            <div class="col-12 pt-3 d-flex justify-content-center">
-                <p class="text-muted">Not have product yet</p>
-            </div>
-            <?php endif; ?>
         </div>
     </div>
 <?php
