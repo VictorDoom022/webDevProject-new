@@ -121,3 +121,30 @@ a , a:visited
     </nav>
 <?php
 }
+
+function do_component_product_card(Array $product, string $size="col-6 col-md-4 col-lg-4")
+{
+?>
+    <div class="<?= $size ?>">
+        <div class="card border-0 shadow">
+            <div class="card-img">
+                <a href="#" class="card-img-hover card-actions align-items-center">
+                    <img src="<?= $product['prdt_image'] ?>" alt="" class="card-img-top">
+                </a>
+            </div>
+            <div class="card-body">
+                <small>
+                    <a href="#" class="text-muted text-decoration-none"><?= $product['prdt_type'] ?></a>
+                </small>
+                <div class="font-weight-bold">
+                    <a href="#" class="text-dark text-decoration-none"><?= $product['prdt_name'] ?></a>
+                </div>
+                <!-- price -->
+                <div class="font-weight-bold text-muted">
+                    <small>RM <?= number_format(floatval($product['prdt_sellPrice']), 2) ?></small>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+}
