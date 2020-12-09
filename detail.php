@@ -13,7 +13,7 @@ if(isset($_GET['pid'])) {
 do_html_head('APP NAME', $bootstrapCSS, $jQueryJS.$bootstrapJS.$fontAwsomeIcons);
 do_component_topnav('APP NAME');
 
-$query = "SELECT * FROM product WHERE id = $product_id";
+$query = "SELECT * FROM product LEFT JOIN users ON product.prdt_seller = users.id WHERE product.id = $product_id";
 $result = mysqli_query($conn, $query);
 
 if(!$result) 
@@ -61,7 +61,7 @@ else {
                 </div>
             </div>
             <div class="col-12 col-md-3" style="background-color: #f7f7f7;">
-                Sold By xxx
+                Sold By <?= print_r($product->username) ?>
                 <button class="btn">Chat</button>
             </div>
         </div>
