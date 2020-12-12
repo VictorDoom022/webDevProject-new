@@ -16,7 +16,7 @@ function do_html_head(String $title, String $cssLink = null, String $jsLink = nu
     _HEAD;
 }
 
-function do_html_end(Array $jsLink = [])
+function do_html_end(String $jsLink = "")
 {
     echo <<<_HEAD
         </body>
