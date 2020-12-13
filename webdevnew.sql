@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2020 at 04:53 PM
+-- Generation Time: Dec 13, 2020 at 05:39 PM
 -- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,7 @@ CREATE TABLE `cart` (
   `id` int(255) NOT NULL,
   `crt_user` varchar(255) NOT NULL,
   `crt_product` varchar(255) NOT NULL,
+  `crt_quantity` int(5) NOT NULL,
   `crt_addDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -68,6 +69,13 @@ CREATE TABLE `product` (
   `prdt_available` int(20) NOT NULL,
   `prdt_seller` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `prdt_code`, `prdt_name`, `prdt_type`, `prdt_oriPrice`, `prdt_sellPrice`, `prdt_desc`, `prdt_image`, `prdt_quantity`, `prdt_available`, `prdt_seller`) VALUES
+(1, '001', 'JJYY Phone', 'iphone', '15', '20', '400mb + 1GB\r\nDimensions	145 x 73.5 x 10.8 mm (5.71 x 2.89 x 0.43 in)\r\nWeight	165 g (5.82 oz)\r\nSIM	Dual SIM\r\nCPU Quad-core 1.3 GHz Cortex-A7', 'https://i.guim.co.uk/img/media/30ae6f657de5843fa3dfc463c8ecd317855d905e/171_0_1667_1000/master/1667.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=51da1c5eac08485557dfff1f396bd0fc', '5', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -166,7 +174,7 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `promo`

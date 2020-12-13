@@ -64,7 +64,7 @@ else {
                                 </div>
                             </div>
                             <div>
-                                <button class="btn btn-block btn-warning text-white">Add To Cart</button>
+                                <button class="btn btn-block btn-warning text-white" id="btn-cart">Add To Cart</button>
                             </div>
                         </div>
                     </div>
@@ -90,6 +90,42 @@ else {
         </p>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#btn-cart").click(function() {
+            $.post({
+                url: 'functions/customer/addCart.php',
+                data: {
+                    product_id: '',
+                    quantity: '',
+                },
+                success: function (result) {
+                    if(result.status == 1) {
+                        swal({
+                            title: "Something Wrong!",
+                            text: "To add cart, You need to login first!",
+                            icon: "info",
+                            buttons: true,
+                        }).then((bool) => {
+                            window.location.assign('login.php');
+                            // window.location.assign('login.php?request_url='+ window.location.href);
+                        });
+                    }else if(result.status == 0){
+                        swal({
+                            icon: "success",
+                            title: "Success",
+                            text: "Added to Cart (Currently not working)",
+                            timer: 1100,
+                            buttons: false,
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>
 <?php
 do_html_end();
 ?>
