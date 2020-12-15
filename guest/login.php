@@ -19,9 +19,16 @@ do_component_topnav('APP NAME');
 <head>
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-	
+	<style>
+		.orange{
+			font-family: Arial, Helvetica, sans-serif;
+			text-decoration: none;
+			color: #c46a10;
+			
+		}
+	</style>
 </head>
-<body style="background-color: #000">
+<body style="background-color: #000 !important">
 <div class="login-box">
 <form method="post" action="login_function.php">
 	<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto;">
@@ -34,14 +41,14 @@ do_component_topnav('APP NAME');
 								<tr>
 									<td style="width: 100%;" colspan="2">
 										<h1>
-										Login To Victor.Com
+										Login To Apple.Com
 										</h1>
 										
 									</td>
 								</tr>
 								<tr>
 									<td style="bottom: 12px;position: relative;padding-bottom: 35px;">
-										<span class="word">Or</span> <a class="orange_word" href="register.php" >Sign in now</a>
+										<span class="word">Or</span> <a style="text-decoration: none;color: #c46a10;" href="register.php" alt="Sign up now" title="Sign up now">Sign up now</a>
 									</td>
 								</tr>
 								<tr>
@@ -56,10 +63,10 @@ do_component_topnav('APP NAME');
 								</tr>
 								<br>
 								<tr>
-									<td class="td_content"><input type="submit"name="submit" value="login" class="button1">
+									<td class="td_content"><input type="submit"name="submit" value="login" class="button1" alt="Login" title="Login">
 									</td>
 									<td>
-										<a class="orange_word" value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？">Forgot Username or Password</a>
+										<a value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？"href="forgot_password.php" style="text-decoration: none;color: #c46a10;">Forgot Username or Password</a>
 									</td>
 								</tr>
 							</table>

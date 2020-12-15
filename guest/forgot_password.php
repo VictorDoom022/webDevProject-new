@@ -1,6 +1,6 @@
 <?php
-require_once('config/bootstrap.php');
-require_once('customer/layouts.php');
+require_once('../config/bootstrap.php');
+require_once('../customer/layouts.php');
 
 session_start();
 
@@ -18,19 +18,12 @@ do_component_topnav('APP NAME');
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="guest/style.css">
-	<style>
-		.orange{
-			font-family: Arial, Helvetica, sans-serif;
-			text-decoration: none;
-			color: #c46a10;
-			
-		}
-	</style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	
 </head>
 <body style="background-color: #000 !important">
 <div class="login-box">
-<form method="post" action="guest/login_function.php">
+<form method="post" action="#">
 	<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto;">
 		<tr>
 			<td>
@@ -41,21 +34,14 @@ do_component_topnav('APP NAME');
 								<tr>
 									<td style="width: 100%;" colspan="2">
 										<h1>
-										Login To  Apple.Com
+										Reset Password
 										</h1>
 										
 									</td>
 								</tr>
-								<tr>
-									<td style="bottom: 12px;position: relative;padding-bottom: 35px;">
-										<span class="word">Or</span> <a style="text-decoration: none;color: #c46a10;" href="guest/register.php" alt="Sign up now" title="Sign up now">Sign up now</a>
-									</td>
-								</tr>
+								
 								<tr>
 									<td class="td_content" colspan="2"><input class="input_box" type="text" name="username" placeholder="Username"></td>
-								</tr>
-								<tr>
-									<td class="td_content"colspan="2"><input class="input_box" type="password" name="password" placeholder="Password"></td>
 								</tr>
 								<tr>
 									<td class="td_content"colspan="2"><input type="checkbox" id="term" name="term" value="value1" checked>
@@ -63,11 +49,9 @@ do_component_topnav('APP NAME');
 								</tr>
 								<br>
 								<tr>
-									<td class="td_content"><input type="submit"name="submit" value="login" class="button1" alt="Login" title="Login">
+									<td class="td_content"><input type="submit" name="Reset" value="Reset" class="button1">
 									</td>
-									<td>
-										<a value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？"href="forgot_password.php" style="text-decoration: none;color: #c46a10;">Forgot Username or Password</a>
-									</td>
+									
 								</tr>
 							</table>
 						</td>

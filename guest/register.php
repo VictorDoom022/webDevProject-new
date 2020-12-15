@@ -20,7 +20,7 @@ do_component_topnav('APP NAME');
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body style="background-color: #000">
+<body style="background-color: #000 !important">
 <div class="login-box">
 <form method="post" action="register_function.php">
 	<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto;bottom: 15px;position: relative;">
@@ -51,7 +51,13 @@ do_component_topnav('APP NAME');
 									<td class="td_content"colspan="2"><input class="input_box" type="text" name="email" placeholder="E-mail"></td>
                                 </tr>
                                 <tr>
-									<td class="td_content"colspan="2"><input class="input_box" type="text" name="position" placeholder="Position"></td>
+									<td class="td_content"colspan="2">
+										<select id="position" class="input_box" name="position">
+											<option value="" disabled selected hidden>Select your position</option>
+											<option value="admin">Admin</option>
+											<option value="seller">Seller</option>
+											<option value="customer">Customer</option>
+										</select></td>
 								</tr>
 								<tr>
 									<td class="td_content"colspan="2"><input type="checkbox" id="term" name="term" value="value1" checked>

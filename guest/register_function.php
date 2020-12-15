@@ -34,7 +34,7 @@ if($num == 1){
     echo "Password you entered do not match - Please Try Again";
 }else if(empty($_POST["email"])){
     echo"Please Enter Email";
-}else if(empty($_POST["position"])){
+}else if ($position == ''){
     echo"Please Enter Position";
 }else if(isset($_POST["username"]) && isset($_POST["password"]) && empty($_POST["term"])){
     echo"<script>alert('Please read the FKing TERM')</script>";

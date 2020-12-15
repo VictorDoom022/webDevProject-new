@@ -13,10 +13,10 @@
 			text-decoration: none;
 			color:#bebcb7
 		}
-		.orange_word{
+		a{
 			font-family: Arial, Helvetica, sans-serif;
 			text-decoration: none;
-			color: #c46a10
+			color: #c46a10;
 		}
 		.login_table{
 			position:relative;
@@ -64,6 +64,4 @@
   			font-size: 17px;
   			padding: 0 15px;
 			}
-			.navbar-light .navbar-nav .nav-link {
-				color: rgb(255 255 255 / 0.8);
-			}
+			
