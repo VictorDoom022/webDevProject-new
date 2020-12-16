@@ -59,7 +59,7 @@ do_component_topnav('APP NAME');
 								</tr>
 								<tr>
 									<td class="td_content"colspan="2"><input type="checkbox" id="term" name="term" value="value1" checked>
-<label class="word">I had read the Term and Condition</label><br>
+										<label class="word">I had read the Term and Condition</label><br>
 								</tr>
 								<br>
 								<tr>
