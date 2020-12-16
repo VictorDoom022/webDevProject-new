@@ -57,7 +57,7 @@ else {
                                         <button class="btn btn-sm btn-warning">
                                             <i class="fas fa-minus"></i>
                                         </button>
-                                        <input id="quantity" type="text" step="1" min="1" value="1" style="width:20px;" 
+                                        <input id="quantity" type="text" step="1" min="<?= ($product->prdt_quantity == 0) ? '0' : '1' ?>" value="<?= ($product->prdt_quantity == 0) ? '0' : '1' ?>" style="width:20px;" 
                                             class="border-0 text-center">
                                         <button class="btn btn-sm btn-warning">
                                             <i class="fas fa-plus"></i>
