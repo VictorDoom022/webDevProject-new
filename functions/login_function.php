@@ -17,13 +17,16 @@ if(isset($_POST['login'])){
             $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $username;
             $_SESSION['position'] = $position;
-            if($position == 'admin'){
+            if($position == 'admin' && isset($_POST["term"])){
                 echo "admin";
-            }else if ($position == 'seller'){
+            }else if ($position == 'seller'  && isset($_POST["term"])){
                 header("Location: ../seller/sellerHome.php");
-            }else if ($position == 'customer'){
+            }else if ($position == 'customer'  && isset($_POST["term"])){
                 header('location: ../index.php');
-            }else{
+            }else if(empty($_POST["term"])){
+                echo "Please read the Fucking Term";
+            }
+            else{
                 echo "who da fuq are you";
             }
         }else{
