@@ -47,29 +47,28 @@ else {
                             <div style="color: #fd7e14;font-size: 2rem;">
                                 RM <?= number_format(floatval($product->prdt_sellPrice), 2) ?>
                             </div>
-                            <form id="addToCart">
-                                <input type="hidden" name="product_id" value="<?= $product_id ?>">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <div class="text-muted">Quantity</div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="mb-2">
-                                            <button class="btn btn-sm btn-warning">
-                                                <i class="fas fa-minus"></i>
-                                            </button>
-                                            <input id="quantity" type="text" step="1" min="1" value="1" style="width:20px;" 
-                                                class="border-0 text-center">
-                                            <button class="btn btn-sm btn-warning">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
+                            <input type="hidden" name="product_id" value="<?= $product_id ?>">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="text-muted">Quantity</div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="mb-2">
+                                        <button class="btn btn-sm btn-warning">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <input id="quantity" type="text" step="1" min="1" value="1" style="width:20px;" 
+                                            class="border-0 text-center">
+                                        <button class="btn btn-sm btn-warning">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                        <span id="outStock" class="text-danger" style="font-size: 10px;"><?= ($product->prdt_quantity == 0) ? 'Out of stock' : '' ?></span>
                                     </div>
                                 </div>
-                                <div>
-                                    <button class="btn btn-block btn-warning text-white" id="btn-cart">Add To Cart</button>
-                                </div>
-                            </form>
+                            </div>
+                            <div>
+                                <button class="btn btn-block btn-warning text-white" id="btn-cart" <?= ($product->prdt_quantity == 0) ? 'disabled' : '' ?>>Add To Cart</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,8 +119,21 @@ else {
                             // window.location.assign('login.php?request_url='+ window.location.href);
                         });
                     }else if(result.status == 0){
+                        $('#quantity_left').html('quantity left '+ result.quantity_left);
                         swal({
                             icon: "success",
+                            title: "Success",
+                            text: result.msg,
+                            timer: 1100,
+                            buttons: false,
+                        });
+                        if(result.quantity_left == 0) {
+                            $('#outStock').html('Out of stock');
+                            $('#btn-cart').prop('disabled', true);
+                        }
+                    }else if(result.status == 2){
+                        swal({
+                            icon: "warning",
                             title: "Success",
                             text: result.msg,
                             timer: 1100,
