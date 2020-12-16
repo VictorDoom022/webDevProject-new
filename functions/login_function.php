@@ -12,6 +12,8 @@ if(isset($_POST['login'])){
         $stmt->execute();
         $stmt->bind_result($id, $username, $position);
         if($stmt->fetch()){
+            unset($_SESSION['error']);
+
             $_SESSION['user_id'] = $id;
             $_SESSION['username'] = $username;
             $_SESSION['position'] = $position;
@@ -26,8 +28,8 @@ if(isset($_POST['login'])){
             }
         }else{
             echo $stmt->fetch();
-            echo "Your username or password is invalid";
-            //header("Location: ../login.php");
+            $_SESSION['error'] = "Your username or password is invalid";
+            header("location: ../login.php");
         }
         $stmt->close();
     }

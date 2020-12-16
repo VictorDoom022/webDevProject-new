@@ -3,6 +3,8 @@ require_once('../config/connect_db.php');
 
 session_start();
 
+$error = "";
+
 $conn = mysqli_connect("localhost","root","","webdevnew");
 
 if(isset($_POST["submit"])){
@@ -41,6 +43,7 @@ if(isset($_POST["submit"])){
                         header('location: ../index.php');
                     }else{
                         echo "who da fuq are you";
+                        $error = "Your email or password is invalid";
                     }
                 }else{
                     echo $stmt->fetch();
@@ -51,6 +54,7 @@ if(isset($_POST["submit"])){
             }   
         }else{
             echo"Wrong pass";
+            $error = "Wrong pass";
         }
     }
 }

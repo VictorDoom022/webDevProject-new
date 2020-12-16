@@ -108,7 +108,7 @@ function do_component_topnav($appName)
                         <a class="nav-link" href="login.php">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link" href="register.php">Register</a>
                     </li>
                     <?php endif; ?>
                 </ul>
