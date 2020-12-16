@@ -3,7 +3,7 @@ require_once('../config/connect_db.php');
 
 session_start();
 
-if(isset($_POST['login'])){
+if(isset($_POST['submit'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 

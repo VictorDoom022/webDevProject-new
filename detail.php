@@ -47,25 +47,29 @@ else {
                             <div style="color: #fd7e14;font-size: 2rem;">
                                 RM <?= number_format(floatval($product->prdt_sellPrice), 2) ?>
                             </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="text-muted">Quantity</div>
-                                </div>
-                                <div class="col-9">
-                                    <div class="mb-2">
-                                        <button class="btn btn-sm btn-warning">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        <input type="text" step="1" min="1" value="1" style="width:20px;" class="border-0 text-center">
-                                        <button class="btn btn-sm btn-warning">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
+                            <form id="addToCart">
+                                <input type="hidden" name="product_id" value="<?= $product_id ?>">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="text-muted">Quantity</div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="mb-2">
+                                            <button class="btn btn-sm btn-warning">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <input id="quantity" type="text" step="1" min="1" value="1" style="width:20px;" 
+                                                class="border-0 text-center">
+                                            <button class="btn btn-sm btn-warning">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <button class="btn btn-block btn-warning text-white" id="btn-cart">Add To Cart</button>
-                            </div>
+                                <div>
+                                    <button class="btn btn-block btn-warning text-white" id="btn-cart">Add To Cart</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -95,11 +99,14 @@ else {
 <script>
     $(document).ready(function() {
         $("#btn-cart").click(function() {
+            event.preventDefault();
+            var product_id = $('input[name="product_id"]').val();
+            var quantity = $('input#quantity').val();
             $.post({
                 url: 'functions/customer/addCart.php',
                 data: {
-                    product_id: '',
-                    quantity: '',
+                    product_id: product_id,
+                    quantity: quantity,
                 },
                 success: function (result) {
                     if(result.status == 1) {
@@ -116,7 +123,7 @@ else {
                         swal({
                             icon: "success",
                             title: "Success",
-                            text: "Added to Cart (Currently not working)",
+                            text: result.msg,
                             timer: 1100,
                             buttons: false,
                         });
