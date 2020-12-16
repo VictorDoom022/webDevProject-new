@@ -53,8 +53,6 @@ do_component_topnav('APP NAME');
                                 <tr>
 									<td class="td_content"colspan="2">
 										<select id="position" class="input_box" name="position">
-											<option value="" disabled selected hidden>Select your position</option>
-											<option value="admin">Admin</option>
 											<option value="seller">Seller</option>
 											<option value="customer">Customer</option>
 										</select></td>

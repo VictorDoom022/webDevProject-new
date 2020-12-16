@@ -1,6 +1,8 @@
 <?php
 require_once('../config/connect_db.php');
 
+session_start();
+
 $conn = mysqli_connect("localhost","root","","webdevnew");
 
 if(isset($_POST["submit"])){
@@ -32,7 +34,7 @@ if(isset($_POST["submit"])){
                     $_SESSION['username'] = $username;
                     $_SESSION['position'] = $position;
                     if($position == 'admin'){
-                        echo "admin";
+                        header("location: ../admin/adminManageSeller.php");
                     }else if ($position == 'seller'){
                         header("location: ../seller/sellerHome.php");
                     }else if ($position == 'customer'){
