@@ -57,9 +57,9 @@ else {
                                         <button class="btn btn-sm btn-warning">
                                             <i class="fas fa-minus"></i>
                                         </button>
-                                        <input id="quantity" type="text" step="1" min="<?= ($product->prdt_quantity == 0) ? '0' : '1' ?>" value="<?= ($product->prdt_quantity == 0) ? '0' : '1' ?>" style="width:20px;" 
-                                            class="border-0 text-center">
-                                        <button class="btn btn-sm btn-warning">
+                                        <input id="quantity" type="text" step="1" min="<?= ($product->prdt_quantity == 0) ? '0' : '1' ?>" value="<?= ($product->prdt_quantity == 0) ? '0' : '1' ?>" 
+                                            max="<?= $product->prdt_quantity ?>" style="width:20px;" class="border-0 text-center">
+                                        <button class="btn btn-sm btn-warning" id="add-btn">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                         <span id="outStock" class="text-danger" style="font-size: 10px;"><?= ($product->prdt_quantity == 0) ? 'Out of stock' : '' ?></span>
@@ -142,6 +142,19 @@ else {
                     }
                 }
             });
+        });
+
+        $('#add-btn').click(function() {
+            var quantity =  parseInt($('#quantity').val());
+            var max = parseInt($('#quantity').attr('max'));
+            if(quantity < max) {
+                quantity++;
+                $('#quantity').val(quantity);
+            }
+
+            if(quantity == max) {
+                $(this).prop('disabled', true);
+            }
         });
     });
 </script>
