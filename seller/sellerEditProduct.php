@@ -20,6 +20,7 @@ if(isset($_GET['id'])){
             $prdt_image = $row['prdt_image'];
             $prdt_quantity = $row['prdt_quantity'];
             $prdt_seller = $row['prdt_seller'];
+            $prdt_available = $row['prdt_available'];
         }
     }
 }
@@ -82,7 +83,8 @@ if(isset($_GET['id'])){
                                     </div>
                                     <div class="col-md-6">
                                         Availablility
-                                        <input class="form-control form-control-sm border-dark" type="checkbox" name="prdt_available" value="<?php echo $prdt_available; ?>">
+                                        <input class="form-control form-control-sm border-dark" type="checkbox" id="prdt_available" name="prdt_available" value="<?php echo $prdt_available; ?>">
+                                        <input type="hidden" id="prdt_available_chkbox" value="<?php echo $prdt_available; ?>">
                                     </div>
                                     <div class="col-md-12">
                                         Description
@@ -102,4 +104,12 @@ if(isset($_GET['id'])){
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function() {
+        var prdt_available = document.getElementById('prdt_available_chkbox').value;
+        if(prdt_available == '1'){
+            $('#prdt_available').attr( "checked", true );
+        }
+    });
+</script>
 </html>
