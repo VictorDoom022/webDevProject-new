@@ -62,9 +62,9 @@ if(isset($_GET['id'])){
                                     </div>
                                     <div class="col-md-6">
                                         Promo Product
-                                        <select class="form-control form-control-sm border-dark" name="promo_prdt">
+                                        <select class="form-control form-control-sm border-dark" id="promo_prdt" name="promo_prdt">
                                         <?php
-                                            $sql = "SELECT CONCAT(prdt_code, ' : ',  prdt_name) AS product_result, id FROM product WHERE id='".$promo_prdt."'";
+                                            $sql = "SELECT CONCAT(prdt_code, ' : ',  prdt_name) AS product_result, id FROM product WHERE prdt_seller = '".$_SESSION["user_id"]."'";
                                             $result = mysqli_query($conn, $sql);
                                             if(mysqli_num_rows($result) > 0){
                                                 while($row = mysqli_fetch_assoc($result)){
@@ -76,6 +76,7 @@ if(isset($_GET['id'])){
                                             }    
                                         ?>
                                         </select>
+                                        <input type="hidden" id="promo_prdt_select" value="<?php echo $promo_prdt ?>">
                                     </div>
                                     <div class="col-md-6">
                                         Promo Discount
@@ -110,5 +111,9 @@ function dateCheck() {
         }
     }
 }
+$(document).ready(function() {
+    var promo_prdt = document.getElementById('promo_prdt_select').value;
+    document.getElementById('promo_prdt').value = promo_prdt;
+});
 </script>
 </html>
