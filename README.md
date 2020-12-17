@@ -2,7 +2,8 @@
 
 #### Bug List
 `````
-
+Seller
+Where edit Availablility not checked
 `````
 
 #### File Structure

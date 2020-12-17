@@ -86,7 +86,7 @@ function do_component_topnav($appName)
                     </li>
                     <?php if(isset($_SESSION['username']) && $_SESSION['position'] == 'customer'): ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="cart.php">
+                        <a class="nav-link" href="viewCart.php">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
                     </li>
