@@ -57,8 +57,13 @@ do_component_topnav('APP NAME');
 									<td class="td_content"colspan="2"><input class="input_box" type="password" name="password" placeholder="Password"></td>
 								</tr>
 								<tr>
-									<td>
+									<td style="text-align: center;" colspan="2">
 										<?= (isset($_SESSION['error'])) ? '<div class="text-danger">'. $_SESSION['error'] .'</div>' : '' ?>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align: center;" colspan="2">
+										<?= (isset($_SESSION['success'])) ? '<div class="text-success" style="text-align:center;">'. $_SESSION['success'] .'</div>' : '' ?>
 									</td>
 								</tr>
 								<tr>

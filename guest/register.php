@@ -4,16 +4,19 @@ require_once('../customer/layouts.php');
 
 session_start();
 
+unset($_SESSION['error']);
+unset($_SESSION['success']);
+
 if(isset($_SESSION['username'])) {
 	if($_SESSION['position'] == 'customer') {
 		header('location: index.php');
 	}
 }
 
-
 do_html_head('APP NAME', $bootstrapCSS, $bootstrapJS);
 do_component_topnav('APP NAME');
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +61,11 @@ do_component_topnav('APP NAME');
 										</select></td>
 								</tr>
 								<tr>
+									<td style="text-align: center;" colspan="2">
+										<?= (isset($_SESSION['register_error'])) ? '<div class="text-danger">'. $_SESSION['register_error'] .'</div>' : '' ?>
+									</td>
+								</tr>
+								<tr>
 									<td class="td_content"colspan="2"><input type="checkbox" id="term" name="term" value="value1" checked>
 <label class="word">I had read the Term and Condition</label><br>
 								</tr>
@@ -69,6 +77,7 @@ do_component_topnav('APP NAME');
 										<a class="orange_word" value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？">Forgot Username or Password</a>
 									</td>
 								</tr>
+								
 							</table>
 						</td>
 					</tr>
@@ -77,9 +86,7 @@ do_component_topnav('APP NAME');
 		</tr>
 	</table>
     </form>
-    </div>
-
-
+	</div>
 </body>
 </html>
 

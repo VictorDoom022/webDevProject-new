@@ -1,8 +1,9 @@
 <?php
 
-SESSION_START();
-
 require_once('data_valid_functions.php');
+require_once('../config/connect_db.php');
+
+session_start();
 
 $conn = mysqli_connect('localhost','root','');
 
@@ -20,28 +21,37 @@ $result = mysqli_query($conn,$s);
 
 $num = mysqli_num_rows($result);
 
+unset($_SESSION['error']);
+unset($_SESSION['success']);
+
 if($num == 1){
-    echo"Username Already Taken";
+    $_SESSION['register_error'] = "Username has taken";
+    header("location: register.php");
 }else if(empty($_POST["username"])){
-    echo"Please Enter Username";
-}else if(empty($_POST["password"])){
-    echo"Please Enter Password";
-}else if(empty($_POST["password2"])){
-    echo"Please Enter Password";
+    $_SESSION['register_error'] = "Please enter your Username";
+    header("location: register.php");
+}else if(empty($_POST["password"]) || empty($_POST["password2"])){
+    $_SESSION['register_error'] = "Please Enter Password";
+    header("location: register.php");
 }else if(!valid_email($email)){
-    echo "Email address is not valid - Please Try another email address";
+    $_SESSION['register_error'] = "Email address is not valid - Please Try another email address";
+    header("location: register.php");
 }else if($password != $password2){
-    echo "Password you entered do not match - Please Try Again";
+    $_SESSION['register_error'] = "Password you entered do not match - Please Try Again";
+    header("location: register.php");
 }else if(empty($_POST["email"])){
-    echo"Please Enter Email";
+    $_SESSION['register_error'] = "Please Enter Email";
+    header("location: register.php");
 }else if ($position == ''){
     echo"Please Enter Position";
 }else if(isset($_POST["username"]) && isset($_POST["password"]) && empty($_POST["term"])){
     echo"<script>alert('Please read the FKing TERM')</script>";
 }else{
-    $reg = "INSERT INTO users(username,password,email,position) VALUES('$name','$password','$email','$position')";
+    $reg = "INSERT INTO users(username,password,email,position) VALUES('$name',md5('$password'),'$email','$position')";
     mysqli_query($conn,$reg);
-    echo"Registration Successful";
+    $_SESSION['success'] = "Registration Successful - You may login now !";
+    unset($_SESSION['error']);
+    header("location: ../login.php");
 }
 ?>
 <a href="register.php">back</a>
