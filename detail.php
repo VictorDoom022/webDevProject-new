@@ -54,7 +54,7 @@ else {
                                 </div>
                                 <div class="col-9">
                                     <div class="mb-2">
-                                        <button class="btn btn-sm btn-warning">
+                                        <button id="minus-btn" class="btn btn-sm btn-warning" disabled>
                                             <i class="fas fa-minus"></i>
                                         </button>
                                         <input id="quantity" type="text" step="1" min="<?= ($product->prdt_quantity == 0) ? '0' : '1' ?>" value="<?= ($product->prdt_quantity == 0) ? '0' : '1' ?>" 
@@ -150,11 +150,29 @@ else {
             if(quantity < max) {
                 quantity++;
                 $('#quantity').val(quantity);
+
+                if(quantity == max)
+                    $(this).prop('disabled', true);
             }
 
-            if(quantity == max) {
-                $(this).prop('disabled', true);
+            if($('#minus-btn').prop('disabled'))
+                $('#minus-btn').prop('disabled', false);
+        });
+
+        $('#minus-btn').click(function() {
+            var quantity =  parseInt($('#quantity').val());
+            var max = parseInt($('#quantity').attr('max'));
+
+            if(quantity > 1) {
+                quantity--;
+                $('#quantity').val(quantity);
+
+                if(quantity <= 1)
+                    $(this).prop('disabled', true);
             }
+            
+            if($('#add-btn').prop('disabled'))
+                $('#add-btn').prop('disabled', false);
         });
     });
 </script>
