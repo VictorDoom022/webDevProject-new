@@ -66,12 +66,13 @@ if(isset($_GET['id'])){
                                     </div>
                                     <div class="col-md-6">
                                         Product Type
-                                        <select class="form-control form-control-sm border-dark"name="prdt_type">
+                                        <select class="form-control form-control-sm border-dark" id="prdt_type" name="prdt_type">
                                             <option value="iphone">iPhone</option>
                                             <option value="ipad">iPad</option>
                                             <option value="mac">Mack</option>
                                             <option value="ipod">Ipod</option>
                                         </select>
+                                        <input type="hidden" id="prdt_type_select" value="<?php echo $prdt_type ?>">
                                     </div>
                                     <div class="col-md-6">
                                         Quantity
@@ -110,6 +111,9 @@ if(isset($_GET['id'])){
         if(prdt_available == '1'){
             $('#prdt_available').attr( "checked", true );
         }
+
+        var prdt_type = document.getElementById('prdt_type_select').value;
+        document.getElementById('prdt_type').value = prdt_type;
     });
 </script>
 </html>
