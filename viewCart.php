@@ -14,23 +14,36 @@ do_html_head('Apple', $bootstrapCSS, $jQueryJS.$bootstrapJS.$fontAwsomeIcons);
 do_component_topnav('Apple');
 
 
-echo $query = "SELECT * FROM cart LEFT JOIN product ON cart.crt_product = product.id WHERE crt_user='$user_id'";
+$query = "SELECT 
+            cart.id AS cart_id,
+            cart.crt_addDate AS cart_time,
+            cart.crt_quantity AS quantity,
+            product.prdt_name AS product_name,
+            product.prdt_sellPrice AS product_price
+            FROM cart LEFT JOIN product ON cart.crt_product = product.id WHERE crt_user='$user_id'";
 $result = mysqli_query($conn, $query);
-
-$row = mysqli_fetch_row($result);
-print_r($row);
-
 ?>
 <div class="container mt-4">
-    <div class="card border-0">
+<?php
+if($result) {
+    $num_row = mysqli_num_rows($result);
+    if($num_row > 0) {
+        for($i = 0; $i < $num_row; $i++) {
+            $row = mysqli_fetch_assoc($result);
+?>
+    <div class="card mb-3 border-0">
         <div class="card-body">
-            <div class="row">
-                <div class="card col-12">
-                    <div class="card-body"></div>
-                </div>
-            </div>
+            <?= $row['product_name'] ?>
+            <?= $row['quantity'] ?>
+            <?= $row['cart_time'] ?>
+            <?= $row['product_price'] * $row['quantity'] ?>
         </div>
     </div>
+<?php
+        }
+    }
+}
+?>
 </div>
 <?php
 do_html_end();
