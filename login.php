@@ -77,7 +77,7 @@ do_component_topnav('APP NAME');
 									<td class="td_content"><input type="submit"name="login" value="login" class="button1" alt="Login" title="Login">
 									</td>
 									<td>
-										<a value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？"href="forgot_password.php" style="text-decoration: none;color: #c46a10;">Forgot Username or Password</a>
+										<a value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？"href="guest/forgot_password.php" style="text-decoration: none;color: #c46a10;">Forgot Username or Password</a>
 									</td>
 								</tr>
 							</table>

@@ -4,9 +4,6 @@ require_once('../customer/layouts.php');
 
 session_start();
 
-unset($_SESSION['error']);
-unset($_SESSION['success']);
-
 if(isset($_SESSION['username'])) {
 	if($_SESSION['position'] == 'customer') {
 		header('location: index.php');
@@ -63,6 +60,7 @@ do_component_topnav('APP NAME');
 								<tr>
 									<td style="text-align: center;" colspan="2">
 										<?= (isset($_SESSION['register_error'])) ? '<div class="text-danger">'. $_SESSION['register_error'] .'</div>' : '' ?>
+										<?php unset($_SESSION['register_error']); ?>
 									</td>
 								</tr>
 								<tr>

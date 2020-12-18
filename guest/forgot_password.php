@@ -23,7 +23,7 @@ do_component_topnav('APP NAME');
 </head>
 <body style="background-color: #000 !important">
 <div class="login-box">
-<form method="post" action="#">
+<form method="post" action="reset_password_function.php">
 	<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto;">
 		<tr>
 			<td>
