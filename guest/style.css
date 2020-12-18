@@ -58,10 +58,14 @@
 		    box-sizing: border-box;
 			background-color: #ff9326;
 			border:none;
-		   }
-		 ::placeholder {
-  			color: #69625f;
-  			font-size: 17px;
-  			padding: 0 15px;
+		}
+		::placeholder {
+			color: #69625f;
+			font-size: 17px;
+			padding: 0 15px;
+			}
+			.error_success{
+				margin: auto;
+				text-align: center;
 			}
 			

@@ -59,12 +59,13 @@ do_component_topnav('APP NAME');
 								<tr>
 									<td style="text-align: center;" colspan="2">
 										<?= (isset($_SESSION['error'])) ? '<div class="text-danger">'. $_SESSION['error'] .'</div>' : '' ?>
+										<?php unset($_SESSION['error']); ?>
 									</td>
 								</tr>
 								<tr>
 									<td style="text-align: center;" colspan="2">
 										<?= (isset($_SESSION['success'])) ? '<div class="text-success" style="text-align:center;">'. $_SESSION['success'] .'</div>' : '' ?>
-										<?= session_destroy() ?>
+										<?php unset($_SESSION['success']); ?>
 									</td>
 								</tr>
 								<tr>
@@ -76,7 +77,7 @@ do_component_topnav('APP NAME');
 									<td class="td_content"><input type="submit"name="login" value="login" class="button1" alt="Login" title="Login">
 									</td>
 									<td>
-										<a value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？"href="forgot_password.php" style="text-decoration: none;color: #c46a10;">Forgot Username or Password</a>
+										<a value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？"href="guest/forgot_password.php" style="text-decoration: none;color: #c46a10;">Forgot Username or Password</a>
 									</td>
 								</tr>
 							</table>

@@ -23,7 +23,7 @@ do_component_topnav('APP NAME');
 </head>
 <body style="background-color: #000 !important">
 <div class="login-box">
-<form method="post" action="#">
+<form method="post" action="reset_password_function.php">
 	<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto;">
 		<tr>
 			<td>
@@ -42,6 +42,12 @@ do_component_topnav('APP NAME');
 								
 								<tr>
 									<td class="td_content" colspan="2"><input class="input_box" type="text" name="username" placeholder="Username"></td>
+								</tr>
+								<tr>
+									<td>
+									<?= (isset($_SESSION['reset_error'])) ? '<div class="text-danger">'. $_SESSION['reset_error'] .'</div>' : '' ?>
+										<?php unset($_SESSION['reset_error']); ?>
+									</td>
 								</tr>
 								<tr>
 									<td class="td_content"colspan="2"><input type="checkbox" id="term" name="term" value="value1" checked>
