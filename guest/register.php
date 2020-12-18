@@ -1,4 +1,5 @@
 <?php
+require_once('../config/connect_db.php');
 require_once('../config/bootstrap.php');
 require_once('../customer/layouts.php');
 
