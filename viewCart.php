@@ -90,6 +90,10 @@ if($result) {
                             <span>Subtotal</span>
                             <span class="ml-auto">RM <?= $sub_total ?></span>
                         </li>
+                        <li class="list-group-item d-flex">
+                            <span>Total</span>
+                            <span class="ml-auto">RM <?= $sub_total ?></span>
+                        </li>
                     </ul>
                 </div>
             </div>
