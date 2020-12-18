@@ -1,5 +1,4 @@
 <?php
-
 function do_html_head(String $title, String $cssLink = null, String $jsLink = null)
 {
     echo <<<_HEAD
@@ -60,13 +59,24 @@ function do_component_topnav($appName)
                                         All
                                     </a>
                                 </li>
-                                <!-- @foreach(\$PRODUCT_CATEGORIES as \$product_category) -->
+                                <?php
+                                $conn = db_connect();
+                                $query = "SELECT DISTINCT prdt_type FROM product";
+                                $result = mysqli_query($conn, $query);
+                                if($result) {
+                                    $num_row = mysqli_num_rows($result);
+                                    for($i = 0; $i < $num_row; $i ++) {
+                                        $row = mysqli_fetch_assoc($result);
+                                ?>
                                 <li class="nav-item">
-                                    <a href="{{ route('product_category.product_list', ['product_category'=> \$product_category]) }}" class="nav-link" style="font-size: .93rem;font-weight: 400;">
-                                        <!-- {{ \$product_category->category_title }} -->
+                                    <a href="product.php?type=<?= $row['prdt_type'] ?>" class="nav-link" style="font-size: .93rem;font-weight: 400;">
+                                        <?= strtoupper($row['prdt_type']) ?>
                                     </a>
                                 </li>
-                                <!-- @endforeach -->
+                                <?php
+                                    }
+                                }
+                                ?>
                             </ul>
                         </div>
                     </li>

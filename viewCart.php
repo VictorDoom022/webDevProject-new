@@ -81,6 +81,26 @@ if($result) {
 }
 
 ?>
+            <hr>
+            <div class="card border-0">
+                <div class="card-body">
+                    <form action="" method="post">
+                        <label for="" class="font-weight-bold">Coupon code:</label>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Enter coupon code">
+                                    </div>
+                                    <div class="col-auto">
+                                        <input class="btn btn-dark" type="submit" value="Apply">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="col-md-4">
             <div class="card border-0 mb-3">
