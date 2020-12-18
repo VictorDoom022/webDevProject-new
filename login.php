@@ -59,12 +59,13 @@ do_component_topnav('APP NAME');
 								<tr>
 									<td style="text-align: center;" colspan="2">
 										<?= (isset($_SESSION['error'])) ? '<div class="text-danger">'. $_SESSION['error'] .'</div>' : '' ?>
+										<?php unset($_SESSION['error']); ?>
 									</td>
 								</tr>
 								<tr>
 									<td style="text-align: center;" colspan="2">
 										<?= (isset($_SESSION['success'])) ? '<div class="text-success" style="text-align:center;">'. $_SESSION['success'] .'</div>' : '' ?>
-										<?= session_destroy() ?>
+										<?php unset($_SESSION['success']); ?>
 									</td>
 								</tr>
 								<tr>
