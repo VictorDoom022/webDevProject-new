@@ -39,7 +39,7 @@ if($result) {
         $result = mysqli_query($conn, $query);
 
         if($result) {
-            $num_row = mysqli_num_rows($result);
+            $count = $num_row = mysqli_num_rows($result);
             if($num_row > 0) {
                 $sub_total = 0;
 
@@ -64,7 +64,7 @@ if($result) {
                                         <small class="text-muted">Quantity: <?= $row['quantity'] ?></small>
                                     </div>
                                     <div class="d-flex align-items-center">
-                                        <span class="card-text text-right"><small class="text-muted"><?= date("m-d-Y",$create_time) ?></small></span>
+                                        <span class="card-text text-right"><small class="text-muted"><?= date("m/d/Y",$create_time) ?></small></span>
                                         <button class="btn btn-sm ml-auto text-muted"><i class="fas fa-times mr-1"></i>Remove</button>
                                     </div>
                                 </div>
@@ -76,21 +76,33 @@ if($result) {
             }
         }
     } else {
-        echo 'empty cart';
+        echo '';
     }
 }
 
 ?>
+            <nav>
+                <ul class="pagination justify-content-end">
+                    <?php
+                    $page = $total_cart / $count;
+                    for($i = 1;$i <= $page; $i ++){
+                    ?>
+                        <li class="page-item"><a class="page-link border-0" href="#"><?= $i ?></a></li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+            </nav>
             <hr>
             <div class="card border-0">
                 <div class="card-body">
                     <form action="" method="post">
-                        <label for="" class="font-weight-bold">Coupon code:</label>
+                        <label for="" class="font-weight-bold">Discount code:</label>
                         <div class="row">
                             <div class="col-md-7">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control" placeholder="Enter coupon code">
+                                        <input type="text" class="form-control" placeholder="Enter Discount code">
                                     </div>
                                     <div class="col-auto">
                                         <input class="btn btn-dark" type="submit" value="Apply">
