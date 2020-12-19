@@ -94,7 +94,7 @@ if($result) {
                 </ul>
             </nav>
             <hr>
-            <div class="card border-0">
+            <div class="card border-0 mb-4">
                 <div class="card-body">
                     <form action="" method="post">
                         <label for="" class="font-weight-bold">Discount code:</label>
