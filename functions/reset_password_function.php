@@ -10,7 +10,7 @@ $username = $_POST['username'];
 
 if(empty($_POST['username'])){
     $_SESSION['reset_error'] = "Please enter your username";
-    header("location: forgot_password.php");
+    header("location: ../forgot_password.php");
 }else{
         try{
             $password = reset_password($username);
@@ -19,7 +19,7 @@ if(empty($_POST['username'])){
         }catch(Exception $e) {
             echo $e;
             $_SESSION['reset_error'] = "Your password could not be reset - please try again later.";
-            // header("location: ../forgot_password.php");
+            header("location: ../forgot_password.php");
         
         }
 }

@@ -22,11 +22,35 @@ do_component_topnav('Apple');
     <div class="row mt-3">
         <div class="col-md-8">
 <?php
-$query = "SELECT id FROM cart WHERE crt_user='$user_id'";
+$page_num = @$_GET['page'];
+
+if($page_num == 0 || $page_num == 1) {
+    $out_set = 0;
+} else {
+    $out_set = ($page_num * 5) - 5;
+}
+
+$query = "SELECT id AS total_price FROM cart WHERE crt_user='$user_id'";
 $result = mysqli_query($conn, $query);
+
 if($result) {
     $total_cart = mysqli_num_rows($result);
     if($total_cart > 0) {
+        $query = "SELECT 
+                    cart.crt_quantity AS quantity,
+                    product.prdt_sellPrice AS product_price
+                    FROM cart LEFT JOIN product ON cart.crt_product = product.id WHERE crt_user='$user_id'";
+        $result = mysqli_query($conn, $query);
+        if($result) {
+            $sub_total = 0;
+            $count = $num_row = mysqli_num_rows($result);
+
+            for($i = 0; $i < $num_row; $i++) {
+                $row = mysqli_fetch_assoc($result);
+                $sub_total += $row['product_price'] * $row['quantity'];
+            }
+        }
+
         $query = "SELECT 
                     cart.id AS cart_id,
                     cart.crt_addDate AS cart_time,
@@ -35,19 +59,15 @@ if($result) {
                     product.prdt_name AS product_name,
                     product.prdt_image AS product_image,
                     product.prdt_sellPrice AS product_price
-                    FROM cart LEFT JOIN product ON cart.crt_product = product.id WHERE crt_user='$user_id' LIMIT 0, 5";
+                    FROM cart LEFT JOIN product ON cart.crt_product = product.id WHERE crt_user='$user_id' LIMIT $out_set, 5";
         $result = mysqli_query($conn, $query);
 
         if($result) {
             $count = $num_row = mysqli_num_rows($result);
             if($num_row > 0) {
-                $sub_total = 0;
-
                 for($i = 0; $i < $num_row; $i++) {
                     $row = mysqli_fetch_assoc($result);
                     $create_time = strtotime($row['cart_time']);
-
-                    $sub_total += $row['product_price'] * $row['quantity'];
 ?>
                     <div class="card mb-3 border-0">
                         <div class="row no-gutters align-items-center">
@@ -82,12 +102,13 @@ if($result) {
 
 ?>
             <nav>
+                <div class="justify-content-start"></div>
                 <ul class="pagination justify-content-end">
                     <?php
-                    $page = $total_cart / $count;
+                    $page = ceil($total_cart / 5);
                     for($i = 1;$i <= $page; $i ++){
                     ?>
-                        <li class="page-item"><a class="page-link border-0" href="#"><?= $i ?></a></li>
+                        <li class="page-item <?= ($page_num == $i || ($i == 1 && $page_num == 0)) ? 'active' : '' ?>"><a class="page-link border-0" href="<?= $_SERVER['PHP_SELF'] .'?page='. $i ?>"><?= $i ?></a></li>
                     <?php
                     }
                     ?>
