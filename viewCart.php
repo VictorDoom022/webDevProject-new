@@ -34,6 +34,8 @@ $query = "SELECT id AS total_price FROM cart WHERE crt_user='$user_id'";
 $result = mysqli_query($conn, $query);
 
 if($result) {
+    $sub_total = 0;
+
     $total_cart = mysqli_num_rows($result);
     if($total_cart > 0) {
         $query = "SELECT 
@@ -42,7 +44,6 @@ if($result) {
                     FROM cart LEFT JOIN product ON cart.crt_product = product.id WHERE crt_user='$user_id'";
         $result = mysqli_query($conn, $query);
         if($result) {
-            $sub_total = 0;
             $count = $num_row = mysqli_num_rows($result);
 
             for($i = 0; $i < $num_row; $i++) {
@@ -69,7 +70,7 @@ if($result) {
                     $row = mysqli_fetch_assoc($result);
                     $create_time = strtotime($row['cart_time']);
 ?>
-                    <div class="card mb-3 border-0">
+                    <div class="card mb-3 border-0" id="cart-<?= $row['cart_id'] ?>">
                         <div class="row no-gutters align-items-center">
                             <div class="col-md-3">
                                 <img src="<?= $row['product_image'] ?>" class="card-img" alt="">
@@ -85,7 +86,9 @@ if($result) {
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <span class="card-text text-right"><small class="text-muted"><?= date("m/d/Y",$create_time) ?></small></span>
-                                        <button class="btn btn-sm ml-auto text-muted"><i class="fas fa-times mr-1"></i>Remove</button>
+                                        <button class="btn btn-sm ml-auto text-muted remove-cart-btn" data-cart_id="<?= $row['cart_id'] ?>">
+                                            <i class="fas fa-times mr-1"></i>Remove
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +99,14 @@ if($result) {
             }
         }
     } else {
-        echo '';
+?>
+    <div class="card border-0">
+        <div class="card-body text-center">
+            <div class="text-center">Empty Cart</div>
+            <div class="text-right"><a href="product.php" class="text-body small stretched-link">shopping now</a></div>
+        </div>
+    </div>
+<?php
     }
 }
 
@@ -155,6 +165,38 @@ if($result) {
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.remove-cart-btn').on('click', function() {
+            var cart_id = $(this).data('cart_id');
+            var url = 'functions/customer/removeCartItem.php';
+
+            $.post({
+                url: url,
+                data: {
+                    cart_id: cart_id,
+                },
+                success: function (result) {
+                    if(result.status == 0) {
+                        var cart_card = $('#cart-'+ cart_id).remove();
+                        console.log(cart_card);
+                        swal({
+                            icon: "success",
+                            title: "Success",
+                            text: result.msg,
+                            timer: 1100,
+                            buttons: false,
+                        })
+                        console.log(result);
+                    }
+                    console.log(result);
+                }
+            });
+        });
+    });
+</script>
 <?php
 do_html_end();
 ?>
