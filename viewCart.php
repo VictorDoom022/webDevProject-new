@@ -188,10 +188,11 @@ if($result) {
                             text: result.msg,
                             timer: 1100,
                             buttons: false,
-                        })
-                        console.log(result);
+                        });
+
+                        if(result.cart_num == 0)
+                            window.location.assign('<?= $_SERVER['PHP_SELF'] ?>');
                     }
-                    console.log(result);
                 }
             });
         });
