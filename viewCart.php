@@ -161,7 +161,7 @@ if($result) {
                 </div>
             </div>
             <button class="btn btn-dark btn-block">Check Out</button>
-            <button class="btn btn-outline-dark btn-block">Empty Cart</button>
+            <a href="functions/customer/empty_cart.php" class="btn btn-outline-dark btn-block<?= ($total_cart == 0) ? ' disabled' :'' ?>">Empty Cart</a>
         </div>
     </div>
 </div>
