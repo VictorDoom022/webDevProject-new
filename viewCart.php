@@ -124,7 +124,7 @@ if($result) {
                     ?>
                 </ul>
             </nav>
-            <hr>
+            <!-- <hr>
             <div class="card border-0 mb-4">
                 <div class="card-body">
                     <form action="" method="post">
@@ -143,7 +143,7 @@ if($result) {
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="col-md-4">
             <div class="card border-0 mb-3">
