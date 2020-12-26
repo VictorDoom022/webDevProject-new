@@ -32,9 +32,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['position'])) {
                     $query = "UPDATE product SET prdt_quantity = $product_quantity WHERE id = $product_id;";
                     $result = mysqli_query($conn, $query);
 
-                    if($result) {
-                        continue;
-                    } else {
+                    if(!$result) {
                         print_r( mysqli_error_list($conn));
                         echo '<script>alert("something wrong");</script>';
                         break;
