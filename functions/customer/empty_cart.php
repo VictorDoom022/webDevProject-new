@@ -25,15 +25,22 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['position'])) {
                     $cart_id = $obj->cart_id;
                     $product_id = $obj->product_id;
 
-                    $product_quantity = $obj->prdt_quantity + $obj->crt_quantity;
+                    $product_quantity = intval($obj->prdt_quantity) + intval($obj->crt_quantity);
 
                     $query = "DELETE FROM cart WHERE id = $cart_id AND crt_user = $user_id;";
-                    $query .= "UPDATE product SET prdt_quantity = $product_quantity WHERE id = $product_id;";
-                    $result = mysqli_multi_query($conn, $query);
+                    $result = mysqli_query($conn, $query);
+                    $query = "UPDATE product SET prdt_quantity = $product_quantity WHERE id = $product_id;";
+                    $result = mysqli_query($conn, $query);
+
                     if($result) {
-                        header('location: ../../viewCart.php');
+                        continue;
+                    } else {
+                        print_r( mysqli_error_list($conn));
+                        echo '<script>alert("something wrong");</script>';
+                        break;
                     }
                 }
+                header('location: ../../viewCart.php');
             }
         }
     }
