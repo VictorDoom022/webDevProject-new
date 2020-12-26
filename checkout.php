@@ -77,14 +77,14 @@ if($result) {
             <div class="col-12 col-md-4">
                 <div class="card border-0">
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="functions/customer/placeorder.php" method="post">
                             <div class="d-flex justify-content-between my-2">
                                 <div class="small text-muted">Subtotal (<?= $num_row ?> items)</div>
                                 <div>RM <?= number_format(floatval($total_price), 2) ?></div>
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <input id="" class="form-control" type="text" placeholder="Enter Promo Code">
-                                <button class="btn btn-dark ml-2">Apply</button>
+                                <button type="button" class="btn btn-dark ml-2">Apply</button>
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <div class="small text-muted">Total</div>
@@ -96,15 +96,18 @@ if($result) {
                         </form>
                     </div>
                 </div>
-                <a href="viewCart.php" class="btn-link"><i class="fas fa-arrow-left"></i> Back</a>
+                <a href="viewCart.php" class="btn-link"><i class="fas fa-arrow-left my-2"></i> Back</a>
             </div>
         </div>
     </div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            
+        });
+    </script>
     <?php
     do_html_end();
-    
-
-    
 }
 
