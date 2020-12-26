@@ -31,11 +31,18 @@ if($result) {
     ?>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-12 col-md-7">
+            <div class="col-12 col-md-8">
                 <div class="card border-0 mb-2">
-                    <div class="card-header bg-white">Check Out</div>
+                    <div class="card-header bg-white">Product List</div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-light">
+                                <div class="row">
+                                    <div class="col-8">Item</div>
+                                    <div class="col-2">Price</div>
+                                    <div class="col-2 text-right">Quantity</div>
+                                </div>
+                            </li>
                             <?php
                             $total_price = 0;
                             for($i = 0; $i < $num_row; $i++) {
@@ -43,12 +50,21 @@ if($result) {
                                 $total_price += $row['prdt_sellPrice'];
                             ?>
                             <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <img class="img-fluid" src="<?= $row['prdt_image'] ?>" alt="">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <div class="row align-items-center">
+                                            <div class="col-3">
+                                                <img class="img-fluid" src="<?= $row['prdt_image'] ?>" alt="">
+                                            </div>
+                                            <div class="col-9"><?= $row['prdt_name'] ?></div>
+                                        </div>
                                     </div>
-                                    <?= $row['prdt_name'] ?>
-                                    <?= $row['prdt_quantity'] ?>
+                                    <div class="col-3">
+                                        RM <?= number_format($row['prdt_sellPrice'], 2) ?>
+                                    </div>
+                                    <div class="col-1">
+                                        <?= $row['crt_quantity'] ?>
+                                    </div>
                                 </div>
                             </li>
                             <?php
@@ -58,29 +74,29 @@ if($result) {
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-5">
+            <div class="col-12 col-md-4">
                 <div class="card border-0">
                     <div class="card-body">
                         <form action="" method="post">
-                            <div class="form-group">
-                                <label for=""></label>
-                                <input id="" class="form-control" type="text">
+                            <div class="d-flex justify-content-between my-2">
+                                <div class="small text-muted">Subtotal (<?= $num_row ?> items)</div>
+                                <div>RM <?= number_format(floatval($total_price), 2) ?></div>
                             </div>
-                            <div class="form-group">
-                                <label for="">Amount</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1">MYR</span>
-                                    </div>
-                                    <input id="" class="form-control" type="text" value="<?= number_format(floatval($total_price), 2) ?>" readonly>
-                                </div>
+                            <div class="d-flex justify-content-between my-2">
+                                <input id="" class="form-control" type="text" placeholder="Enter Promo Code">
+                                <button class="btn btn-dark ml-2">Apply</button>
                             </div>
-                            <div class="text-right">
-                                <input class="btn btn-primary" type="submit" value="Pay">
+                            <div class="d-flex justify-content-between my-2">
+                                <div class="small text-muted">Total</div>
+                                <div style="color: #ff9326;">RM <?= number_format(floatval($total_price), 2) ?></div>
+                            </div>
+                            <div class="my-2">
+                                <input class="btn btn-warning btn-block" style="background-color: #ff9326;" type="submit" value="Place Order">
                             </div>
                         </form>
                     </div>
                 </div>
+                <a href="viewCart.php" class="btn-link"><i class="fas fa-arrow-left"></i> Back</a>
             </div>
         </div>
     </div>
