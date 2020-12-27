@@ -99,6 +99,24 @@ function do_component_topnav($appName)
                     <li class="nav-item">
                         <a class="nav-link" href="viewCart.php">
                             <i class="fas fa-shopping-cart"></i>
+                            <?php
+                            $conn = db_connect();
+                            $user_id = $_SESSION['user_id'];
+                            $query = "SELECT SUM(crt_quantity) AS total_crt FROM cart WHERE crt_user = $user_id";
+                            $result = mysqli_query($conn, $query);
+
+                            $cart_count = 0;
+                            if($result && mysqli_num_rows($result) > 0) {
+                                $cart_count = mysqli_fetch_assoc($result)['total_crt'];
+                            ?>
+                            <span id="crt_qty" class="badge badge-danger"><?= $cart_count ?></span>
+                            <?php
+                            } else {
+                            ?>
+                            <span id="crt_qty" class="badge badge-danger"></span>
+                            <?php
+                            }
+                            ?>
                         </a>
                     </li>
                     <li class="nav-item dropdown">

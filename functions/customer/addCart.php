@@ -35,6 +35,12 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']
                                 $query = "UPDATE product SET prdt_quantity = $quantity_left  WHERE id = '$product_id'";
                                 $result = mysqli_query($conn, $query);
                                 if($result) {
+                                    $query = "SELECT SUM(crt_quantity) AS cart_total FROM cart WHERE crt_user = $user_id";
+                                    $crt_qty_result = mysqli_query($conn, $query);
+
+                                    if($crt_qty_result) {
+                                        $output["crt_quantity"] = mysqli_fetch_assoc($crt_qty_result)['cart_total'];
+                                    }
                                     $output["status"] = 0;
                                     $output["msg"] = 'Added To Cart';
                                     $output["quantity_left"] = $quantity_left;
