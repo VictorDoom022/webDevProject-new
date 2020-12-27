@@ -10,8 +10,7 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['position'])) {
         $query = "SELECT 
                     cart.id AS cart_id,
                     product.id AS product_id,
-                    crt_quantity,
-                    prdt_quantity 
+                    crt_quantity
                     FROM cart LEFT JOIN product ON cart.crt_product = product.id WHERE crt_user = $user_id";
 
         $info_result = mysqli_query($conn, $query);
@@ -24,11 +23,16 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['position'])) {
                     $obj = mysqli_fetch_object($info_result);
                     $cart_id = $obj->cart_id;
                     $product_id = $obj->product_id;
-
-                    $product_quantity = intval($obj->prdt_quantity) + intval($obj->crt_quantity);
+                    $crt_qty = intval($obj->crt_quantity);
 
                     $query = "DELETE FROM cart WHERE id = $cart_id AND crt_user = $user_id;";
+                    mysqli_query($conn, $query);
+
+                    $query = "SELECT prdt_quantity FROM product WHERE id = $product_id";
                     $result = mysqli_query($conn, $query);
+                    $prdt_qty = mysqli_fetch_assoc($result)['prdt_quantity'];
+                    $product_quantity = intval($prdt_qty) + $crt_qty;
+
                     $query = "UPDATE product SET prdt_quantity = $product_quantity WHERE id = $product_id;";
                     $result = mysqli_query($conn, $query);
 
