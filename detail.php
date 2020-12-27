@@ -119,7 +119,11 @@ else {
                             // window.location.assign('login.php?request_url='+ window.location.href);
                         });
                     }else if(result.status == 0){
+                        $('#crt_qty').html(''+result.crt_quantity);
                         $('#quantity_left').html('quantity left '+ result.quantity_left);
+                        $('#quantity').attr('max', result.quantity_left);
+                        $('#quantity').val(1);
+                        $('#minus-btn').prop('disabled', true);
                         swal({
                             icon: "success",
                             title: "Success",
