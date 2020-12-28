@@ -1,5 +1,5 @@
 body {
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif !important;
 }
 
 nav.k-top-nav{
@@ -58,9 +58,10 @@ nav.k-side-nav ul li a{
 }
 
 nav.k-side-nav ul li a.active{
-    background: black;
+    background:#1d1d1f;
     color: white;
     box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.2);
+    border-radius: 8px;
 }
 
 nav.k-side-nav ul li a i{
@@ -68,11 +69,15 @@ nav.k-side-nav ul li a i{
 }
 
 nav.k-side-nav ul li a:not(.active):hover{
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(169,169,169, 0.1);
+    border-radius: 8px;
+    transition: .5s ease;
 }
 
 nav.k-side-nav ul li a.active:hover{
     background-color: rgb(70, 70, 70);
+    border-radius: 8px;
+    transition: .5s ease;
 }
 
 nav.k-side-nav-r{
