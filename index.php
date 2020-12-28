@@ -24,6 +24,14 @@ if(!$result) {
 }
 ?>
     <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <a href="" class="btn btn-block bg-white py-3 btn-light shadow-sm rounded-pill">
+                    <i class="fas fa-percent mr-2"></i>
+                    Voucher
+                </a>
+            </div>
+        </div>
         <div class="d-flex justify-content-center">
             <h3>Top Selling Products</h3>
         </div>
