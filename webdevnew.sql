@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2020 at 06:48 PM
+-- Generation Time: Dec 28, 2020 at 06:08 AM
 -- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -175,9 +175,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `position`, `create_date`) VALUES
-(1, 'admin', 'admin9450', 'admin@admin.com', 'admin', '0000-00-00 00:00:00'),
-(2, 'seller', '64c9ac2bb5fe46c3ac32844bb97be6bc', 'seller@sell.com', 'seller', '2020-12-18 14:14:41'),
-(3, 'customer', '91ec1f9324753048c0096d036a694f86', 'teotuanhee1yee2@gmail.com', 'customer', '2020-12-21 08:12:40');
+(1, 'admin', 'd9067cec004aa0341bd9dd7c26a06304', 'admin@admin.com', 'admin', '2020-12-28 04:57:17'),
+(2, 'seller', '836b08d4a5153a2931b7eda9a7824314', 'seller@sell.com', 'seller', '2020-12-28 04:57:03'),
+(3, 'customer', '927e7da8f602a5609248eb5d5b00795b', 'teotuanhee1yee2@gmail.com', 'customer', '2020-12-28 04:55:59');
 
 --
 -- Indexes for dumped tables
