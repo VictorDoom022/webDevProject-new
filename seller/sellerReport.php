@@ -24,6 +24,42 @@ include_once('../functions/checkSession.php');
             <div class="col-md-2"></div>
             <main class="col-md-10">
                 <div class="row">
+                <?php
+                    $sql = "SELECT SUM(ord_product_unit_price * ord_product_quantity) AS totalSellPrice,
+                    SUM(prdt_oriPrice * ord_product_quantity) AS totalOriPrice,
+                    SUM(ord_product_unit_price * ord_product_quantity) AS totalUnitPrice
+                    FROM orders 
+                    LEFT JOIN order_detail ON orders.id = order_detail.ord_id
+                    LEFT JOIN users ON orders.ord_user_id = users.id
+                    LEFT JOIN product ON order_detail.ord_product_id = product.id
+                    WHERE prdt_seller = '" .$_SESSION["user_id"]."'";
+
+                    $result = mysqli_query($conn, $sql);
+                    if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                ?>
+                    <div class="col-md-12">
+                        <div class="card mt-1">
+                            <h3 class="text-center">Total Revenue</h3>
+                                <h4 class="text-center">RM<?php echo $row['totalSellPrice'] - $row['totalOriPrice']; ?></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mt-1">
+                            <h3 class="text-center">Total Product Sold in Original Price </h3>
+                                <h4 class="text-center">RM<?php echo $row['totalOriPrice']; ?></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mt-1">
+                            <h3 class="text-center">Total Product Sold in Selling Price </h3>
+                                <h4 class="text-center">RM<?php echo $row['totalUnitPrice'] ?></h4>
+                        </div>
+                    </div>
+                <?php
+                        }
+                    }
+                ?>
                     <div class="col-md-12">
                         <div class="card mt-1">
                             <table class="table table-sm">
