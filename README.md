@@ -25,7 +25,7 @@ login function
 | User  | Function | PIC | Progress |
 | ------------- | ------------- | ------------- | ------------- | 
 | **Admin**   |   | **LC**  |
-|    | Add edit delete seller & view all customer data  | LC  |
+|    | Add edit delete seller & view all customer data  | LC  | Done |
 |    | Chat with seller and customer | TH  |
 |    | Manage/give seller commission | LC  |
 | **Seller**   |  | **VIC**  |
