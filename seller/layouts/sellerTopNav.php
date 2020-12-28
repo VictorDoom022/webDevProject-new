@@ -8,6 +8,8 @@
             <i class="fas fa-bars d-inline-flex"></i>
         <?php }elseif ($pageName == 'Chat'){ ?>
             <i class="fas fa-comments"></i>
+        <?php }elseif ($pageName == 'Report'){ ?>
+            <i class="fas fa-chart-pie"></i>
         <?php }elseif ($pageName == 'Promo'){ ?>
             <i class="fas fa-ad"></i>
         <?php } ?>

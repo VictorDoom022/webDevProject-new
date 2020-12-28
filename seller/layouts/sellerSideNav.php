@@ -32,6 +32,12 @@
                 </a>
             </li>
             <li class="nav-item w-100 mb-1">
+                <a href="sellerReport.php" class="nav-link w-100 <?php if($pageName == 'Report') echo 'active';?>">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="d-none d-lg-inline-flex ml-3">Report</span>
+                </a>
+            </li>
+            <li class="nav-item w-100 mb-1">
                 <a href="sellerPromo.php" class="nav-link w-100 <?php if($pageName == 'Promo') echo 'active';?>">
                     <i class="fas fa-ad"></i>
                     <span class="d-none d-lg-inline-flex ml-3">Promo</span>
