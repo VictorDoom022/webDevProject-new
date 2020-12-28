@@ -34,7 +34,7 @@ login function
 |    | View and download sales report (CSV) | VIC  |
 |    | Promo code (Manual type promo code, code due date and discount percentage | VIC  | Done |
 |  **Customer**  |  | **TH**  |
-|    | Add to cart | TH  |
+|    | Add to cart | TH  | Done |
 |    | View available discount code & enter discount code when checkout | TH  |
 |    | Chat with admin and seller | TH  |
 |  **Guest**  |  | **HY**  |
