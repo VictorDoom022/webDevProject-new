@@ -2,6 +2,8 @@
 	<span class="navbar-brand h1 mb-0 col">
         <?php if ($pageName == 'Home'){?>
             <i class="fas fa-home"></i>
+        <?php }elseif ($pageName == 'Order'){ ?>
+            <i class="fas fa-list-alt"></i>
         <?php }elseif ($pageName == 'Product'){ ?>
             <i class="fas fa-bars d-inline-flex"></i>
         <?php }elseif ($pageName == 'Chat'){ ?>
