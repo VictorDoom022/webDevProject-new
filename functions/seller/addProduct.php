@@ -57,7 +57,9 @@ $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['editProduct'])){
 }
 
 //delete Product
-if(isset($_POST['deleteProduct'])){
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+$_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest" && 
+$_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['deleteProduct'])){
     $id = $_POST['id'];
     $sql = "DELETE FROM product where id='".$id."'";
     mysqli_query($conn, $sql);

@@ -10,7 +10,7 @@ include_once('../functions/checkSession.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title></title>
-    <?php echo $bootstrapCSS; echo $jQueryJS; echo $bootstrapJS; echo $fontAwsomeIcons ?>
+    <?php echo $bootstrapCSS; echo $jQueryJS; echo $sweetAlert; echo $bootstrapJS; echo $fontAwsomeIcons ?>
 </head>
     <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
@@ -59,17 +59,7 @@ include_once('../functions/checkSession.php');
 
                                                 <div class="text-right">
                                                     <a href="sellerEditPromo.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-warning">Edit</a>
-                                                    <button class="btn btn-sm btn-outline-danger" data-toggle="collapse" href="#collapseDeleteOption" role="button" aria-expanded="false" aria-controls="collapseDeleteOption">Delete</button>
-                                                    <div class="collapse" id="collapseDeleteOption">
-                                                        <form action="../functions/seller/addPromo.php" method="POST">
-                                                            <div class="card card-body mt-2 px-1 py-1 text-left">
-                                                                Are you sure you want to delete?
-                                                                <input type="button" data-toggle="collapse" role="button" aria-expanded="false" href="#collapseDeleteOption" aria-controls="collapseDeleteOption" class="btn btn-sm btn-outline-primary my-1" name="noDetele" value="No">
-                                                                <input type="hidden" name="id" value="<?php echo $row['id']?>">
-                                                                <input type="submit" class="btn btn-sm btn-outline-danger" name="deletePromo" value="Delete">
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                                    <input onclick="deletePromo(this.name, '<?php echo $row['id']; ?>');" type="button" class="btn btn-sm btn-outline-danger" name="deletePromo" value="Delete">
                                                 </div>
 
                                             </div>    
@@ -93,4 +83,37 @@ include_once('../functions/checkSession.php');
         </div>
     </div>
 </body>
+<script>
+function deletePromo(value, promo_id){
+    swal({
+            icon: "warning",
+            title: "Comfirm Detele",
+            text: "Are you sure you want to delete?",
+            buttons: true,
+            dangerMode: true,
+        })
+    .then((confirmDelete) => {
+            if(confirmDelete){
+                //comfirmed delete
+                $.ajax({
+                    url: '../functions/seller/addPromo.php',
+                    type: 'POST',
+                    data: {
+                        deletePromo: value,
+                        id: promo_id,
+                    },success: function(){
+                        swal("Deleted Succesfully!", {
+                            icon: "success",
+                        }).then(function(){
+                            $(".container-fluid").load(document.URL + " .container-fluid");
+                        });
+                    }
+                });
+            }else{
+                // cancel
+            }
+        }
+    );
+}
+</script>
 </html>
