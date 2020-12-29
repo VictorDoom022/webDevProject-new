@@ -5,7 +5,9 @@ require_once('../../config/connect_db.php');
 session_start();
 
 //add Promo
-if(isset($_POST['addPromo'])){
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+$_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest" && 
+$_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['addPromo'])){
     $promo_code = $_POST['promo_code'];
 	$promo_startDate = $_POST['promo_startDate'];
 	$promo_dueDate = $_POST['promo_dueDate'];
@@ -30,7 +32,9 @@ if(isset($_POST['addPromo'])){
 }
 
 //edit Promo
-if (isset($_POST['editPromo'])){
+if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+$_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest" && 
+$_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['editPromo'])){
     $id = $_POST['id'];
     $promo_code = $_POST['promo_code'];
 	$promo_startDate = $_POST['promo_startDate'];

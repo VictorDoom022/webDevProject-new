@@ -9,7 +9,7 @@ include_once('../functions/checkSession.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title></title>
-    <?php echo $bootstrapCSS; echo $jQueryJS; echo $bootstrapJS; echo $fontAwsomeIcons ?>
+    <?php echo $bootstrapCSS; echo $jQueryJS;echo $jQueryFormJS;echo $sweetAlert; echo $bootstrapJS; echo $fontAwsomeIcons ?>
 </head>
     <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
@@ -26,7 +26,7 @@ include_once('../functions/checkSession.php');
                 <div class="row">
                     <div class="col-md-12 mt-2">
                         <div class="card border-dark px-2 py-2" style="border-radius: 0px;">
-                            <form action="../functions/seller/addProduct.php" method="POST">  
+                            <form action="sellerAddProduct.php" id="form" method="POST">  
                                 <div class="row">
                                     <div class="col-md-6">
                                         Product Code
@@ -82,4 +82,30 @@ include_once('../functions/checkSession.php');
         </div>
     </div>
 </body>
+<script>
+$('#form').ajaxForm( {
+    url: '../functions/seller/addProduct.php',
+    type: 'POST',
+    success: function(result){
+        swal({
+            icon: "success",
+            title: "Success",
+            text: "Product added updated successfully",
+            timer: 1500,
+            buttons: false,
+        }).then(function(){
+            window.location.assign('sellerProduct.php');
+        })
+    },
+    error: function(err){
+        swal({
+            icon: "error",
+            title: "An error occurred.",
+            text: "Please try again. Error Code:" + err,
+            timer: 1500,
+            buttons: false,
+        });
+    } 
+});
+</script>
 </html>
