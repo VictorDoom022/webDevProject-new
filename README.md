@@ -31,7 +31,7 @@ login function
 | **Seller**   |  | **VIC**  |
 |    | Add edit delete product | VIC  | Done |
 |    | Chat with customer and admin | TH  |
-|    | View and download sales report (CSV) | VIC  |
+|    | View and download sales report (CSV) | VIC  | Done |
 |    | Promo code (Manual type promo code, code due date and discount percentage | VIC  | Done |
 |  **Customer**  |  | **TH**  |
 |    | Add to cart | TH  | Done |
