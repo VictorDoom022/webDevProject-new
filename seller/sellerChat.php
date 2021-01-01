@@ -142,6 +142,8 @@ function sendMessage(user_id, receiver_id){
         },
         success: function(data){
             console.log("send success");
+            $(".inbox_msg").load(document.URL + " .inbox_msg");
+            $(".write_msg").val('');
         },
         error: function(){
             console.log("error sending");
