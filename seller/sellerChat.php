@@ -60,7 +60,7 @@ include_once('../functions/checkSession.php');
                             <div class="mesgs">
                                 <div class="msg_history">
                                     <?php
-                                        $sql = "SELECT chat.cht_sender, chat.cht_receiver, chat.cht_msg AS chatMsg, chat.cht_sendDate, users .username,
+                                        $sql = "SELECT chat.cht_sender, chat.cht_receiver, chat.cht_msg AS chatMsg, chat.cht_sendDate AS chatSendDate, users .username,
                                         IF (chat.cht_receiver = '" .$_SESSION["user_id"]."','receiver', 'sender') AS whoSend
                                         FROM chat 
                                         LEFT JOIN users ON cht_receiver = users.id
@@ -70,6 +70,7 @@ include_once('../functions/checkSession.php');
                                         $result = mysqli_query($conn, $sql);
                                         if(mysqli_num_rows($result) > 0){
                                             while($row = mysqli_fetch_assoc($result)){
+                                                $sendDate = $row['chatSendDate'];
                                                 $whoSend = $row['whoSend'];
                                                 $chatMsg = $row['chatMsg'];
                                     ?>
@@ -86,7 +87,7 @@ include_once('../functions/checkSession.php');
                                                     <p>
                                                         <?php echo $chatMsg ?>
                                                     </p>
-                                                    <span class="time_date"> 11:01 AM    |    Today</span>
+                                                    <span class="time_date"><?php echo $sendDate ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,7 +100,7 @@ include_once('../functions/checkSession.php');
                                         <div class="outgoing_msg">
                                             <div class="sent_msg">
                                                 <p><?php echo $chatMsg ?></p>
-                                                <span class="time_date"> 11:01 AM    |    Today</span> 
+                                                <span class="time_date"> <?php echo $sendDate ?></span> 
                                             </div>
                                         </div>
                                         <?php
