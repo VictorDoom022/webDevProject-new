@@ -59,25 +59,57 @@ include_once('../functions/checkSession.php');
 
                             <div class="mesgs">
                                 <div class="msg_history">
-                                    <div class="incoming_msg">
-                                        <div class="incoming_msg_img"> 
-                                            <img src="https://ptetutorials.com/images/user-profile.png"> 
-                                        </div>
-                                        <div class="received_msg">
-                                            <div class="received_withd_msg">
-                                                <p>We work directly with our designers and suppliers,
-                                                    and sell direct to you, which means quality, exclusive
-                                                    products, at a price anyone can afford.</p>
-                                                <span class="time_date"> 11:01 AM    |    Today</span>
+                                    <?php
+                                        $sql = "SELECT chat.cht_sender, chat.cht_receiver, chat.cht_msg AS chatMsg, chat.cht_sendDate, users .username,
+                                        IF (chat.cht_receiver = '" .$_SESSION["user_id"]."','receiver', 'sender') AS whoSend
+                                        FROM chat 
+                                        LEFT JOIN users ON cht_receiver = users.id
+                                        WHERE cht_receiver = '" .$_SESSION["user_id"]."'
+                                        OR cht_sender = '" .$_SESSION["user_id"]."'
+                                        ORDER BY cht_sendDate ASC";
+                                        $result = mysqli_query($conn, $sql);
+                                        if(mysqli_num_rows($result) > 0){
+                                            while($row = mysqli_fetch_assoc($result)){
+                                                $whoSend = $row['whoSend'];
+                                                $chatMsg = $row['chatMsg'];
+                                    ?>
+                                        <!-- start of received msg -->
+                                        <?php
+                                            if($whoSend == 'receiver'){
+                                        ?>
+                                        <div class="incoming_msg">
+                                            <div class="incoming_msg_img"> 
+                                                <img src="https://ptetutorials.com/images/user-profile.png"> 
+                                            </div>
+                                            <div class="received_msg">
+                                                <div class="received_withd_msg">
+                                                    <p>
+                                                        <?php echo $chatMsg ?>
+                                                    </p>
+                                                    <span class="time_date"> 11:01 AM    |    Today</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="outgoing_msg">
-                                        <div class="sent_msg">
-                                            <p>Apollo University, Delhi, India Test</p>
-                                            <span class="time_date"> 11:01 AM    |    Today</span> 
+                                        <?php
+                                            }
+                                            if($whoSend == 'sender'){
+                                        ?>
+                                        <!-- end of received msg -->
+                                        <!-- start of sent msg -->
+                                        <div class="outgoing_msg">
+                                            <div class="sent_msg">
+                                                <p><?php echo $chatMsg ?></p>
+                                                <span class="time_date"> 11:01 AM    |    Today</span> 
+                                            </div>
                                         </div>
-                                    </div>
+                                        <?php
+                                            }
+                                        ?>
+                                        <!-- end of sent msg -->
+                                    <?php
+                                            }
+                                        }
+                                    ?>
                                 </div>
                                 <div class="type_msg">
                                     <div class="input_msg_write">
