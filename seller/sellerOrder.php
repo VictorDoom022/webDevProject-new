@@ -36,11 +36,7 @@ include_once('../functions/checkSession.php');
                                     LEFT JOIN order_detail ON orders.id = order_detail.ord_id 
                                     LEFT JOIN product ON ord_product_id = product.id
                                     LEFT JOIN users ON users.id = orders.ord_user_id
-                                    WHERE 
-                                    (cht_receiver = '" .$receiverID."' AND cht_sender = '" .$_SESSION["user_id"]. "')
-                                    OR
-                                    (cht_receiver = '" .$_SESSION["user_id"]."' AND cht_sender = '" .$receiverID. "')
-                                    ORDER BY cht_sendDate ASC";
+                                    WHERE product.prdt_seller = '" .$_SESSION["user_id"]."'";
                                     $result = mysqli_query($conn, $sql);
                                     if(mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
