@@ -45,7 +45,11 @@ include_once('../config/connect_db.php');
                                         if(mysqli_num_rows($result) > 0){
                                             while($row = mysqli_fetch_assoc($result)){
                                     ?>
-                                        <div class="chat_list" onclick="changePage('<?php echo $row['id']; ?>');">
+                                        <?php if($row['id'] == $_SESSION["user_id"]) {?>
+                                            <div class="chat_list" style="display:none" onclick="changePage('<?php echo $row['id']; ?>');">
+                                        <?php }else{?>
+                                            <div class="chat_list" onclick="changePage('<?php echo $row['id']; ?>');">
+                                        <?php } ?> 
                                             <div class="chat_people">
                                                 <div class="chat_img"> 
                                                     <img src="https://ptetutorials.com/images/user-profile.png" > 
