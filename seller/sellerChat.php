@@ -69,9 +69,10 @@ include_once('../functions/checkSession.php');
                                         IF (chat.cht_receiver = '" .$_SESSION["user_id"]."','receiver', 'sender') AS whoSend
                                         FROM chat 
                                         LEFT JOIN users ON cht_sender = users.id
-                                        WHERE (cht_receiver = '" .$receiverID."'
-                                        AND cht_sender = '" .$_SESSION["user_id"]. "')
-                                        
+                                        WHERE 
+                                        (cht_receiver = '" .$receiverID."' AND cht_sender = '" .$_SESSION["user_id"]. "')
+                                        OR
+                                        (cht_receiver = '" .$_SESSION["user_id"]."' AND cht_sender = '" .$receiverID. "')
                                         ORDER BY cht_sendDate ASC";
                                         $result = mysqli_query($conn, $sql);
                                         if(mysqli_num_rows($result) > 0){
