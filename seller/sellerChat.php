@@ -65,12 +65,13 @@ include_once('../functions/checkSession.php');
                                             $receiverID = $_GET['receiverID'];
                                         }
 
-                                        $sql = "SELECT chat.cht_sender, chat.cht_receiver, chat.cht_msg AS chatMsg, chat.cht_sendDate AS chatSendDate, users .username,
+                                        $sql = "SELECT chat.cht_sender, chat.cht_receiver, chat.cht_msg AS chatMsg, chat.cht_sendDate AS chatSendDate, users .username AS username,
                                         IF (chat.cht_receiver = '" .$_SESSION["user_id"]."','receiver', 'sender') AS whoSend
                                         FROM chat 
-                                        LEFT JOIN users ON cht_receiver = users.id
-                                        WHERE cht_receiver = '" .$_SESSION["user_id"]."'
-                                        OR cht_sender = '" .$receiverID. "'
+                                        LEFT JOIN users ON cht_sender = users.id
+                                        WHERE (cht_receiver = '" .$receiverID."'
+                                        AND cht_sender = '" .$_SESSION["user_id"]. "')
+                                        
                                         ORDER BY cht_sendDate ASC";
                                         $result = mysqli_query($conn, $sql);
                                         if(mysqli_num_rows($result) > 0){
@@ -78,6 +79,7 @@ include_once('../functions/checkSession.php');
                                                 $sendDate = $row['chatSendDate'];
                                                 $whoSend = $row['whoSend'];
                                                 $chatMsg = $row['chatMsg'];
+                                                $username = $row['username'];
                                     ?>
                                         <!-- start of received msg -->
                                         <?php
@@ -92,7 +94,7 @@ include_once('../functions/checkSession.php');
                                                     <p>
                                                         <?php echo $chatMsg ?>
                                                     </p>
-                                                    <span class="time_date"><?php echo $sendDate ?></span>
+                                                    <span class="time_date"><?php echo $sendDate ?> | <?php echo $username ?> </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +107,7 @@ include_once('../functions/checkSession.php');
                                         <div class="outgoing_msg">
                                             <div class="sent_msg">
                                                 <p><?php echo $chatMsg ?></p>
-                                                <span class="time_date"> <?php echo $sendDate ?></span> 
+                                                <span class="time_date"> <?php echo $sendDate ?> | <?php echo $username ?></span> 
                                             </div>
                                         </div>
                                         <?php
