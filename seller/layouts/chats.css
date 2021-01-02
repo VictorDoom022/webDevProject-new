@@ -8,6 +8,7 @@ img {
   overflow: hidden;
   width: 40%;
   border-right: 1px solid #c4c4c4;
+  height: 90vh !important;
 }
 
 .inbox_msg {
@@ -102,9 +103,23 @@ img {
   padding: 18px 16px 10px;
 }
 
+.chat_list:hover {
+  background: grey !important;
+  cursor: pointer;
+}
+
+.chat_list:hover h5 {
+  color: white;
+}
+
+.chat_list:hover p {
+  color: white;
+}
+
 .inbox_chat {
   height: 550px;
   overflow-y: scroll;
+  height: 90vh !important;
 }
 
 .active_chat {
@@ -205,5 +220,58 @@ img {
 .msg_history {
   height: 516px;
   overflow-y: auto;
+  height: 80vh !important;
+}
+
+@media screen and (max-width: 991px) {
+  /* start of large tablet styles */
+  .inbox_people {
+    height: 90vh !important;
+  }
+  .inbox_chat {
+    height: 90vh !important;
+  }
+  .msg_history {
+    height: 80vh !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  /* start of medium tablet styles */
+  .inbox_people {
+    height: 90vh !important;
+  }
+  .inbox_chat {
+    height: 90vh !important;
+  }
+  .msg_history {
+    height: 80vh !important;
+  }
+}
+
+@media (max-width: 479px) {
+  /* start of normal phone styles */
+  .inbox_people {
+    height: 82vh !important;
+  }
+  .inbox_chat {
+    height: 82vh !important;
+  }
+  .msg_history {
+    height: 72vh !important;
+  }
+}
+
+@media (max-width: 320px) {
+  /* start of super small phone styles */
+  .inbox_people {
+    height: 80vh !important;
+  }
+  .inbox_chat {
+    height: 80vh !important;
+  }
+  .msg_history {
+    height: 62vh !important;
+  }
 }
 /*# sourceMappingURL=chats.css.map */

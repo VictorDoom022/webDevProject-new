@@ -4,6 +4,7 @@ img{ max-width:100%;}
   float: left;
   overflow: hidden;
   width: 40%; border-right:1px solid #c4c4c4;
+  height: 90vh !important;
 }
 .inbox_msg {
   border: 1px solid #c4c4c4;
@@ -56,7 +57,19 @@ img{ max-width:100%;}
   margin: 0;
   padding: 18px 16px 10px;
 }
-.inbox_chat { height: 550px; overflow-y: scroll;}
+
+.chat_list:hover{
+  background:grey !important;
+  cursor: pointer;
+  h5{ 
+    color:white;
+  }
+  p{ 
+    color:white;
+  }
+
+}
+.inbox_chat { height: 550px; overflow-y: scroll;height: 90vh !important;}
 
 .active_chat{ background:#ebebeb;}
 
@@ -132,4 +145,57 @@ img{ max-width:100%;}
 .msg_history {
   height: 516px;
   overflow-y: auto;
+  height: 80vh !important;
+}
+
+@media screen and (max-width: 991px) {
+  /* start of large tablet styles */
+  .inbox_people{
+    height: 90vh !important;
+  }
+  .inbox_chat{ 
+    height: 90vh !important;
+  }
+  .msg_history{
+    height: 80vh !important;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  /* start of medium tablet styles */
+  .inbox_people{
+    height: 90vh !important;
+  }
+  .inbox_chat{ 
+    height: 90vh !important;
+  }
+  .msg_history{
+    height: 80vh !important;
+  }
+}
+
+@media (max-width: 479px) {
+  /* start of normal phone styles */
+  .inbox_people{
+    height: 82vh !important;
+  }
+  .inbox_chat{ 
+    height: 82vh !important;
+  }
+  .msg_history{
+    height: 72vh !important;
+  }
+}
+
+@media (max-width: 320px) {
+  /* start of super small phone styles */
+  .inbox_people{
+    height: 80vh !important;
+  }
+  .inbox_chat{ 
+    height: 80vh !important;
+  }
+  .msg_history{
+    height: 62vh !important;
+  }
 }
