@@ -36,7 +36,7 @@ include_once('../functions/checkSession.php');
                                         if(mysqli_num_rows($result) > 0){
                                             while($row = mysqli_fetch_assoc($result)){
                                     ?>
-                                        <div class="chat_list">
+                                        <div class="chat_list" onclick="changePage('<?php echo $row['id']; ?>');">
                                             <div class="chat_people">
                                                 <div class="chat_img"> 
                                                     <img src="https://ptetutorials.com/images/user-profile.png" > 
@@ -60,12 +60,17 @@ include_once('../functions/checkSession.php');
                             <div class="mesgs">
                                 <div class="msg_history">
                                     <?php
+                                        $receiverID="";
+                                        if(isset($_GET['receiverID'])){
+                                            $receiverID = $_GET['receiverID'];
+                                        }
+
                                         $sql = "SELECT chat.cht_sender, chat.cht_receiver, chat.cht_msg AS chatMsg, chat.cht_sendDate AS chatSendDate, users .username,
                                         IF (chat.cht_receiver = '" .$_SESSION["user_id"]."','receiver', 'sender') AS whoSend
                                         FROM chat 
                                         LEFT JOIN users ON cht_receiver = users.id
                                         WHERE cht_receiver = '" .$_SESSION["user_id"]."'
-                                        OR cht_sender = '" .$_SESSION["user_id"]."'
+                                        OR cht_sender = '" .$receiverID. "'
                                         ORDER BY cht_sendDate ASC";
                                         $result = mysqli_query($conn, $sql);
                                         if(mysqli_num_rows($result) > 0){
@@ -115,7 +120,7 @@ include_once('../functions/checkSession.php');
                                 <div class="type_msg">
                                     <div class="input_msg_write">
                                         <input type="text" id="write_msg" class="write_msg" placeholder="Type a message" />
-                                        <button onclick="sendMessage('<?php echo $_SESSION['user_id'] ?>', '1');" class="msg_send_btn" type="button">
+                                        <button onclick="sendMessage('<?php echo $_SESSION['user_id'] ?>', '<?php echo $receiverID; ?>');" class="msg_send_btn" type="button">
                                             <i class="fas fa-arrow-circle-right" aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -129,6 +134,10 @@ include_once('../functions/checkSession.php');
     </div>
 </body>
 <script>
+function changePage(user_id){
+    window.location.href = 'sellerChat.php?receiverID='+user_id;
+}
+
 function sendMessage(user_id, receiver_id){
     var msg = document.getElementById('write_msg').value;
     console.log(user_id);
