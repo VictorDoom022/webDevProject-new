@@ -6,7 +6,7 @@ img {
   background: #f8f8f8 none repeat scroll 0 0;
   float: left;
   overflow: hidden;
-  width: 40%;
+  width: 25%;
   border-right: 1px solid #c4c4c4;
   height: 90vh !important;
 }
@@ -19,49 +19,6 @@ img {
 
 .top_spac {
   margin: 20px 0 0;
-}
-
-.recent_heading {
-  float: left;
-  width: 40%;
-}
-
-.srch_bar {
-  display: inline-block;
-  text-align: right;
-  width: 60%;
-}
-
-.headind_srch {
-  padding: 10px 29px 10px 20px;
-  overflow: hidden;
-  border-bottom: 1px solid #c4c4c4;
-}
-
-.recent_heading h4 {
-  color: #05728f;
-  font-size: 21px;
-  margin: auto;
-}
-
-.srch_bar input {
-  border: 1px solid #cdcdcd;
-  border-width: 0 0 1px 0;
-  width: 80%;
-  padding: 2px 0 4px 6px;
-  background: none;
-}
-
-.srch_bar .input-group-addon button {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: medium none;
-  padding: 0;
-  color: #707070;
-  font-size: 18px;
-}
-
-.srch_bar .input-group-addon {
-  margin: 0 0 0 -27px;
 }
 
 .chat_ib h5 {
@@ -104,16 +61,17 @@ img {
 }
 
 .chat_list:hover {
-  background: grey !important;
+  background: rgba(169, 169, 169, 0.1) !important;
   cursor: pointer;
 }
 
 .chat_list:hover h5 {
-  color: white;
+  font-weight: bold;
+  color: black;
 }
 
 .chat_list:hover p {
-  color: white;
+  color: black;
 }
 
 .inbox_chat {
@@ -138,6 +96,10 @@ img {
   width: 92%;
 }
 
+.received_withd_msg {
+  width: 50%;
+}
+
 .received_withd_msg p {
   background: #ebebeb none repeat scroll 0 0;
   border-radius: 3px;
@@ -155,18 +117,19 @@ img {
   margin: 8px 0 0;
 }
 
-.received_withd_msg {
-  width: 57%;
-}
-
 .mesgs {
   float: left;
   padding: 30px 15px 0 25px;
-  width: 60%;
+  width: 75%;
+}
+
+.sent_msg {
+  float: right;
+  width: 50%;
 }
 
 .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: #1d1d1f none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0;
@@ -180,14 +143,10 @@ img {
   margin: 26px 0 26px;
 }
 
-.sent_msg {
-  float: right;
-  width: 46%;
-}
-
 .input_msg_write input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: medium none;
+  outline: none;
   color: #4c4c4c;
   font-size: 15px;
   min-height: 48px;
@@ -200,7 +159,7 @@ img {
 }
 
 .msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
+  background: #1d1d1f none repeat scroll 0 0;
   border: medium none;
   border-radius: 50%;
   color: #fff;
