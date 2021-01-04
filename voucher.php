@@ -30,7 +30,7 @@ do_component_topnav('Apple');
                     $due_date = date('d/m/Y', $due_date);
             ?>
             <div class="col-12 col-md-6" id="voucher_list">
-                <div class="card border-0 voucher-card" data-vouchercode="<?= $row['promo_code'] ?>">
+                <div class="card border-0 voucher-card shadow-sm" data-vouchercode="<?= $row['promo_code'] ?>">
                     <div class="card-body" style="background-color: #fff6f6;">
                         <div class="row align-items-center">
                             <div class="col-4">
@@ -38,6 +38,7 @@ do_component_topnav('Apple');
                             </div>
                             <div class="col-8">
                                 <div class="h6"><?= $row['prdt_name'] ?></div>
+                                <div class="small font-weight-bold">Code: <?= $row['promo_code'] ?></div>
                                 <div class="small text-muted">
                                     <?= $row['promo_desc'] ?>
                                 </div>
