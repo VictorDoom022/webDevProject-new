@@ -19,7 +19,12 @@
                     <span class="d-none d-lg-inline-flex ml-5">Chat</span>
                 </a>
             </li>
-            
+            <li class="nav-item w-100 mb-1">
+                <a href="adminCommission.php" class="nav-link w-100 <?php if($pageName == 'Commission') echo 'active';?>">
+                <i class="fas fa-money-bill-alt"></i>
+                    <span class="d-none d-lg-inline-flex ml-5">Commission</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

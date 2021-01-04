@@ -4,6 +4,8 @@
             <i class="fas fa-home"></i>
         <?php }else if ($pageName == 'Chat'){?>
 			<i class="fas fa-comments"></i>
+		<?php }else if ($pageName == 'Commission'){?>
+			<i class="far fa-money-bill-alt"></i>
 		<?php } ?>
         <span class="d-none d-lg-inline-flex ml-3"><?php echo $pageTitle; ?></span>
         
