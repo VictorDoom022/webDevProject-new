@@ -46,7 +46,7 @@ do_component_topnav('Apple');
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer disc_date bg-white border-0 text-danger">Validity: <?= $start_date .'-'. $due_date?></div>
+                    <div class="card-footer disc_date bg-white border-0">Validity: <?= $start_date .'-'. $due_date?></div>
                 </div>
             </div>
             <?php
