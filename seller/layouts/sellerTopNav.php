@@ -2,10 +2,14 @@
 	<span class="navbar-brand h1 mb-0 col">
         <?php if ($pageName == 'Home'){?>
             <i class="fas fa-home"></i>
+        <?php }elseif ($pageName == 'Order'){ ?>
+            <i class="fas fa-list-alt"></i>
         <?php }elseif ($pageName == 'Product'){ ?>
             <i class="fas fa-bars d-inline-flex"></i>
         <?php }elseif ($pageName == 'Chat'){ ?>
             <i class="fas fa-comments"></i>
+        <?php }elseif ($pageName == 'Report'){ ?>
+            <i class="fas fa-chart-pie"></i>
         <?php }elseif ($pageName == 'Promo'){ ?>
             <i class="fas fa-ad"></i>
         <?php } ?>

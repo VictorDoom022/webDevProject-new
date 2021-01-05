@@ -21,7 +21,7 @@ if(isset($_POST['login'])){
             $_SESSION['username'] = $username;
             $_SESSION['position'] = $position;
             if($position == 'admin' && isset($_POST["term"])){
-                echo "admin";
+                header('location: ../admin/adminManageSeller.php');
             }else if ($position == 'seller'  && isset($_POST["term"])){
                 header("Location: ../seller/sellerHome.php");
             }else if ($position == 'customer'  && isset($_POST["term"])){

@@ -15,8 +15,8 @@ do_html_head('APP NAME', $bootstrapCSS.'<link rel="stylesheet" type="text/css" h
 do_component_topnav('APP NAME');
 ?>
 <div class="login-box">
-	<form method="post" action="functions/login_function.php">
-		<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto;">
+	<form method="post" action="register_function.php">
+		<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto;bottom: 15px;position: relative;">
 			<tr>
 				<td>
 					<table border="0" cellpadding="0" cellspacing="0" style="width: 1200px;margin: auto;">
@@ -25,15 +25,9 @@ do_component_topnav('APP NAME');
 								<table class="login_table" style="position: relative;">
 									<tr>
 										<td style="width: 100%;" colspan="2">
-											<h1>
-											Login To  Apple.Com
+											<h1 style="padding-bottom: 20px;">
+											Register
 											</h1>
-											
-										</td>
-									</tr>
-									<tr>
-										<td style="bottom: 12px;position: relative;padding-bottom: 35px;">
-											<span class="word">Or</span> <a style="text-decoration: none;color: #c46a10;" href="guest/register.php" alt="Sign up now" title="Sign up now">Sign up now</a>
 										</td>
 									</tr>
 									<tr>
@@ -43,15 +37,23 @@ do_component_topnav('APP NAME');
 										<td class="td_content"colspan="2"><input class="input_box" type="password" name="password" placeholder="Password"></td>
 									</tr>
 									<tr>
-										<td style="text-align: center;" colspan="2">
-											<?= (isset($_SESSION['error'])) ? '<div class="text-danger">'. $_SESSION['error'] .'</div>' : '' ?>
-											<?php unset($_SESSION['error']); ?>
+										<td class="td_content"colspan="2"><input class="input_box" type="password" name="password2" placeholder="Confirm Password"></td>
+									</tr>
+									<tr>
+										<td class="td_content"colspan="2"><input class="input_box" type="text" name="email" placeholder="E-mail"></td>
+									</tr>
+									<tr>
+										<td class="td_content"colspan="2">
+											<select id="position" class="input_box" name="position">
+												<option value="seller">Seller</option>
+												<option value="customer">Customer</option>
+											</select>
 										</td>
 									</tr>
 									<tr>
 										<td style="text-align: center;" colspan="2">
-											<?= (isset($_SESSION['success'])) ? '<div class="text-success" style="text-align:center;">'. $_SESSION['success'] .'</div>' : '' ?>
-											<?php unset($_SESSION['success']); ?>
+											<?= (isset($_SESSION['register_error'])) ? '<div class="text-danger">'. $_SESSION['register_error'] .'</div>' : '' ?>
+											<?php unset($_SESSION['register_error']); ?>
 										</td>
 									</tr>
 									<tr>
@@ -60,12 +62,13 @@ do_component_topnav('APP NAME');
 									</tr>
 									<br>
 									<tr>
-										<td class="td_content"><input type="submit"name="login" value="login" class="button1" alt="Login" title="Login">
+										<td class="td_content"><input type="submit"name="submit" value="Submit" class="button1">
 										</td>
 										<td>
-											<a value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？"href="forgot_password.php" style="text-decoration: none;color: #c46a10;">Forgot Username or Password</a>
+											<a class="orange_word" value="login" alt="Forgot Username or Password？" title="Forgot Username or Password？">Forgot Username or Password</a>
 										</td>
 									</tr>
+									
 								</table>
 							</td>
 						</tr>
@@ -73,8 +76,8 @@ do_component_topnav('APP NAME');
 				</td>
 			</tr>
 		</table>
-		</form>
-    </div>
+	</form>
+</div>
 <?php
 do_html_end();
 ?>

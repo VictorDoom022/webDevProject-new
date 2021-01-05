@@ -10,9 +10,23 @@ do_component_topnav('APP NAME');
 <div class="container mt-5">
     <div class="row">
         <div class="col-12 col-md-2 col-lg-3">
-            <nav class="nav flex-column bg-white border">
-                <a class="nav-link" href="">All</a>
-                <a class="nav-link" href="#">Link</a>
+            <nav class="nav flex-column bg-white">
+                <a class="nav-link text-body" href="<?= $_SERVER['PHP_SELF'] ?>">All</a>
+<?php
+$query = "SELECT DISTINCT prdt_type FROM product";
+$result = mysqli_query($conn, $query);
+
+if($result) {
+    $num_row = mysqli_num_rows($result);
+    
+    for($i = 0; $i < $num_row; $i++) {
+        $row = mysqli_fetch_assoc($result);
+?>
+                <a class="nav-link text-body" href="?type=<?= $row['prdt_type'] ?>"><?= strtoupper($row['prdt_type']) ?></a>
+<?php
+    }
+}
+?>
             </nav>
         </div>
         <div class="col-12 col-md-10 col-lg-9">
@@ -20,8 +34,9 @@ do_component_topnav('APP NAME');
 <?php
 $query = "SELECT * FROM product";
 
-if(isset($_GET['prdt_category'])) {
-    
+if(isset($_GET['type'])) {
+    $category = $_GET['type'];
+    $query .= " WHERE prdt_type = '$category'";
 }
 
 $result = mysqli_query($conn, $query);

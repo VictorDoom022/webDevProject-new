@@ -10,7 +10,7 @@ include_once('../functions/checkSession.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title></title>
-    <?php echo $bootstrapCSS; echo $jQueryJS; echo $bootstrapJS; echo $fontAwsomeIcons ?>
+    <?php echo $bootstrapCSS; echo $jQueryJS; echo $jQueryFormJS; echo $sweetAlert; echo $bootstrapJS; echo $fontAwsomeIcons ?>
 </head>
     <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
@@ -27,7 +27,7 @@ include_once('../functions/checkSession.php');
                 <div class="row">
                     <div class="col-md-12 mt-2">
                         <div class="card border-dark px-2 py-2" style="border-radius: 0px;">
-                            <form action="../functions/seller/addPromo.php" method="POST">  
+                            <form action="sellerAddPromo.php" id="form" method="POST">  
                                 <div class="row">
                                     <div class="col-md-12">
                                         Promo Code
@@ -94,5 +94,30 @@ function dateCheck() {
     }
     
 }
+
+$('#form').ajaxForm( {
+    url: '../functions/seller/addPromo.php',
+    type: 'POST',
+    success: function(result){
+        swal({
+            icon: "success",
+            title: "Success",
+            text: "Product edited updated successfully",
+            timer: 1500,
+            buttons: false,
+        }).then(function(){
+            window.location.assign('sellerPromo.php');
+        })
+    },
+    error: function(err){
+        swal({
+            icon: "error",
+            title: "An error occurred.",
+            text: "Please try again. Error Code:" + err,
+            timer: 1500,
+            buttons: false,
+        });
+    } 
+});
 </script>
 </html>

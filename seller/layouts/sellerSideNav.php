@@ -14,6 +14,12 @@
                 </a>
             </li>
             <li class="nav-item w-100 mb-1">
+                <a href="sellerOrder.php" class="nav-link w-100 <?php if($pageName == 'Order') echo 'active';?>">
+                    <i class="fas fa-list-alt d-inline-flex"></i>
+                    <span class="d-none d-lg-inline-flex ml-3">Orders</span>
+                </a>
+            </li>
+            <li class="nav-item w-100 mb-1">
                 <a href="sellerProduct.php" class="nav-link w-100 <?php if($pageName == 'Product') echo 'active';?>">
                     <i class="fas fa-bars d-inline-flex"></i>
                     <span class="d-none d-lg-inline-flex ml-3">Products</span>
@@ -23,6 +29,12 @@
                 <a href="sellerChat.php" class="nav-link w-100 <?php if($pageName == 'Chat') echo 'active';?>">
                     <i class="fas fa-comments"></i>
                     <span class="d-none d-lg-inline-flex ml-3">Chats</span>
+                </a>
+            </li>
+            <li class="nav-item w-100 mb-1">
+                <a href="sellerReport.php" class="nav-link w-100 <?php if($pageName == 'Report') echo 'active';?>">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="d-none d-lg-inline-flex ml-3">Report</span>
                 </a>
             </li>
             <li class="nav-item w-100 mb-1">

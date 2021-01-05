@@ -25,16 +25,16 @@ login function
 | User  | Function | PIC | Progress |
 | ------------- | ------------- | ------------- | ------------- | 
 | **Admin**   |   | **LC**  |
-|    | Add edit delete seller & view all customer data  | LC  |
+|    | Add edit delete seller & view all customer data  | LC  | Done |
 |    | Chat with seller and customer | TH  |
 |    | Manage/give seller commission | LC  |
 | **Seller**   |  | **VIC**  |
 |    | Add edit delete product | VIC  | Done |
 |    | Chat with customer and admin | TH  |
-|    | View and download sales report (CSV) | VIC  |
+|    | View and download sales report (CSV) | VIC  | Done |
 |    | Promo code (Manual type promo code, code due date and discount percentage | VIC  | Done |
 |  **Customer**  |  | **TH**  |
-|    | Add to cart | TH  |
+|    | Add to cart | TH  | Done |
 |    | View available discount code & enter discount code when checkout | TH  |
 |    | Chat with admin and seller | TH  |
 |  **Guest**  |  | **HY**  |

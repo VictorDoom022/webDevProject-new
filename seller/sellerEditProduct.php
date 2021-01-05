@@ -29,7 +29,7 @@ if(isset($_GET['id'])){
 <html>
 <head>
     <title></title>
-    <?php echo $bootstrapCSS; echo $jQueryJS; echo $bootstrapJS; echo $fontAwsomeIcons ?>
+    <?php echo $bootstrapCSS; echo $jQueryJS; echo $jQueryFormJS; echo $sweetAlert; echo $bootstrapJS; echo $fontAwsomeIcons ?>
 </head>
 <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
@@ -46,7 +46,7 @@ if(isset($_GET['id'])){
                 <div class="row">
                     <div class="col-md-12 mt-2">
                         <div class="card border-dark px-2 py-2" style="border-radius: 0px;">
-                            <form action="../functions/seller/addProduct.php" method="POST">  
+                            <form action="sellerEditProduct.php" id="form" method="POST">  
                                 <div class="row">
                                     <div class="col-md-6">
                                         Product Code
@@ -115,5 +115,30 @@ if(isset($_GET['id'])){
         var prdt_type = document.getElementById('prdt_type_select').value;
         document.getElementById('prdt_type').value = prdt_type;
     });
+
+$('#form').ajaxForm( {
+    url: '../functions/seller/addProduct.php',
+    type: 'POST',
+    success: function(result){
+        swal({
+            icon: "success",
+            title: "Success",
+            text: "Product added updated successfully",
+            timer: 1500,
+            buttons: false,
+        }).then(function(){
+            window.location.assign('sellerProduct.php');
+        })
+    },
+    error: function(err){
+        swal({
+            icon: "error",
+            title: "An error occurred.",
+            text: "Please try again. Error Code:" + err,
+            timer: 1500,
+            buttons: false,
+        });
+    } 
+});
 </script>
 </html>
