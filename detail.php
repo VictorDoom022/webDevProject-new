@@ -1,4 +1,5 @@
 <?php
+// show product detail
 require_once('config/connect_db.php');
 require_once('config/bootstrap.php');
 require_once('customer/layouts.php');
@@ -21,7 +22,6 @@ else {
     if($num_row > 0) {
         $product = mysqli_fetch_object($result);
 
-        // show product detail
 do_html_head('APP NAME', $bootstrapCSS, $jQueryJS.$bootstrapJS.$fontAwsomeIcons);
 do_component_topnav('APP NAME');
 
@@ -37,7 +37,7 @@ do_component_topnav('APP NAME');
             <div class="border-right" style="min-width: 175px;">
                 <ul class="list-group list-group-flush border-bottom" id="user-list">
                     <?php
-                    $query = "SELECT id, username, position FROM users WHERE id <> $user_id";
+                    $query = "SELECT id, username, position FROM users WHERE id <> $user_id AND position <> 'customer'";
                     $result = mysqli_query($conn, $query);
 
                     if($result) {
@@ -46,33 +46,64 @@ do_component_topnav('APP NAME');
                         for ($i=0; $i < $num_row; $i++) {
                             $row = mysqli_fetch_assoc($result);
                     ?>
-                    <li type="button" class="list-group-item list-group-item-action"><?= ucfirst($row['username']) ?></li>
+                    <li type="button" class="list-group-item list-group-item-action">
+                        <div class="d-flex">
+                            <div class="my-auto mr-3 align-middle">
+                                <?php if($row['position'] == 'admin') { ?>
+                                    <i class="fas fa-user-cog"></i>
+                                <?php } elseif($row['position'] == 'seller') { ?>
+                                    <i class="fas fa-user-tag"></i>
+                                <?php } else { ?>
+                                    <i class="fas fa-user"></i>
+                                <?php } ?>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <div><?= ucfirst($row['username']) ?></div>
+                                <small style="font-size: 10px;" class="text-muted">
+                                    <?php if($row['position'] == 'admin') { ?>
+                                        Administration
+                                    <?php } elseif($row['position'] == 'seller') { ?>
+                                        Seller
+                                    <?php } else { ?>
+                                        ???
+                                    <?php } ?>
+                                </small>
+                            </div>
+                        </div>
+                    </li>
                     <?php
                         }
                     }
                     ?>
                 </ul>
             </div>
-            <div class="d-flex flex-column h-100 justify-content-between">
-                <div class="bg-white border-bottom text-primary p-2 font-weight-bold">
-                    Seller
+            <div class="d-flex flex-column h-100 justify-content-between w-100">
+                <div class="bg-white border-bottom p-2 font-weight-bold">
+                    <i class="fas fa-user-tag m-2"></i>Seller
                 </div>
                 <div class="chat-msg d-flex flex-column bg-light h-100 overflow-auto">
-                    <div class="d-flex p-2">
-                        <div class="rounded-right p-2 text-wrap">
-                            hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, 
+                    <div class="d-flex flex-column p-2">
+                        <div class="d-flex mb-3">
+                            <div class="d-flex flex-column">
+                                <div class="rounded-right p-2 text-wrap bg-white shadow-sm">
+                                    hello world, hello world, hello world
+                                </div>
+                                <div class="small text-muted">date time</div>
+                            </div>
                         </div>
-                        <div class="rounded-right p-2 text-wrap">
-                            hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, 
-                        </div>
-                        <div class="rounded-right p-2 text-wrap">
-                            hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, 
+                        <div class="d-flex mb-3 justify-content-end">
+                            <div class="d-flex flex-column">
+                                <div class="rounded-left p-2 text-wrap bg-primary text-white shadow-sm">
+                                    hello world, hello world, hello world
+                                </div>
+                                <div class="small text-muted text-right">date time</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="chat-input d-flex">
-                    <input type="text" name="" id="" class="form-control rounded-0" placeholder="Type a message">
-                    <button role="button" class="btn btn-dark rounded-0"><i class="fas fa-paper-plane"></i></button>
+                <div class="d-flex">
+                    <input type="text" name="" id="chat-input" class="form-control rounded-0" placeholder="Type a message">
+                    <button role="button" class="btn btn-dark rounded-0" id="send-btn"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         </div>
@@ -244,6 +275,25 @@ do_component_topnav('APP NAME');
         });
         
     });
+
+    $('#send-btn').click(function() {
+        var msg = $('#chat-input').val();
+        $('#chat-input').val('');
+        sendMessage(msg);
+    });
+
+    $('#chat-input').keydown(function(event) {
+        if (event.keyCode === 13) {
+            var msg = $('#chat-input').val();
+            $('#chat-input').val('');
+            sendMessage(msg);
+        }
+    });
+
+    function sendMessage(msg) {
+        console.log(msg);
+        alert('not function yet');
+    }
 </script>
 
 <?php
