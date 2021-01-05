@@ -31,7 +31,7 @@ do_component_topnav($app_name);
                     $due_date = date('d/m/Y', $due_date);
             ?>
             <div class="col-12 col-md-6" id="voucher_list">
-                <div class="card border-0 voucher-card shadow-sm" data-vouchercode="<?= $row['promo_code'] ?>">
+                <div class="card border-0 voucher-card shadow-sm" role="button" data-vouchercode="<?= $row['promo_code'] ?>">
                     <div class="card-body" style="background-color: #fff6f6;">
                         <div class="row align-items-center">
                             <div class="col-4">
