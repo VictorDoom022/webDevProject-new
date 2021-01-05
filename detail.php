@@ -2,6 +2,7 @@
 require_once('config/connect_db.php');
 require_once('config/bootstrap.php');
 require_once('customer/layouts.php');
+
 session_start();
 
 if(isset($_GET['pid'])) {
@@ -9,10 +10,6 @@ if(isset($_GET['pid'])) {
 } else {
     header('location: index.php');
 }
-
-// show product detail
-do_html_head('APP NAME', $bootstrapCSS, $jQueryJS.$bootstrapJS.$fontAwsomeIcons);
-do_component_topnav('APP NAME');
 
 $query = "SELECT * FROM product LEFT JOIN users ON product.prdt_seller = users.id WHERE product.id = $product_id";
 $result = mysqli_query($conn, $query);
@@ -23,13 +20,69 @@ else {
     $num_row = mysqli_num_rows($result);
     if($num_row > 0) {
         $product = mysqli_fetch_object($result);
-    } else {
-        echo '404';
-    }
-}
+
+        // show product detail
+do_html_head('APP NAME', $bootstrapCSS, $jQueryJS.$bootstrapJS.$fontAwsomeIcons);
+do_component_topnav('APP NAME');
+
 ?>
-<div class="bg-white shadow" style="width: 250px;position: fixed;right: 20px;bottom: 0;">
-    <div class="h4 text-center pt-2 text-primary">Message</div>
+<div class="bg-dark shadow-lg" style="width: 550px;position: fixed;right: 20px;bottom: 0;z-index: 10;">
+    <div class="h4 text-center pt-2 text-white" id="chat-box-toggle">Message</div>
+    <div class="bg-white" id="chat-box" style="height: 400px;display: none;">
+        <?php 
+        if(isset($_SESSION['username'])):
+            $user_id = $_SESSION['user_id'];
+        ?>
+        <div class="d-flex h-100">
+            <div class="border-right" style="min-width: 175px;">
+                <ul class="list-group list-group-flush border-bottom" id="user-list">
+                    <?php
+                    $query = "SELECT id, username, position FROM users WHERE id <> $user_id";
+                    $result = mysqli_query($conn, $query);
+
+                    if($result) {
+                        $num_row = mysqli_num_rows($result);
+
+                        for ($i=0; $i < $num_row; $i++) {
+                            $row = mysqli_fetch_assoc($result);
+                    ?>
+                    <li type="button" class="list-group-item list-group-item-action"><?= ucfirst($row['username']) ?></li>
+                    <?php
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+            <div class="d-flex flex-column h-100 justify-content-between">
+                <div class="bg-white border-bottom text-primary p-2 font-weight-bold">
+                    Seller
+                </div>
+                <div class="chat-msg d-flex flex-column bg-light h-100 overflow-auto">
+                    <div class="d-flex p-2">
+                        <div class="rounded-right p-2 text-wrap">
+                            hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, 
+                        </div>
+                        <div class="rounded-right p-2 text-wrap">
+                            hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, 
+                        </div>
+                        <div class="rounded-right p-2 text-wrap">
+                            hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, hello world, 
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input d-flex">
+                    <input type="text" name="" id="" class="form-control rounded-0" placeholder="Type a message">
+                    <button role="button" class="btn btn-dark rounded-0"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <?php else: ?>
+        <div class="h-100 align-items-center d-flex justify-content-center text-white flex-column bg-secondary">
+            <p>To use this function you need to login first!</p>
+            <a href="login.php" class="btn btn-outline-light">Login / Register</a>
+        </div>
+        <?php endif; ?>
+    </div>
 </div>
 <div class="container mt-4">
     <div class="row">
@@ -80,7 +133,7 @@ else {
                     <div class="text-muted" style="font-size: 0.7rem">Sold By</div>
                     <div><?= print_r($product->username) ?></div>
                 </div>
-                <button class="btn btn-sm btn-outline-primary"><i class="fas fa-comments"></i>Chat</button>
+                <button class="btn btn-sm btn-outline-primary" id="btn-chat"><i class="fas fa-comments"></i>Chat</button>
             </div>
         </div>
     </div>
@@ -181,8 +234,21 @@ else {
             if($('#add-btn').prop('disabled'))
                 $('#add-btn').prop('disabled', false);
         });
+
+        $('#chat-box-toggle').click(function() {
+            $('#chat-box').fadeToggle();
+        });
+
+        $('#btn-chat').click(function() {
+            $('#chat-box').fadeIn();
+        });
+        
     });
 </script>
+
 <?php
 do_html_end();
-?>
+    } else {
+        header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+    }
+}
