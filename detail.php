@@ -81,38 +81,7 @@ do_component_topnav('APP NAME');
                 <div class="bg-white border-bottom p-2 font-weight-bold" id="receiver_name">
                     <i class="fas fa-user-tag m-2"></i><?= ucfirst($product->username) ?>
                 </div>
-                <div class="d-flex flex-column bg-light h-100 overflow-auto p-2" id="chat-msg">
-                    <?php
-                    $query = "SELECT cht_sender, cht_receiver, cht_msg, cht_sendDate
-                            FROM chat WHERE cht_sender = '$user_id'";
-                    $result = mysqli_query($conn, $query);
-                    if($result) {
-                        $num_row = mysqli_num_rows($result);
-
-                        for ($i=0; $i < $num_row; $i++) {
-                            $chat = mysqli_fetch_assoc($result);
-                    ?>
-                        <div class="d-flex mb-3">
-                            <div class="d-flex flex-column">
-                                <div class="rounded-right p-2 text-wrap bg-white shadow-sm">
-                                    <?= $chat['cht_msg'] ?>
-                                </div>
-                                <div class="small text-muted"><?= $chat['cht_sendDate'] ?></div>
-                            </div>
-                        </div>
-                        <div class="d-flex mb-3 justify-content-end">
-                            <div class="d-flex flex-column">
-                                <div class="rounded-left p-2 text-wrap bg-primary text-white shadow-sm">
-                                    <?= $chat['cht_msg'] ?>
-                                </div>
-                                <div class="small text-muted text-right"><?= $chat['cht_sendDate'] ?></div>
-                            </div>
-                        </div>
-                    <?php
-                        }
-                    }
-                    ?>
-                </div>
+                <div class="d-flex flex-column bg-light h-100 overflow-auto p-2" id="chat-msg"></div>
                 <div class="d-flex">
                     <input type="text" id="chat-input" class="form-control rounded-0" placeholder="Type a message" data-receiver="<?= $product->prdt_seller ?>">
                     <button role="button" class="btn btn-dark rounded-0" id="send-btn"><i class="fas fa-paper-plane"></i></button>
@@ -281,17 +250,9 @@ do_component_topnav('APP NAME');
         var f_toggle = true;
         $('#chat-box-toggle').click(function() {
             <?php if(isset($_SESSION['user_id'])): ?>
-            var receiver = <?= $product->prdt_seller ?>;
             if(f_toggle) {
-                $.get({
-                    url: './functions/customer/chat-msg.php',
-                    data: {
-                        receiver_id: receiver,
-                    },
-                    success: function(result){
-                        $('#chat-msg').html(result);
-                    },
-                });
+                var receiver = <?= $product->prdt_seller ?>;
+                updateChatBox(receiver);
                 f_toggle = false;
             }
             <?php endif; ?>
@@ -299,6 +260,13 @@ do_component_topnav('APP NAME');
         });
 
         $('#btn-chat').click(function() {
+            <?php if(isset($_SESSION['user_id'])): ?>
+            if(f_toggle) {
+                var receiver = <?= $product->prdt_seller ?>;
+                updateChatBox(receiver);
+                f_toggle = false;
+            }
+            <?php endif; ?>
             $('#chat-box').fadeIn();
         });
         <?php
