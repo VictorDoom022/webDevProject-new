@@ -36,7 +36,7 @@ login function
 |  **Customer**  |  | **TH**  |
 |    | Add to cart | TH  | Done |
 |    | View available discount code & enter discount code when checkout | TH  |
-|    | Chat with admin and seller | TH  |
+|    | Chat with admin and seller | TH  | Done |
 |  **Guest**  |  | **HY**  |
 |    | View product | HY  |
 |    | View available dicount code | HY  |
