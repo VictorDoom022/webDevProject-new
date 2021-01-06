@@ -27,7 +27,7 @@ do_component_topnav('APP NAME');
 
 ?>
 <div class="bg-dark shadow-lg" style="width: 550px;position: fixed;right: 20px;bottom: 0;z-index: 10;">
-    <div class="h4 text-center pt-2 text-white" id="chat-box-toggle">Message</div>
+    <div class="h4 text-center pt-2 text-white" role="button" id="chat-box-toggle">Message</div>
     <div class="bg-white" id="chat-box" style="height: 400px;display: none;">
         <?php 
         if(isset($_SESSION['username'])):
@@ -46,7 +46,7 @@ do_component_topnav('APP NAME');
                         for ($i=0; $i < $num_row; $i++) {
                             $row = mysqli_fetch_assoc($result);
                     ?>
-                    <li type="button" class="list-group-item list-group-item-action">
+                    <li type="button" class="list-group-item list-group-item-action" data-uid="<?= $row['id'] ?>" data-name="<?= ($row['position'] == 'admin' ? '<i class=\'fas fa-user-cog m-2\'></i>' : '<i class=\'fas fa-user-tag m-2\'></i>' ) . ucfirst($row['username']) ?>">
                         <div class="d-flex">
                             <div class="my-auto mr-3 align-middle">
                                 <?php if($row['position'] == 'admin') { ?>
@@ -78,31 +78,43 @@ do_component_topnav('APP NAME');
                 </ul>
             </div>
             <div class="d-flex flex-column h-100 justify-content-between w-100">
-                <div class="bg-white border-bottom p-2 font-weight-bold">
-                    <i class="fas fa-user-tag m-2"></i>Seller
+                <div class="bg-white border-bottom p-2 font-weight-bold" id="receiver_name">
+                    <i class="fas fa-user-tag m-2"></i><?= ucfirst($product->username) ?>
                 </div>
-                <div class="chat-msg d-flex flex-column bg-light h-100 overflow-auto">
-                    <div class="d-flex flex-column p-2">
+                <div class="d-flex flex-column bg-light h-100 overflow-auto p-2" id="chat-msg">
+                    <?php
+                    $query = "SELECT cht_sender, cht_receiver, cht_msg, cht_sendDate
+                            FROM chat WHERE cht_sender = '$user_id'";
+                    $result = mysqli_query($conn, $query);
+                    if($result) {
+                        $num_row = mysqli_num_rows($result);
+
+                        for ($i=0; $i < $num_row; $i++) {
+                            $chat = mysqli_fetch_assoc($result);
+                    ?>
                         <div class="d-flex mb-3">
                             <div class="d-flex flex-column">
                                 <div class="rounded-right p-2 text-wrap bg-white shadow-sm">
-                                    hello world, hello world, hello world
+                                    <?= $chat['cht_msg'] ?>
                                 </div>
-                                <div class="small text-muted">date time</div>
+                                <div class="small text-muted"><?= $chat['cht_sendDate'] ?></div>
                             </div>
                         </div>
                         <div class="d-flex mb-3 justify-content-end">
                             <div class="d-flex flex-column">
                                 <div class="rounded-left p-2 text-wrap bg-primary text-white shadow-sm">
-                                    hello world, hello world, hello world
+                                    <?= $chat['cht_msg'] ?>
                                 </div>
-                                <div class="small text-muted text-right">date time</div>
+                                <div class="small text-muted text-right"><?= $chat['cht_sendDate'] ?></div>
                             </div>
                         </div>
-                    </div>
+                    <?php
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="d-flex">
-                    <input type="text" name="" id="chat-input" class="form-control rounded-0" placeholder="Type a message">
+                    <input type="text" id="chat-input" class="form-control rounded-0" placeholder="Type a message" data-receiver="<?= $product->prdt_seller ?>">
                     <button role="button" class="btn btn-dark rounded-0" id="send-btn"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
@@ -162,7 +174,7 @@ do_component_topnav('APP NAME');
             <div class="d-flex justify-content-between p-3" style="background-color: #fefefe;">
                 <div>
                     <div class="text-muted" style="font-size: 0.7rem">Sold By</div>
-                    <div><?= print_r($product->username) ?></div>
+                    <div><?= $product->username ?></div>
                 </div>
                 <button class="btn btn-sm btn-outline-primary" id="btn-chat"><i class="fas fa-comments"></i>Chat</button>
             </div>
@@ -266,34 +278,98 @@ do_component_topnav('APP NAME');
                 $('#add-btn').prop('disabled', false);
         });
 
+        var f_toggle = true;
         $('#chat-box-toggle').click(function() {
+            <?php if(isset($_SESSION['user_id'])): ?>
+            var receiver = <?= $product->prdt_seller ?>;
+            if(f_toggle) {
+                $.get({
+                    url: './functions/customer/chat-msg.php',
+                    data: {
+                        receiver_id: receiver,
+                    },
+                    success: function(result){
+                        $('#chat-msg').html(result);
+                    },
+                });
+                f_toggle = false;
+            }
+            <?php endif; ?>
             $('#chat-box').fadeToggle();
         });
 
         $('#btn-chat').click(function() {
             $('#chat-box').fadeIn();
         });
-        
-    });
+        <?php
+        if(isset($_SESSION['user_id'])) {
+        ?>
 
-    $('#send-btn').click(function() {
-        var msg = $('#chat-input').val();
-        $('#chat-input').val('');
-        sendMessage(msg);
-    });
+        $('#user-list').on('click', 'li', function() {
+            var uid = $(this).data('uid');
+            var title = $(this).data('name');
+            $('#chat-input').data('receiver', ''+ uid);
+            $('#receiver_name').html(title);
 
-    $('#chat-input').keydown(function(event) {
-        if (event.keyCode === 13) {
+            updateChatBox(uid);
+        });
+
+        $('#send-btn').click(function() {
             var msg = $('#chat-input').val();
+            var receiver = $('#chat-input').data('receiver');
             $('#chat-input').val('');
-            sendMessage(msg);
-        }
-    });
+            if(msg) {
+                sendMessage(msg, receiver);
+            }
+        });
 
-    function sendMessage(msg) {
-        console.log(msg);
-        alert('not function yet');
-    }
+        
+
+        $('#chat-input').keydown(function(event) {
+            if (event.keyCode === 13) {
+                var msg = $('#chat-input').val();
+                var receiver = $('#chat-input').data('receiver');
+                $('#chat-input').val('');
+
+                if(msg) {
+                    sendMessage(msg, receiver);
+                }
+            }
+        });
+
+        function sendMessage(msg, receiver) {
+            $.post({
+                url: 'functions/sendMsg.php',
+                data: {
+                    msg: msg,
+                    sender_id: <?= $user_id ?>,
+                    receiver_id: receiver,
+                },
+                success: function(result){
+
+                },
+                error: function(){
+                    console.log("error sending");
+                }
+            });
+            updateChatBox(receiver);
+        }
+        
+        function updateChatBox(receiver) {
+            $.get({
+                url: './functions/customer/chat-msg.php',
+                data: {
+                    receiver_id: receiver,
+                },
+                success: function(result){
+                    $('#chat-msg').html(result);
+                    var chatbox = document.getElementById("chat-msg");
+                    chatbox.scrollTop = chatbox.scrollHeight;
+                },
+            });
+        }
+        <?php } ?>
+    });
 </script>
 
 <?php
