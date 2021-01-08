@@ -325,7 +325,7 @@ do_component_topnav('APP NAME');
         
         function updateChatBox(receiver) {
             $.get({
-                url: './functions/customer/chat-msg.php',
+                url: './functions/chat-msg.php',
                 data: {
                     receiver_id: receiver,
                 },
