@@ -18,27 +18,67 @@ nav.k-side-nav{
     height: 100vh;
     position: fixed;
     top: 0;
+
+    div.logo{
+        height: 90px;
+        width: 100%;
+        position: relative;
+
+        h2{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            a{
+                color: #000000;
+            }
+
+            a:hover{
+                text-decoration: none;
+            }
+        }
+    }
+
+    ul{
+        li{
+            a{
+                color: #353535;
+                
+                i{
+                    padding: 7px;
+                }
+            }
+
+            a.active{
+                background:#1d1d1f;
+                color: white;
+                box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.2);
+                border-radius: 8px;
+            }
+
+            a:not(.active):hover{
+                background-color: rgba(169,169,169, 0.1);
+                border-radius: 8px;
+                transition: .5s ease;
+            }
+
+            a.active:hover{
+                background-color: rgb(70, 70, 70);
+                border-radius: 8px;
+                transition: .5s ease;
+            }
+        }
+    }
 }
 
-nav.k-side-nav div.logo{
-    height: 90px;
-    width: 100%;
-    position: relative;
-}
-
-nav.k-side-nav div.logo h2{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-nav.k-side-nav div.logo h2 a{
-    color: #000000;
-}
-
-nav.k-side-nav div.logo h2 a:hover{
-    text-decoration: none;
+nav.k-side-nav-r{
+    z-index: 1;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 90px;
 }
 
 div.k-nav-container{
@@ -51,42 +91,6 @@ ul.k-nav{
     left: 50%;
     width: 80%;
     transform: translateX(-50%);
-}
-
-nav.k-side-nav ul li a{
-    color: #353535;
-}
-
-nav.k-side-nav ul li a.active{
-    background:#1d1d1f;
-    color: white;
-    box-shadow: 0 0.75rem 1.5rem rgba(18,38,63,.2);
-    border-radius: 8px;
-}
-
-nav.k-side-nav ul li a i{
-    padding: 7px;
-}
-
-nav.k-side-nav ul li a:not(.active):hover{
-    background-color: rgba(169,169,169, 0.1);
-    border-radius: 8px;
-    transition: .5s ease;
-}
-
-nav.k-side-nav ul li a.active:hover{
-    background-color: rgb(70, 70, 70);
-    border-radius: 8px;
-    transition: .5s ease;
-}
-
-nav.k-side-nav-r{
-    z-index: 1;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    margin-top: 90px;
 }
 
 main{
