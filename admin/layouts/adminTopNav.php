@@ -2,6 +2,8 @@
 	<span class="navbar-brand h1 mb-0 col">
         <?php if ($pageName == 'Admin'):?>
             <i class="fas fa-home"></i>
+		<?php elseif ($pageName == 'Chat'): ?>
+            <i class="fas fa-comments"></i>
         <?php endif; ?>
         <span class="d-none d-lg-inline-flex ml-3"><?php echo $pageTitle; ?></span>
         
