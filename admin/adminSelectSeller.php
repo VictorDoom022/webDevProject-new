@@ -13,46 +13,47 @@
 </head>
 <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
-</div>
     <?php
         $pageName = $pageTitle = 'Admin';
         include 'layouts/adminSideNav.php';
         include 'layouts/adminTopNav.php';
     ?>
-<div class="container border">
-    <?php 
-        require_once('../config/connect_db.php');
-        $query = "SELECT * FROM users WHERE position='seller'";
-        $result = mysqli_query($conn,$query);
-        if(!$result) die ('Get data failed');
-    ?>
-<div class="row">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Seller Name</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Position</th>
-                <th colspan="2">Action</th>
-            </tr>
-        </thead>
-        <?php
-            while($row = $result->fetch_assoc()):
+<main>
+    <div class="container border">
+        <?php 
+            require_once('../config/connect_db.php');
+            $query = "SELECT * FROM users WHERE position='seller'";
+            $result = mysqli_query($conn,$query);
+            if(!$result) die ('Get data failed');
         ?>
-            <tr>
-                <td><?php echo $row['username']?></td>
-                <td><?php echo $row['password']?></td>
-                <td><?php echo $row['email']?></td>
-                <td><?php echo $row['position']?></td>
-                <td>
-                    <a href="adminEditSeller.php?id=<?php echo $row['id']?>"
-                    class="btn btn-outline-info">Edit</a>
-                </td>
-                <?php endwhile;?>
-            </tr>
-    </table>
-</div>
-</div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Seller Name</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Position</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <?php
+                while($row = $result->fetch_assoc()):
+            ?>
+                <tr>
+                    <td><?php echo $row['username']?></td>
+                    <td><?php echo $row['password']?></td>
+                    <td><?php echo $row['email']?></td>
+                    <td><?php echo $row['position']?></td>
+                    <td>
+                        <a href="adminEditSeller.php?id=<?php echo $row['id']?>"
+                        class="btn btn-outline-info">Edit</a>
+                    </td>
+                    <?php endwhile;?>
+                </tr>
+        </table>
+    </div>
+    </div>
+</main>
 </body>
 </html>

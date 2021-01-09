@@ -24,6 +24,7 @@ session_start();
         include 'layouts/adminSideNav.php';
         include 'layouts/adminTopNav.php';
     ?>
+<main>
 <div class="seller-form container border">
     <div>
         <h5 class="mt-2">Add Seller Form</h5>
@@ -53,5 +54,6 @@ session_start();
         </form>
     </div>
 </div>
+</main>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <?php
 include_once('../config/bootstrap.php');
 include_once('../config/connect_db.php');
+session_start();
+include_once('../functions/checkSession.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +25,7 @@ include_once('../config/connect_db.php');
         include 'layouts/adminSideNav.php';
         include 'layouts/adminTopNav.php';
     ?>
+<main>
 <div class="container">
     <?php 
         $query = "SELECT * FROM users WHERE position = 'seller'";
@@ -57,5 +60,6 @@ include_once('../config/connect_db.php');
         </div>
     </div><br>
 </div>
+</main>
 </body>
 </html>

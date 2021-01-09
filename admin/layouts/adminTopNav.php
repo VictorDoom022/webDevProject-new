@@ -4,6 +4,8 @@
             <i class="fas fa-home"></i>
 		<?php elseif ($pageName == 'Chat'): ?>
             <i class="fas fa-comments"></i>
+		<?php elseif ($pageName == 'Seller Sales'): ?>
+            <i class="fas fa-comments"></i>
         <?php endif; ?>
         <span class="d-none d-lg-inline-flex ml-3"><?php echo $pageTitle; ?></span>
         
