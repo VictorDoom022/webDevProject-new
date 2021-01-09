@@ -1,27 +1,28 @@
 <?php
-session_start();
 include_once('../config/bootstrap.php');
-include_once('../config/connect_db.php');
-include_once('../functions/checkSession.php');
+require_once('../config/connect_db.php');
+session_start();
 
 if(isset($_SESSION['username'])):
     $user_id = $_SESSION['user_id'];
 endif;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <?php echo $bootstrapCSS; echo $jQueryJS; echo $bootstrapJS; echo $fontAwsomeIcons ?>
+    <!-- CSS -->
     <link rel="stylesheet" href="layouts/navBar.css"/>
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <?php echo $bootstrapCSS; echo $jQueryJS; echo $bootstrapJS; echo $fontAwsomeIcons ?>
 </head>
 <body>
     <?php
         $pageName = $pageTitle = 'Chat';
-        include 'layouts/sellerSideNav.php';
-        include 'layouts/sellerTopNav.php';
+        include 'layouts/adminSideNav.php';
+        include 'layouts/adminTopNav.php';
     ?>
     <div class="container-fluid">
         <div class="row">

@@ -1,5 +1,5 @@
 <?php
-require_once('../../config/connect_db.php');
+require_once('../config/connect_db.php');
 session_start();
 
 if(isset($_SESSION['user_id'])) {

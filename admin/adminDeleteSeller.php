@@ -13,12 +13,12 @@
 </head>
 <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
-</div>
     <?php
         $pageName = $pageTitle = 'Admin';
         include 'layouts/adminSideNav.php';
         include 'layouts/adminTopNav.php';
     ?>
+<main>
 <div class="container border">
     <?php 
         require_once('../config/connect_db.php');
@@ -63,5 +63,6 @@
     </table>
 </div>
 </div>
+</main>
 </body>
 </html>

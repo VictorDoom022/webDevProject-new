@@ -9,11 +9,22 @@
         <ul class="k-nav nav">
             <li class="nav-item w-100 mb-1">
                 <a href="adminManageSeller.php" class="nav-link w-100 <?php if($pageName == 'Admin') echo 'active';?>">
-                <i class="fas fa-home"></i>
-                    <span class="d-none d-lg-inline-flex ml-5">Home</span>
+                    <i class="fas fa-home"></i>
+                    <span class="d-none d-lg-inline-flex ml-3">Home</span>
                 </a>
             </li>
-            
+            <li class="nav-item w-100 mb-1">
+                <a href="adminChat.php" class="nav-link w-100 <?php if($pageName == 'Chat') echo 'active';?>">
+                    <i class="fas fa-comments"></i>
+                    <span class="d-none d-lg-inline-flex ml-3">Chat</span>
+                </a>
+            </li>
+            <li class="nav-item w-100 mb-1">
+                <a href="commission_v2.php" class="nav-link w-100 <?php if($pageName == 'Seller Sales') echo 'active';?>">
+                <i class="fas fa-file"></i>
+                    <span class="d-none d-lg-inline-flex ml-3">Seller Sales</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

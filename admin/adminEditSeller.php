@@ -37,6 +37,7 @@ if(isset($_GET['id'])){
         include 'layouts/adminSideNav.php';
         include 'layouts/adminTopNav.php';
     ?>
+<main>
 <div class="seller-form container border">
     <div>
         <h5 class="mt-2">Update Seller Form</h5>
@@ -70,5 +71,6 @@ if(isset($_GET['id'])){
         </form>
     </div>
 </div>
+</main>
 </body>
 </html>

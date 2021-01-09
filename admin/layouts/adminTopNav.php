@@ -2,13 +2,17 @@
 	<span class="navbar-brand h1 mb-0 col">
         <?php if ($pageName == 'Admin'):?>
             <i class="fas fa-home"></i>
+		<?php elseif ($pageName == 'Chat'): ?>
+            <i class="fas fa-comments"></i>
+		<?php elseif ($pageName == 'Seller Sales'): ?>
+            <i class="fas fa-comments"></i>
         <?php endif; ?>
         <span class="d-none d-lg-inline-flex ml-3"><?php echo $pageTitle; ?></span>
         
     </span>
 	<ul class="navbar-nav px-4">
-		<li class="nav-item">
-			<a href="#" class="btn btn-outline-dark" role="button" aria-pressed="true">Log Out</a>
-		</li>
+		<form action="../functions/logout_function.php" method="POST">
+			<input type="submit"class="btn btn-outline-dark" name="logout" aria-pressed="true" value="Log Out">
+		</form>
 	</ul>
 </nav>
