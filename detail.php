@@ -291,8 +291,6 @@ do_component_topnav('APP NAME');
             }
         });
 
-        
-
         $('#chat-input').keydown(function(event) {
             if (event.keyCode === 13) {
                 var msg = $('#chat-input').val();

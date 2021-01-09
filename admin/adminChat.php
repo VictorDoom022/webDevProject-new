@@ -40,6 +40,11 @@ endif;
 
                                 for ($i=0; $i < $num_row; $i++) {
                                     $row = mysqli_fetch_assoc($result);
+                                    if($i == 0) {
+                                        $first_receiver_id = $row['id'];
+                                        $first_receiver_name = $row['username'];
+                                        $first_r_position = $row['username'];
+                                    }
                             ?>
                             <li type="button" class="list-group-item list-group-item-action" data-uid="<?= $row['id'] ?>" data-name="<?= ($row['position'] == 'admin' ? '<i class=\'fas fa-user-cog m-2\'></i>' : '<i class=\'fas fa-user-tag m-2\'></i>' ) . ucfirst($row['username']) ?>">
                                 <div class="d-flex">
@@ -76,12 +81,18 @@ endif;
                     </div>
                     <div class="d-flex flex-column justify-content-between w-100">
                         <div class="bg-white border-bottom p-2 font-weight-bold" id="receiver_name">
-                            <i class="fas fa-user-tag m-2"></i>(The receiver name)
+                        <?php if($first_r_position == 'admin') { ?>
+                            <i class="fas fa-user-cog m-2"></i>
+                        <?php } elseif($first_r_position == 'seller') { ?>
+                            <i class="fas fa-user-tag m-2"></i>
+                        <?php } else { ?>
+                            <i class="fas fa-user m-2"></i>
+                        <?php } ?><?= ucfirst($first_receiver_name) ?>
                         </div>
                         <div class="d-flex flex-column bg-light h-100 overflow-auto p-2" id="chat-msg"></div>
                         <div class="d-flex">
                             <input type="text" id="chat-input" class="form-control rounded-0"
-                                placeholder="Type a message" data-receiver="<?= 'receiver_id' ?>">
+                                placeholder="Type a message" data-receiver="<?= $first_receiver_id ?>">
                             <button role="button" class="btn btn-dark rounded-0" id="send-btn">
                                 <i class="fas fa-paper-plane"></i>
                             </button>
@@ -91,5 +102,41 @@ endif;
             </main>
         </div>
     </div>
+    <script src="./../js/chat_function.js"></script>
+    <script>
+        $(document).ready(function() {
+            updateChatBox(<?= $first_receiver_id ?>);
+
+            $('#send-btn').click(function() {
+                var msg = $('#chat-input').val();
+                var receiver = $('#chat-input').data('receiver');
+                $('#chat-input').val('');
+                if(msg) {
+                    sendMessage(msg, receiver, <?= $user_id ?>);
+                }
+            });
+
+            $('#chat-input').keydown(function(event) {
+                if (event.keyCode === 13) {
+                    var msg = $('#chat-input').val();
+                    var receiver = $('#chat-input').data('receiver');
+                    $('#chat-input').val('');
+
+                    if(msg) {
+                        sendMessage(msg, receiver, <?= $user_id ?>);
+                    }
+                }
+            });
+
+            $('#user-list').on('click', 'li', function() {
+                var uid = $(this).data('uid');
+                var title = $(this).data('name');
+                $('#chat-input').data('receiver', ''+ uid);
+                $('#receiver_name').html(title);
+
+                updateChatBox(uid);
+            });
+        });
+    </script>
 </body>
 </html>
