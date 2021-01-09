@@ -56,6 +56,7 @@ if($result) {
                                             <div class="col-3">
                                                 <img class="img-fluid" src="<?= $row['prdt_image'] ?>" alt="">
                                             </div>
+                                            <input id="product_id" class="product_id" type="hidden" value="<?= $row['product_id'] ?>">
                                             <div class="col-9"><?= $row['prdt_name'] ?></div>
                                         </div>
                                     </div>
@@ -83,12 +84,16 @@ if($result) {
                                 <div>RM <?= number_format(floatval($total_price), 2) ?></div>
                             </div>
                             <div class="d-flex justify-content-between my-2">
-                                <input id="" class="form-control" type="text" placeholder="Enter Promo Code">
+                                <input id="promo_code" class="form-control" type="text" placeholder="Enter Promo Code">
                                 <button type="button" class="btn btn-dark ml-2">Apply</button>
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <div class="small text-muted">Total</div>
-                                <div style="color: #ff9326;">RM <?= number_format(floatval($total_price), 2) ?></div>
+                                <div style="color: #ff9326;"><p id="total"><?= number_format(floatval($total_price), 2) ?></p></div>
+                                <div class="small text-muted">Discount Total</div>
+                                <div class="text-success">
+                                    <p id="discount_total" name="discount_total">0</p>
+                                </div>
                             </div>
                             <div class="my-2">
                                 <input class="btn btn-warning btn-block" style="background-color: #ff9326;" type="submit" value="Place Order">
@@ -100,11 +105,45 @@ if($result) {
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        $(document).ready(function() {
-            
+        $('#promo_code').on('change', function(){
+            $.ajax({
+                url: 'functions/checkVoucher.php',
+                type: 'GET',
+                data: { 'promo_code' : this.value },
+                success: function(data){
+                    var parsedData = JSON.parse(data);
+                    var promo_total = 0;
+
+                    if(parsedData.voucherExists == "1"){
+                        $('#promo_code').attr('class', 'form-control is-valid');
+                        var product_ids =[];
+
+                        $('.product_id').each(function(value){
+                            product_ids.push($(this).val());
+                        });
+                        
+                        for($i = 0; $i <product_ids.length; $i++){
+                            if(product_ids[$i] == parsedData.promo_prdt){
+                                promo_total += parseInt(parsedData.promo_discount);
+                            }
+                        }
+                        
+                        $('#discount_total').text(promo_total);
+                        total_value = parseFloat($('#total').text())-promo_total;
+                        $('#total').text(total_value);
+
+                    }else{
+                        $('#promo_code').attr('class', 'form-control is-invalid');
+                    }
+
+                },
+                error: function(){
+
+                }
+            });
         });
     </script>
     <?php
