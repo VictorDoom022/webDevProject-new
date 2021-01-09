@@ -1,7 +1,12 @@
 <?php
-include_once('../config/bootstrap.php');
 session_start();
+include_once('../config/bootstrap.php');
+include_once('../config/connect_db.php');
 include_once('../functions/checkSession.php');
+
+if(isset($_SESSION['username'])):
+    $user_id = $_SESSION['user_id'];
+endif;
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,8 +15,8 @@ include_once('../functions/checkSession.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title></title>
     <?php echo $bootstrapCSS; echo $jQueryJS; echo $bootstrapJS; echo $fontAwsomeIcons ?>
-</head>
     <link rel="stylesheet" href="layouts/navBar.css"/>
+</head>
 <body>
     <?php
         $pageName = $pageTitle = 'Chat';
