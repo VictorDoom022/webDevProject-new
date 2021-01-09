@@ -97,6 +97,10 @@ main{
     margin-top: 90px;
 }
 
+main.full-creen {
+    height: calc(100vh - 90px);
+}
+
 @media screen and (max-width: 991px) {
     /* start of large tablet styles */
     .k-side-nav{
