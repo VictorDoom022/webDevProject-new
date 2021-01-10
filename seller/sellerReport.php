@@ -27,7 +27,8 @@ include_once('../functions/checkSession.php');
                 <?php
                     $sql = "SELECT SUM(ord_product_unit_price * ord_product_quantity) AS totalSellPrice,
                     SUM(prdt_oriPrice * ord_product_quantity) AS totalOriPrice,
-                    SUM(ord_product_unit_price * ord_product_quantity) AS totalUnitPrice
+                    SUM(ord_product_unit_price * ord_product_quantity) AS totalUnitPrice,
+                    SUM(ord_discount) AS totalDiscount
                     FROM orders 
                     LEFT JOIN order_detail ON orders.id = order_detail.ord_id
                     LEFT JOIN users ON orders.ord_user_id = users.id
@@ -41,19 +42,25 @@ include_once('../functions/checkSession.php');
                     <div class="col-md-12">
                         <div class="card mt-1">
                             <h3 class="text-center">Total Revenue</h3>
-                                <h4 class="text-center">RM<?php echo $row['totalSellPrice'] - $row['totalOriPrice']; ?></h4>
+                                <h4 class="text-center">RM<?php echo $row['totalSellPrice'] - $row['totalOriPrice'] - $row['totalDiscount']; ?></h4>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card mt-1">
                             <h3 class="text-center">Total Product Sold in Original Price </h3>
                                 <h4 class="text-center">RM<?php echo $row['totalOriPrice']; ?></h4>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card mt-1">
                             <h3 class="text-center">Total Product Sold in Selling Price </h3>
                                 <h4 class="text-center">RM<?php echo $row['totalUnitPrice'] ?></h4>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mt-1">
+                            <h3 class="text-center">Total Product Given Discount </h3>
+                                <h4 class="text-center">RM<?php echo $row['totalDiscount'] ?></h4>
                         </div>
                     </div>
 
@@ -109,9 +116,9 @@ include_once('../functions/checkSession.php');
                                         }
                                     }
                                 ?>
-                                <tr>
                                 <?php
-                                    $sql = "SELECT SUM(ord_product_unit_price * ord_product_quantity) AS total
+                                    $sql = "SELECT SUM(ord_product_unit_price * ord_product_quantity) AS total,
+                                    SUM(ord_discount) AS totalDiscount
                                     FROM orders 
                                     LEFT JOIN order_detail ON orders.id = order_detail.ord_id
                                     LEFT JOIN users ON orders.ord_user_id = users.id
@@ -121,13 +128,22 @@ include_once('../functions/checkSession.php');
                                     if(mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
                                 ?>
-                                    <td colspan="4" style="font-weight: bold">Total:</td>
-                                    <td style="font-weight: bold; text-align:right"><?php echo $row['total']; ?></td>
+                                    <tr>
+                                        <td colspan="4" style="font-weight: bold">Total:</td>
+                                        <td style="font-weight: bold; text-align:right"><?php echo $row['total']; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" >Total Given Discount:</td>
+                                        <td class="text-danger" style="text-align:right">(-<?php echo $row['totalDiscount']; ?>)</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" >Final Total:</td>
+                                        <td class="text-success" style="font-weight: bold; text-align:right"><?php echo $row['total'] - $row['totalDiscount']; ?></td>
+                                    </tr>
                                 <?php
                                         }
                                     }
-                                ?>
-                                </tr>
+                                ?>                    
                             
                             </table>
                         </div>

@@ -35,7 +35,8 @@ include_once('../functions/checkSession.php');
                     <?php
                         $sql = "SELECT COUNT(*) AS totalOrders, orders.date,
                         SUM(ord_product_unit_price * ord_product_quantity) AS totalSellPrice,
-                        SUM(prdt_oriPrice * ord_product_quantity) AS totalOriPrice
+                        SUM(prdt_oriPrice * ord_product_quantity) AS totalOriPrice,
+                        SUM(ord_discount) AS totalDiscount
                         FROM orders 
                         LEFT JOIN order_detail ON orders.id = order_detail.ord_id 
                         LEFT JOIN product ON ord_product_id = product.id
@@ -54,7 +55,7 @@ include_once('../functions/checkSession.php');
                         <div class="col-md-6">
                             <div class="card mt-1">
                                 <h3 class="text-center">This week's total revenue</h3>
-                                <h3 class="text-center">RM<?php echo $row['totalSellPrice'] - $row['totalOriPrice']; ?></h3>
+                                <h3 class="text-center">RM<?php echo $row['totalSellPrice'] - $row['totalOriPrice'] - $row['totalDiscount'] ?></h3>
                             </div>
                         </div>
                     <?php
