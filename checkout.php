@@ -47,7 +47,7 @@ if($result) {
                             $total_price = 0;
                             for($i = 0; $i < $num_row; $i++) {
                                 $row = mysqli_fetch_assoc($result);
-                                $total_price += $row['prdt_sellPrice'];
+                                $total_price += $row['prdt_sellPrice'] * $row['crt_quantity'];
                             ?>
                             <li class="list-group-item">
                                 <div class="row align-items-center">
@@ -63,9 +63,7 @@ if($result) {
                                     <div class="col-3">
                                         RM <?= number_format($row['prdt_sellPrice'], 2) ?>
                                     </div>
-                                    <div class="col-1">
-                                        <?= $row['crt_quantity'] ?>
-                                    </div>
+                                    <div class="col-1"><?= $row['crt_quantity'] ?></div>
                                 </div>
                             </li>
                             <?php
@@ -156,12 +154,15 @@ if($result) {
                         var product_ids =[];
 
                         $('.product_id').each(function(value){
-                            product_ids.push($(this).val());
+                            var quantity = $(this).parents('.row').find('.col-1').html();
+                            quantity = parseInt(quantity);
+                            product_ids.push([$(this).val(), quantity]);
                         });
+                        console.log(product_ids);
                         
                         for($i = 0; $i <product_ids.length; $i++){
-                            if(product_ids[$i] == parsedData.promo_prdt){
-                                promo_total += parseInt(parsedData.promo_discount);
+                            if(product_ids[$i][0] == parsedData.promo_prdt){
+                                promo_total += parseInt(parsedData.promo_discount) * product_ids[$i][1];
                             }
                         }
                         
