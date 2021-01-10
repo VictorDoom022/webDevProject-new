@@ -3,10 +3,13 @@ require_once('../../config/connect_db.php');
 
 session_start();
 
-if(isset($_SESSION['user_id']) && isset($_SESSION['position']) ) {
-    $user_id = $_SESSION['user_id'];
+if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+$_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest" && 
+$_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['user_id']) && isset($_POST['position']) ) {
+    $user_id = $_POST['user_id'];
+    $ord_discount = $_POST['ord_discount'];
 
-    if(!($_SESSION['position'] == 'customer')) {
+    if(!($_POST['position'] == 'customer')) {
         header('location: ../../index.php');
     }
 
@@ -41,9 +44,9 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['position']) ) {
 
                 $query = "INSERT INTO 
                         order_detail
-                        (ord_id, ord_product_id, ord_product_name, ord_product_quantity, ord_product_unit_price) 
+                        (ord_id, ord_product_id, ord_product_name, ord_product_quantity, ord_product_unit_price, ord_discount) 
                         VALUES 
-                        ($order_id, $product_id, '$product_name', $product_quantity, $product_unitprice)";
+                        ($order_id, $product_id, '$product_name', $product_quantity, $product_unitprice, $ord_discount)";
 
                 $detail_result = mysqli_query($conn, $query);
                 if(!$detail_result) {
@@ -67,5 +70,4 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['position']) ) {
 
 }
 
-header('location: ../../viewCart.php');
 ?>

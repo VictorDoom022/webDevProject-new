@@ -78,7 +78,7 @@ if($result) {
             <div class="col-12 col-md-4">
                 <div class="card border-0">
                     <div class="card-body">
-                        <form action="functions/customer/placeorder.php" method="post">
+                        <form action="checkout.php" method="post">
                             <div class="d-flex justify-content-between my-2">
                                 <div class="small text-muted">Subtotal (<?= $num_row ?> items)</div>
                                 <div>RM <?= number_format(floatval($total_price), 2) ?></div>
@@ -96,7 +96,7 @@ if($result) {
                                 </div>
                             </div>
                             <div class="my-2">
-                                <input class="btn btn-warning btn-block" style="background-color: #ff9326;" type="submit" value="Place Order">
+                                <input  id="btn_placeOrder" class="btn btn-warning btn-block" style="background-color: #ff9326;" type="submit" value="Place Order">
                             </div>
                         </form>
                     </div>
@@ -108,6 +108,40 @@ if($result) {
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
+        $('#btn_placeOrder').on('click', function() {
+            discount_total = $('#discount_total').text();
+            $.ajax({
+                url: 'functions/customer/placeorder.php',
+                type: 'POST',
+                data: {
+                    'user_id' : '<?php echo $_SESSION["user_id"]; ?>',
+                    'position' : '<?php echo $_SESSION["position"]; ?>',
+                    'ord_discount' : discount_total,
+                },
+                success: function(data) {
+                    swal({
+                        icon: "success",
+                        title: "Success",
+                        text: "Order Placed Successfully",
+                        timer: 2500,
+                        buttons: false,
+                    }).then(function(){
+                        window.location.assign('../../viewCart.php');
+                    })
+                },
+                error: function(){
+                    swal({
+                        icon: "error",
+                        title: "An error occurred.",
+                        text: "Please try again. Error Code:" + err,
+                        timer: 1500,
+                        buttons: false,
+                });
+                }
+            });
+
+        });
+
         $('#promo_code').on('change', function(){
             $.ajax({
                 url: 'functions/checkVoucher.php',
