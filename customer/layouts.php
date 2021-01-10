@@ -125,7 +125,7 @@ function do_component_topnav($appName)
                         </a>
                         <div class="dropdown-menu dropdown-menu-right border-0 shadow"  aria-labelledby="user_acc" style="min-width: 200px;">
                             <h5 class="dropdown-header">Welcome, <?= strtoupper($_SESSION['username']); ?>!</h5>
-                            <a class="dropdown-item" href="./account.php">My Account</a>
+                            <a class="dropdown-item" href="./account.php">View Orders</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">Logout</a>

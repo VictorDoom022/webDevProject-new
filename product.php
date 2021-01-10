@@ -30,7 +30,7 @@ if($result) {
             </nav>
         </div>
         <div class="col-12 col-md-10 col-lg-9">
-
+            <div class="row">
 <?php
 $query = "SELECT * FROM product";
 
@@ -53,6 +53,7 @@ else {
     }
 }
 ?>
+            </div>
         </div>
     </div>
 

@@ -89,14 +89,14 @@ if($result) {
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <div class="small text-muted">Total</div>
-                                <div style="color: #ff9326;"><p id="total"><?= number_format(floatval($total_price), 2) ?></p></div>
+                                <div style="color: #ff9326;"><p id="total"><?= number_format(floatval($total_price), 2, '.', '') ?></p></div>
                                 <div class="small text-muted">Discount Total</div>
                                 <div class="text-success">
                                     <p id="discount_total" name="discount_total">0</p>
                                 </div>
                             </div>
                             <div class="my-2">
-                                <input  id="btn_placeOrder" class="btn btn-warning btn-block" style="background-color: #ff9326;" type="submit" value="Place Order">
+                                <input  id="btn_placeOrder" class="btn btn-warning btn-block" style="background-color: #ff9326;" type="button" value="Place Order">
                             </div>
                         </form>
                     </div>
@@ -126,8 +126,8 @@ if($result) {
                         timer: 2500,
                         buttons: false,
                     }).then(function(){
-                        window.location.assign('../../viewCart.php');
-                    })
+                        window.location.assign('index.php');
+                    });
                 },
                 error: function(){
                     swal({
@@ -165,12 +165,12 @@ if($result) {
                             }
                         }
                         
-                        $('#discount_total').text(promo_total);
-                        total_value = parseFloat($('#total').text())-promo_total;
+                        $('#discount_total').html(promo_total);
+                        total_value = parseFloat($('#total').html()) - promo_total;
                         if(total_value < 0){
                             total_value = 0;
                         }
-                        $('#total').text(total_value);
+                        $('#total').html(total_value);
 
                     }else{
                         $('#promo_code').attr('class', 'form-control is-invalid');

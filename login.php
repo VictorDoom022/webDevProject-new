@@ -33,7 +33,7 @@ do_component_topnav('APP NAME');
 									</tr>
 									<tr>
 										<td style="bottom: 12px;position: relative;padding-bottom: 35px;">
-											<span class="word">Or</span> <a style="text-decoration: none;color: #c46a10;" href="guest/register.php" alt="Sign up now" title="Sign up now">Sign up now</a>
+											<span class="word">Or</span> <a style="text-decoration: none;color: #c46a10;" href="register.php" alt="Sign up now" title="Sign up now">Sign up now</a>
 										</td>
 									</tr>
 									<tr>
