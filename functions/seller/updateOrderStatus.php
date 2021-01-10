@@ -9,7 +9,7 @@ $_SERVER['REQUEST_METHOD'] == "POST"){
     $ord_id = $_POST['ord_id'];
     $ord_status = $_POST['ord_status'];
 
-    $sql = "UPDATE orders SET ord_status = '" . $ord_status ."' WHERE id = '" . $ord_id ."'";
+    $sql = "UPDATE order_detail SET ord_status = '" . $ord_status ."' WHERE ord_id = '" . $ord_id ."'";
     mysqli_query($conn, $sql);
 }
 ?>
