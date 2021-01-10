@@ -62,8 +62,7 @@ include_once('../functions/checkSession.php');
                                                 <div class="card-text">
                                                     Price: <?php echo $row['prdt_sellPrice']; ?> <br>
                                                     Type: <?php echo $row['prdt_type'] ?> <br>
-                                                    Quantity left: <?php echo $row['prdt_quantity']; ?> <br>
-                                                    Description: <?php echo $row['prdt_desc']; ?>
+                                                    Quantity left: <?php echo $row['prdt_quantity']; ?>
                                                 </div>
 
                                                 <div class="text-right">

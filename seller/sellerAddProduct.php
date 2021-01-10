@@ -10,8 +10,14 @@ include_once('../functions/checkSession.php');
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title></title>
     <?php echo $bootstrapCSS; echo $jQueryJS;echo $jQueryFormJS;echo $sweetAlert; echo $bootstrapJS; echo $fontAwsomeIcons ?>
+    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
 </head>
     <link rel="stylesheet" href="layouts/navBar.css"/>
+    <style>
+    .ck-editor__editable_inline {
+        min-height: 300px;
+    }
+    </style>
 <body>
     <?php
         $pageTitle = 'Add Product';
@@ -83,6 +89,15 @@ include_once('../functions/checkSession.php');
     </div>
 </body>
 <script>
+ClassicEditor
+    .create( document.querySelector( 'textarea' ) )
+    .then( editor => {
+        console.log( editor );
+    } )
+    .catch( error => {
+        console.error( error );
+} );
+
 $('#form').ajaxForm( {
     url: '../functions/seller/addProduct.php',
     type: 'POST',
