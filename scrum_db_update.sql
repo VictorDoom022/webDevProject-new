@@ -2,3 +2,8 @@
 ALTER TABLE orders ADD ord_status VARCHAR(10);
 
 ALTER TABLE orders ADD COLUMN ord_discount VARCHAR(10);
+
+/* move ord_discount to order_detail */
+ALTER TABLE orders DROP COLUMN ord_discount;
+
+ALTER TABLE order_detail ADD COLUMN ord_discount VARCHAR(10);
