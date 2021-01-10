@@ -90,11 +90,6 @@ function do_component_topnav($appName)
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav flex-row">
                     <!-- Authentication Links -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </li>
                     <?php if(isset($_SESSION['username']) && $_SESSION['position'] == 'customer'): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="viewCart.php">
