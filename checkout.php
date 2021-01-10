@@ -133,6 +133,9 @@ if($result) {
                         
                         $('#discount_total').text(promo_total);
                         total_value = parseFloat($('#total').text())-promo_total;
+                        if(total_value < 0){
+                            total_value = 0;
+                        }
                         $('#total').text(total_value);
 
                     }else{
