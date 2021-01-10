@@ -83,7 +83,6 @@ if($result) {
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <input id="promo_code" class="form-control" type="text" placeholder="Enter Promo Code">
-                                <button type="button" class="btn btn-dark ml-2">Apply</button>
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <div class="small text-muted">Total</div>
