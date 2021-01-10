@@ -44,9 +44,9 @@ $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['user_id']) && isset($_POST
 
                 $query = "INSERT INTO 
                         order_detail
-                        (ord_id, ord_product_id, ord_product_name, ord_product_quantity, ord_product_unit_price, ord_discount) 
+                        (ord_id, ord_product_id, ord_product_name, ord_product_quantity, ord_product_unit_price, ord_discount, ord_status) 
                         VALUES 
-                        ($order_id, $product_id, '$product_name', $product_quantity, $product_unitprice, $ord_discount)";
+                        ($order_id, $product_id, '$product_name', $product_quantity, $product_unitprice, $ord_discount, 'payed')";
 
                 $detail_result = mysqli_query($conn, $query);
                 if(!$detail_result) {
