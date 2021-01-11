@@ -2,6 +2,7 @@
 include_once('../config/bootstrap.php');
 require_once('../config/connect_db.php');
 session_start();
+include_once('../functions/checkSession.php');
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
@@ -11,9 +12,7 @@ if(isset($_GET['id'])){
         while($row = mysqli_fetch_array($result)){
             $id = $row['id'];
             $username = $row['username'];
-            $password = $row['password'];
             $email = $row['email'];
-            $position = $row['position'];
         }
     }
 }
@@ -29,6 +28,7 @@ if(isset($_GET['id'])){
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2da503c223.js" crossorigin="anonymous"></script>
 </head>
 <link rel="stylesheet" href="layouts/navBar.css"/>
 <body>
@@ -38,39 +38,40 @@ if(isset($_GET['id'])){
         include 'layouts/adminTopNav.php';
     ?>
 <main>
-<div class="seller-form container border">
-    <div>
-        <h5 class="mt-2">Update Seller Form</h5>
-    </div>
-    <div class="row justify-content-center border-top">
+    <div class="seller-form container-fluid col-md-6 mt-4 ml-3">
         <form action="../functions/admin/adminManageFunctions.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $id; ?>">
-        <div class="form-group mt-2">
-            <label>Username</label>
-            <input type="text" name="username" class="form-control" 
-            value="<?php echo $username;?>" placeholder="Enter your name">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="text" name="password" class="form-control"
-            value="<?php echo $password;?>" placeholder="Enter your password">
-        </div>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" name="email" class="form-control" 
-            value="<?php echo $email;?>" placeholder="Enter your email">
-        </div>
-        <div class="form-group">
-            <label>Position</label>
-            <input type="text" name="position" class="form-control"
-            value="<?php echo $position;?>" placeholder="Enter your position">
-        </div>
-        <div class="form-group">
-            <button type="submit" name="update" class="btn btn-outline-primary">Update</button>
-        </div>
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+            <table class="table border">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>
+                            <h5 class="mt-2">Update Seller Form</h5>
+                        </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" 
+                        value="<?php echo $username;?>" placeholder="Enter your name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Email</label>
+                        <input type="text" name="email" class="form-control" 
+                        value="<?php echo $email;?>" placeholder="Enter your email">
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td>
+                        <button type="submit" name="update" class="btn btn-outline-primary">Update</button>
+                        <a href="adminManageSeller.php" name="cancel" class="btn btn-outline-danger">Cancel</a>
+                    </td>
+                </tr>
+            </table>
         </form>
-    </div>
-</div>
+    <div>
 </main>
 </body>
 </html>
