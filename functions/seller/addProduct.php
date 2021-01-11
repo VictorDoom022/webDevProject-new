@@ -19,7 +19,8 @@ $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['addProduct'])){
     }else{
         $prdt_available = '0';
     }
-    $prdt_desc = $_POST['prdt_desc'];
+    $prdt_desc_noClean = $_POST['prdt_desc'];
+    $prdt_desc = removeApostrophe($prdt_desc_noClean);
     $prdt_seller = $_SESSION["user_id"];
 
 	$sql = "INSERT INTO product(prdt_code, prdt_name, prdt_oriPrice, prdt_sellPrice, prdt_type , prdt_quantity, prdt_image,prdt_available, prdt_desc, prdt_seller) 
@@ -46,7 +47,8 @@ $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['editProduct'])){
     }else{
         $prdt_available = '0';
     }
-    $prdt_desc = $_POST['prdt_desc'];
+    $prdt_desc_noClean = $_POST['prdt_desc'];
+    $prdt_desc = removeApostrophe($prdt_desc_noClean);
     $prdt_seller = $_SESSION["user_id"];
 
 	$sql = "UPDATE product SET prdt_code = '$prdt_code', prdt_name = '$prdt_name', prdt_oriPrice = '$prdt_oriPrice', prdt_sellPrice = '$prdt_sellPrice', prdt_type = '$prdt_type', prdt_quantity = '$prdt_quantity', prdt_image = '$prdt_image',prdt_available = '$prdt_available', prdt_desc = '$prdt_desc' 
@@ -66,4 +68,10 @@ $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['deleteProduct'])){
     mysqli_close($conn);
     header('location: ../../seller/sellerProduct.php');
 }
+
+function removeApostrophe($string) {
+    $string = str_replace('\'', '', $string); // Replaces all apostrophe撇号.
+ 
+    return  $string;
+ }
 ?>
