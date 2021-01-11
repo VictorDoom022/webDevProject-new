@@ -91,11 +91,10 @@
                     <table class="table">
                         <thead class="thead-dark ">
                             <tr>
-                                
                                 <th style="text-align:center;">Are you sure to give commission?</th>
                                 <input type="hidden" name="seller_id" value="<?php echo $seller_id?>">
-                                <input type="text" name="revenue" value="<?php echo $revenue?>">
-                                <input type="text" name="commission" value="<?php echo $commission?>">
+                                <input type="hidden" name="revenue" value="<?php echo $revenue?>">
+                                <input type="hidden" name="commission" value="<?php echo $commission?>">
                             </tr>
                             <tr class="border">
                                 <td style="text-align:center;">

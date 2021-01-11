@@ -25,12 +25,15 @@ include_once('../functions/checkSession.php');
         $pageName = $pageTitle = 'Seller';
         include 'layouts/adminSideNav.php';  
         include 'layouts/adminTopNav.php';
+        $first_day_this_month = date('Y-m-01'); // hard-coded '01' for first day
+        $last_day_this_month  = date('Y-m-t');
     ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2"></div>
             <main class="col-md-10">
-                <table class="table">
+                <button class="btn btn-outline-dark mt-2 ml-2 mb-3" aria-label="Disabled"><?php echo $first_day_this_month . " to " . $last_day_this_month?></button>
+                <table class="table border">
                         <tr>
                             <thead class="thead-dark">
                                 <th>Seller ID</th>
@@ -41,6 +44,7 @@ include_once('../functions/checkSession.php');
                             </thead>
                         </tr>
                         <?php
+
                         $query = "SELECT 
                         users.id AS seller_id, 
                         users.username AS seller_name,
@@ -52,8 +56,8 @@ include_once('../functions/checkSession.php');
                         LEFT JOIN order_detail ON product.id = order_detail.ord_product_id
                         LEFT JOIN orders ON order_detail.ord_id = orders.id
                         WHERE position = 'seller'
-                        AND orders.cms_id is NULL
-                        AND orders.date BETWEEN '2021-01-01' AND '2021-01-31'
+                        AND order_detail.cms_id is NULL
+                        AND orders.date BETWEEN '$first_day_this_month' AND '$last_day_this_month'
                         GROUP BY users.id";
                         $result = mysqli_query($conn, $query);
 
@@ -111,7 +115,11 @@ include_once('../functions/checkSession.php');
                                             <input type="hidden" name="seller_id" value="<?php echo $seller_id?>">
                                             <input type="hidden" name="revenue" value="<?php echo $total_revenue?>">
                                             <input type="hidden" name="commission" value="<?php echo $commission?>">
-                                            <input type="submit" class="btn btn-outline-success" value="Confirm">
+                                            <?php if($commission == '0%' && $total_revenue < 2000):?>
+                                            <p class="text-danger" value="NO" aria-label="Disabled">Not qualified</p>
+                                            <?php else: ?>
+                                                <input type="submit" class="btn btn-outline-success" value="Confirm">
+                                            <?php endif;?>
                                         </form>
                                     </td>
                                 </tr>
