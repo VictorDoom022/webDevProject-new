@@ -88,6 +88,7 @@ include_once('../functions/checkSession.php');
         </div>
     </div>
 </body>
+<script src="../js/blockSpecialChar.js"></script>
 <script>
 ClassicEditor
     .create( document.querySelector( 'textarea' ) )
