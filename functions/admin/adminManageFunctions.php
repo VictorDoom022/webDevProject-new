@@ -9,7 +9,20 @@ $username = '';
 $password = '';
 $email = '';
 $position = '';
+$giveCommission = false;
 
+//save
+if(isset($_POST['give'])){
+    $seller_id = $_POST['seller_id'];
+    $revenue = $_POST['revenue'];
+    $commission = $_POST['commission'];
+
+    $query = "INSERT INTO commission (user_id,total_revenue,commission_rate) VALUES('$seller_id','$revenue','$commission')";
+    $result = mysqli_query($conn,$query);
+    if(!$result) die ('Data insert failed');
+    header("location: ../../admin/adminGiveCom.php");
+    
+}
 //delete
 if(isset($_POST['delete'])){
     $id = $_POST['id'];
@@ -23,9 +36,11 @@ if(isset($_POST['delete'])){
 if(isset($_POST['update'])){
     $id = $_POST['id'];
     $username = $_POST['username'];
+    $password = $_POST['password'];
     $email = $_POST['email'];
+    $position = $_POST['position'];
 
-    $query = "UPDATE users SET username='$username',email = '$email' WHERE id=$id";
+    $query = "UPDATE users SET username='$username',password = '$password',email = '$email',position = '$position' WHERE id=$id";
     $result = mysqli_query($conn,$query);
     if(!$result) die ('Update data failed');
     header("location: ../../admin/adminManageSeller.php");

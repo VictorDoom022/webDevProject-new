@@ -54,6 +54,9 @@
                     </tr>
             </table>
         </div>
+        <div class="row mt-2" style="margin-left:50%;">
+                <a href="adminManageSeller.php" class="btn btn-outline-warning">Cancel</a>
+            </div>
     </div>
 </main>
 </body>
