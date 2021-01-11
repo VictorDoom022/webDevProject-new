@@ -13,5 +13,5 @@ ALTER TABLE orders DROP COLUMN ord_status;
 
 ALTER TABLE order_detail ADD COLUMN ord_status VARCHAR(10);
 
-/* add cms_id to orders */
-ALTER TABLE `orders` ADD `cms_id` INT(10) NULL DEFAULT NULL AFTER `date`;
+-- add cms_id to order_detail
+ALTER TABLE `order_detail` ADD `cms_id` INT(10) NULL DEFAULT NULL AFTER `ord_status`;
