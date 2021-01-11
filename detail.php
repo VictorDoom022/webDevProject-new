@@ -153,14 +153,30 @@ do_component_topnav('APP NAME');
 <div class="container">
     <div class="bg-white">
         <div class="p-2 h4" style="background-color: #f2f2f2;">Produt Description</div>
-        <p class="text-muted p-2">
+        <style>
+        .ck-sticky-panel{
+            display: none;
+        }
+        </style>
+        <textarea>
             <?= nl2br($product->prdt_desc) ?>
-        </p>
+        </textarea>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
 <script>
+    ClassicEditor
+        .create( document.querySelector( 'textarea' ) )
+        .then( editor => {
+            console.log( editor );
+            editor.isReadOnly = true;
+        } )
+        .catch( error => {
+            console.error( error );
+    } );
+
     $(document).ready(function() {
         $("#btn-cart").click(function() {
             event.preventDefault();
