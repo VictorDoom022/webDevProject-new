@@ -25,7 +25,8 @@ $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['user_id']) && isset($_POST
         prdt_name,
         prdt_sellPrice,
         crt_quantity,
-        prdt_quantity 
+        prdt_quantity,
+        product.prdt_seller AS seller_id
         FROM cart LEFT JOIN product ON cart.crt_product = product.id WHERE crt_user = $user_id";
     
         $cart_result = mysqli_query($conn, $query);
@@ -41,12 +42,14 @@ $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['user_id']) && isset($_POST
                 $product_name = $cart['prdt_name'];
                 $product_quantity = $cart['crt_quantity'];
                 $product_unitprice = $cart['prdt_sellPrice'];
+                
+                $seller_id = $cart['seller_id'];
 
                 $query = "INSERT INTO 
                         order_detail
-                        (ord_id, ord_product_id, ord_product_name, ord_product_quantity, ord_product_unit_price, ord_discount, ord_status) 
+                        (ord_id, ord_product_id, seller_id, ord_product_name, ord_product_quantity, ord_product_unit_price, ord_discount, ord_status) 
                         VALUES 
-                        ($order_id, $product_id, '$product_name', $product_quantity, $product_unitprice, $ord_discount, 'payed')";
+                        ($order_id, $product_id, $seller_id, '$product_name', $product_quantity, $product_unitprice, $ord_discount, 'payed')";
 
                 $detail_result = mysqli_query($conn, $query);
                 if(!$detail_result) {
