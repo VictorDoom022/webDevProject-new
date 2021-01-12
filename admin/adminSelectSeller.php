@@ -23,24 +23,22 @@
         include 'layouts/adminSideNav.php';
         include 'layouts/adminTopNav.php';
     ?>
-<main>
-    <div class="container-fluid ml-4 col-md-10">
-        <?php 
-            require_once('../config/connect_db.php');
-            $query = "SELECT * FROM users WHERE position='seller'";
-            $result = mysqli_query($conn,$query);
-            if(!$result) die ('Get data failed');
-        ?>
-        <div class="row border">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Seller Name</th>
-                        <th>Email</th>
-                        <th colspan="2">Action</th>
-                    </tr>
-                </thead>
-                <?php
+<div class="container-fluid col-md-10">
+    <div class="row">
+        <div class="col-md-2"></div>
+            <main class="col-md-9 pt-3 ml-2">
+                <table class="table border">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Seller Name</th>
+                            <th>Email</th>
+                            <th colspan="2">Action</th>
+                        </tr>
+                    </thead>
+                <?php 
+                    $query = "SELECT * FROM users WHERE position='seller'";
+                    $result = mysqli_query($conn,$query);
+                    if(!$result) die ('Get data failed');
                     while($row = $result->fetch_assoc()):
                 ?>
                     <tr>
@@ -52,12 +50,12 @@
                         </td>
                         <?php endwhile;?>
                     </tr>
-            </table>
-        </div>
-        <div class="row mt-2" style="margin-left:50%;">
+                </table>
+        </main>
+            <div class="row mt-2" style="margin-left:50%;">
                 <a href="adminManageSeller.php" class="btn btn-outline-warning">Cancel</a>
             </div>
     </div>
-</main>
+</div>
 </body>
 </html>
