@@ -78,7 +78,6 @@ include_once('../functions/checkSession.php');
         </div>
     </div>
 </body>
-<script src="../js/blockSpecialChar.js"></script>
 <script>
 function dateCheck() {
     promo_startDate = document.getElementById('promo_startDate').value;
