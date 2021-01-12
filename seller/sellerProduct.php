@@ -13,7 +13,8 @@ include_once('../functions/checkSession.php');
     <?php echo $bootstrapCSS; echo $jQueryJS; echo $sweetAlert; echo $bootstrapJS; echo $fontAwsomeIcons ?>
 </head>
     <link rel="stylesheet" href="layouts/navBar.css"/>
-<body>
+    <link rel="stylesheet" href="layouts/styles.css"/>
+<body id="product">
     <?php
         $pageName = $pageTitle = 'Product';
         include 'layouts/sellerSideNav.php';
@@ -34,15 +35,15 @@ include_once('../functions/checkSession.php');
                                 Lists of Products
                             </div>
                             
-                            <div class="row">
+                            <div class="row px-3">
                                 <?php
                                     $sql = "SELECT * FROM product WHERE prdt_seller = '".$_SESSION["user_id"]."'";
                                     $result = mysqli_query($conn, $sql);
                                     if(mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
                                 ?>
-                                    <div class="col-md-3 mx-2 my-2">
-                                        <div class="card border-dark">
+                                    <div class="col-md-3 ml-0 mr-0 my-2 px-1">
+                                        <div class="card border-dark mx-0">
                                             <img src="<?php echo $row['prdt_image']; ?>" class="card-img-top" alt="...">
                                             <div class="card-body">
                                                 <h5 class="card-title">
@@ -52,9 +53,9 @@ include_once('../functions/checkSession.php');
                                                 <div class="card-subtitle mb-0 text-muted">
                                                     <?php 
                                                         if($row['prdt_available']>0){
-                                                            echo '<p class="text-success">Available</p>';
+                                                            echo '<p class="text-success mb-0">Available</p>';
                                                         }else{
-                                                            echo '<p class="text-danger">Unvailable</p>';
+                                                            echo '<p class="text-danger mb-0">Unvailable</p>';
                                                         }
                                                     ?>
                                                 </div>
