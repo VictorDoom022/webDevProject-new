@@ -103,7 +103,7 @@ function do_component_topnav($appName)
                             $cart_count = 0;
                             if($result && mysqli_num_rows($result) > 0) {
                                 $cart_count = mysqli_fetch_assoc($result)['total_crt'];
-                            ?>
+                            ?>            
                             <span id="crt_qty" class="badge badge-danger"><?= $cart_count ?></span>
                             <?php
                             } else {
