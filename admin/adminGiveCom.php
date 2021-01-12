@@ -26,13 +26,16 @@ include_once('../functions/checkSession.php');
         include 'layouts/adminSideNav.php';  
         include 'layouts/adminTopNav.php';
         $first_day_this_month = date('Y-m-01'); // hard-coded '01' for first day
-        $last_day_this_month  = date('Y-m-d');
+        $last_day_this_month  = date('Y-m-t');
+        $current_day_this_month  = date('Y-m-d');
     ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2"></div>
-            <main class="col-md-10">
-                <button class="btn btn-secondary mt-2 mb-3" disabled" style="margin-left: 30%;"><?php echo $first_day_this_month . " to " . $last_day_this_month?></button>
+            <main class="col-md-9" style="margin-left: 10px;">
+            <div class="row">
+                <button class="btn btn-secondary mt-2 mb-3" disabled" style="margin-left: 30%;">Date: <?php echo $first_day_this_month . " to " . $current_day_this_month?></button>
+            </div>
                 <table class="table border">
                         <tr>
                             <thead class="thead-dark">
@@ -44,7 +47,6 @@ include_once('../functions/checkSession.php');
                             </thead>
                         </tr>
                         <?php
-
                         $query = "SELECT 
                         users.id AS seller_id, 
                         users.username AS seller_name,
