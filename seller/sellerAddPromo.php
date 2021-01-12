@@ -31,19 +31,19 @@ include_once('../functions/checkSession.php');
                                 <div class="row">
                                     <div class="col-md-12">
                                         Promo Code
-                                        <input class="form-control form-control-sm border-dark" type="text" name="promo_code">
+                                        <input class="form-control form-control-sm border-dark" type="text" name="promo_code" required>
                                     </div>
                                     <div class="col-md-6">
                                         Promo Start Date
-                                        <input class="form-control form-control-sm border-dark" onchange="dateCheck();" id="promo_startDate" type="date" name="promo_startDate">
+                                        <input class="form-control form-control-sm border-dark" onchange="dateCheck();" id="promo_startDate" type="date" name="promo_startDate" required>
                                     </div>
                                     <div class="col-md-6">
                                         Promo Due Date
-                                        <input class="form-control form-control-sm border-dark" onchange="dateCheck();" id="promo_dueDate" type="date" name="promo_dueDate">
+                                        <input class="form-control form-control-sm border-dark" onchange="dateCheck();" id="promo_dueDate" type="date" name="promo_dueDate" required>
                                     </div>
                                     <div class="col-md-6">
                                         Promo Product
-                                        <select class="form-control form-control-sm border-dark" name="promo_prdt">
+                                        <select class="form-control form-control-sm border-dark" name="promo_prdt" required>
                                             <?php
                                                 $sql = "SELECT CONCAT(prdt_code, ' : ', prdt_name) AS itemResults, id FROM product WHERE prdt_seller = '".$_SESSION["user_id"]."'";
                                                 $result = mysqli_query($conn, $sql);
@@ -57,7 +57,7 @@ include_once('../functions/checkSession.php');
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" required>
                                         Promo Discount
                                         <input class="form-control form-control-sm border-dark" type="number" name="promo_discount">
                                     </div>
