@@ -14,9 +14,6 @@ if(isset($_SESSION['username'])) {
 do_html_head('APP NAME', $bootstrapCSS.'<link rel="stylesheet" type="text/css" href="css/style.css">', $jQueryJS.$bootstrapJS);
 do_component_topnav('APP NAME');
 ?>
-<style>
-
-</style>
 <div class="login-box">
 	<form method="post" action="functions/login_function.php">
 		<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto;">

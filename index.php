@@ -14,8 +14,8 @@ if(!$result) {
     die('Error To connect db');
 }else{
     $top_selling_products = array();
-    
-    if(mysqli_num_rows($result) > 0) {
+    $product_count = mysqli_num_rows($result);
+    if($product_count > 0) {
         for($i = 0; $i < mysqli_num_rows($result); $i ++){
             $product = mysqli_fetch_assoc($result);
             array_push($top_selling_products, $product);
@@ -47,9 +47,11 @@ if(!$result) {
             </div>
             <?php endif; ?>
         </div>
+        <?php if($product_count > 0): ?>
         <div class="py-4 d-flex">
             <a class="btn btn-block" href="product.php">View More</a>
         </div>
+        <?php endif; ?>
     </div>
 <?php
 

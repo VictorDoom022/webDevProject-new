@@ -50,6 +50,10 @@ else {
             $row = mysqli_fetch_assoc($result);
             do_component_product_card($row);
         }
+    } else {
+?>
+<div class="col-12 text-center">Not have product yet!</div>
+<?php
     }
 }
 ?>
