@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2021 at 08:49 AM
+-- Generation Time: Jan 12, 2021 at 11:41 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -36,10 +36,6 @@ CREATE TABLE `cart` (
   `crt_addDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `cart`
---
-
 -- --------------------------------------------------------
 
 --
@@ -68,7 +64,8 @@ CREATE TABLE `commission` (
   `id` int(100) NOT NULL,
   `user_id` int(100) NOT NULL,
   `total_revenue` int(100) NOT NULL,
-  `commission_rate` varchar(100) NOT NULL
+  `commission_rate` varchar(100) NOT NULL,
+  `commission_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -200,6 +197,12 @@ ALTER TABLE `chat`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `commission`
+--
+ALTER TABLE `commission`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -246,6 +249,12 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `chat`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `commission`
+--
+ALTER TABLE `commission`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`

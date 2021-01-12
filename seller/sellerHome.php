@@ -62,6 +62,71 @@ include_once('../functions/checkSession.php');
                             }
                         }
                     ?>
+                    <?php
+                        $sql = "SELECT * FROM commission
+                        LEFT JOIN users ON users.id = commission.user_id
+                        WHERE commission.user_id='".$_SESSION["user_id"]."'
+                        ORDER BY commission.commission_date DESC LIMIT 1 ";
+                        $result = mysqli_query($conn, $sql);
+                        if(mysqli_num_rows($result) > 0){
+                            while($row = mysqli_fetch_assoc($result)){
+                    ?>
+                        <div class="col-md-12">
+                            <div class="card mt-1" style="cursor:pointer" data-toggle="modal" data-target="#commissionModal">
+                                <h3 class="text-center">Received Commission</h3>
+                                <h3 class="text-center text-success">RM<?php echo ($row['total_revenue'] * ($row['commission_rate'])/100)?></h3>
+                                <h6 class="text-center text-muted">Given on: <?php echo $row['commission_date']; ?></h6>
+                                <p class="text-left text-muted ml-2 mb-0 font-weight-lighter" style="font-size: 13px;">Click to view history</p>
+                            </div>
+                        </div>
+                    <?php
+                            }
+                        }
+                    ?>
+                    <div class="modal fade" id="commissionModal" tabindex="-1" aria-labelledby="commissionModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header py-2">
+                                    <h5 class="modal-title" id="commissionModalLabel">Commission History</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <?php
+                                                $sql = "SELECT * FROM commission
+                                                LEFT JOIN users ON users.id = commission.user_id
+                                                WHERE commission.user_id='".$_SESSION["user_id"]."'
+                                                ORDER BY commission.commission_date DESC";
+                                                $result = mysqli_query($conn, $sql);
+                                                if(mysqli_num_rows($result) > 0){
+                                                    while($row = mysqli_fetch_assoc($result)){
+                                            ?>
+                                            <div class="card mb-1">
+                                                <div class="card-body px-1 py-1">
+                                                    <div class="font-weight-lighter">
+                                                        <h3 class="text-success">
+                                                            <?php echo ($row['total_revenue'] * ($row['commission_rate'])/100)?>
+                                                        </h3>
+                                                        <h6 class="text-muted" style="font-size:13px;">
+                                                            Given on: <?php echo $row['commission_date']; ?>
+                                                        </h6>   
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <?php
+                                                    }
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer py-1">
+                                    <button type="button" class="btn btn-sm btn-dark" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

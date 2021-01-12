@@ -37,40 +37,40 @@ include_once('../functions/checkSession.php');
                                 <div class="row">
                                     <div class="col-md-6">
                                         Product Code
-                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_code">
+                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_code" required>
                                     </div>
                                     <div class="col-md-6">
                                         Product Name
-                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_name">
+                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_name" required>
                                     </div>
                                     <div class="col-md-6">
                                         Original Price (per unit)
-                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_oriPrice">
+                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_oriPrice" required>
                                     </div>
                                     <div class="col-md-6">
                                         Selling Price (per unit)
-                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_sellPrice">
+                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_sellPrice" required>
                                     </div>
                                     <div class="col-md-6">
                                         Product Type
-                                        <select class="form-control form-control-sm border-dark"name="prdt_type">
+                                        <select class="form-control form-control-sm border-dark"name="prdt_type" required>
                                             <option value="iphone">iPhone</option>
                                             <option value="ipad">iPad</option>
-                                            <option value="mac">Mack</option>
+                                            <option value="mac">Mac</option>
                                             <option value="ipod">Ipod</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         Quantity
-                                        <input class="form-control form-control-sm border-dark" type="number" name="prdt_quantity">
+                                        <input class="form-control form-control-sm border-dark" type="number" name="prdt_quantity" required>
                                     </div>
                                     <div class="col-md-6">
                                         Product Image (Url)
-                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_image">
+                                        <input class="form-control form-control-sm border-dark" type="text" name="prdt_image" required>
                                     </div>
                                     <div class="col-md-6">
                                         Availablility
-                                        <input class="form-control form-control-sm border-dark" type="checkbox" name="prdt_available" value="1">
+                                        <input class="form-control form-control-sm border-dark" type="checkbox" name="prdt_available" value="1" required>
                                     </div>
                                     <div class="col-md-12">
                                         Description
