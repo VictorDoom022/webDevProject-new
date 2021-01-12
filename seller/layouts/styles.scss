@@ -22,10 +22,38 @@
 
 @media (max-width: 479px) {
     /* start of normal phone styles */
-    
+    #report{
+        main{
+            padding: 0px;
+            width:78%;
+            margin-left: 65px !important;
+        }
+    }
+
+    #addProduct{
+        main{
+            padding: 0px;
+            width:78%;
+            margin-left: 72px !important;
+        }
+    }
 }
 
 @media (max-width: 320px) {
     /* start of super small phone styles */
-    
+    #report{
+        main{
+            padding: 0px;
+            width:75%;
+            margin-left: 65px !important;
+        }
+    }
+
+    #addProduct{
+        main{
+            padding: 0px;
+            width:75%;
+            margin-left: 65px !important;
+        }
+    }
 }

@@ -13,12 +13,13 @@ include_once('../functions/checkSession.php');
     <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
 </head>
     <link rel="stylesheet" href="layouts/navBar.css"/>
+    <link rel="stylesheet" href="layouts/styles.css"/>
     <style>
     .ck-editor__editable_inline {
         min-height: 300px;
     }
     </style>
-<body>
+<body id="addProduct">
     <?php
         $pageTitle = 'Add Product';
         $pageName = 'Product';

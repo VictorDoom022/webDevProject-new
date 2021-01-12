@@ -13,6 +13,7 @@ include_once('../functions/checkSession.php');
     <?php echo $bootstrapCSS; echo $jQueryJS; echo $sweetAlert ;echo $bootstrapJS; echo $fontAwsomeIcons ?>
 </head>
     <link rel="stylesheet" href="layouts/navBar.css"/>
+    <link rel="stylesheet" href="layouts/styles.css"/>
 <body id="report">
     <?php
         $pageName = $pageTitle = 'Report';
@@ -24,65 +25,71 @@ include_once('../functions/checkSession.php');
             <div class="col-md-2"></div>
             <main class="col-md-10">
                 <div class="row">
-                <?php
-                    $sql = "SELECT SUM(ord_product_unit_price * ord_product_quantity) AS totalSellPrice,
-                    SUM(prdt_oriPrice * ord_product_quantity) AS totalOriPrice,
-                    SUM(ord_product_unit_price * ord_product_quantity) AS totalUnitPrice,
-                    SUM(ord_discount) AS totalDiscount
-                    FROM orders 
-                    LEFT JOIN order_detail ON orders.id = order_detail.ord_id
-                    LEFT JOIN users ON orders.ord_user_id = users.id
-                    LEFT JOIN product ON order_detail.ord_product_id = product.id
-                    WHERE prdt_seller = '" .$_SESSION["user_id"]."'";
-
-                    $result = mysqli_query($conn, $sql);
-                    if(mysqli_num_rows($result) > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                ?>
                     <div class="col-md-12">
-                        <div class="card mt-1">
-                            <h3 class="text-center">Total Revenue</h3>
-                                <h4 class="text-center">RM<?php echo $row['totalSellPrice'] - $row['totalOriPrice'] - $row['totalDiscount']; ?></h4>
+                        <?php
+                        $sql = "SELECT SUM(ord_product_unit_price * ord_product_quantity) AS totalSellPrice,
+                        SUM(prdt_oriPrice * ord_product_quantity) AS totalOriPrice,
+                        SUM(ord_product_unit_price * ord_product_quantity) AS totalUnitPrice,
+                        SUM(ord_discount) AS totalDiscount
+                        FROM orders 
+                        LEFT JOIN order_detail ON orders.id = order_detail.ord_id
+                        LEFT JOIN users ON orders.ord_user_id = users.id
+                        LEFT JOIN product ON order_detail.ord_product_id = product.id
+                        WHERE prdt_seller = '" .$_SESSION["user_id"]."'";
+
+                        $result = mysqli_query($conn, $sql);
+                        if(mysqli_num_rows($result) > 0){
+                            while($row = mysqli_fetch_assoc($result)){
+                        ?>
+                        <div class="row px-3">
+                            <div class="col-md-12 ml-0 mr-0 my-2 px-1">
+                                <div class="card mt-1">
+                                    <h3 class="text-center">Total Revenue</h3>
+                                        <h4 class="text-center">RM<?php echo $row['totalSellPrice'] - $row['totalOriPrice'] - $row['totalDiscount']; ?></h4>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-4 ml-0 mr-0 my-2 px-1">
+                                <div class="card mt-1">
+                                    <h3 class="text-center">Total Product Sold in Original Price </h3>
+                                        <h4 class="text-center">RM<?php echo $row['totalOriPrice']; ?></h4>
+                                </div>
+                            </div>
+                            <div class="col-md-4 ml-0 mr-0 my-2 px-1">
+                                <div class="card mt-1">
+                                    <h3 class="text-center">Total Product Sold in Selling Price </h3>
+                                        <h4 class="text-center">RM<?php echo $row['totalUnitPrice'] ?></h4>
+                                </div>
+                            </div>
+                            <div class="col-md-4 ml-0 mr-0 my-2 px-1">
+                                <div class="card mt-1">
+                                    <h3 class="text-center">Total Product Given Discount </h3>
+                                        <h4 class="text-center">RM<?php echo $row['totalDiscount'] ?></h4>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mt-1">
-                            <h3 class="text-center">Total Product Sold in Original Price </h3>
-                                <h4 class="text-center">RM<?php echo $row['totalOriPrice']; ?></h4>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mt-1">
-                            <h3 class="text-center">Total Product Sold in Selling Price </h3>
-                                <h4 class="text-center">RM<?php echo $row['totalUnitPrice'] ?></h4>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mt-1">
-                            <h3 class="text-center">Total Product Given Discount </h3>
-                                <h4 class="text-center">RM<?php echo $row['totalDiscount'] ?></h4>
-                        </div>
+                        
+                        <table style="display:none">
+                            <tr>
+                                <td>Total Revenue(RM) :</td>
+                                <td><?php echo $row['totalSellPrice'] - $row['totalOriPrice']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Total Product Sold in Original Price(RM) :</td>
+                                <td><?php echo $row['totalOriPrice']; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Total Product Sold in Selling Price(RM) :</td>
+                                <td><?php echo $row['totalUnitPrice'] ?></td>
+                            </tr>
+                        </table>
+                    <?php
+                            }
+                        }
+                    ?>
                     </div>
 
-                    <table style="display:none">
-                        <tr>
-                            <td>Total Revenue(RM) :</td>
-                            <td><?php echo $row['totalSellPrice'] - $row['totalOriPrice']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Total Product Sold in Original Price(RM) :</td>
-                            <td><?php echo $row['totalOriPrice']; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Total Product Sold in Selling Price(RM) :</td>
-                            <td><?php echo $row['totalUnitPrice'] ?></td>
-                        </tr>
-                    </table>
-                <?php
-                        }
-                    }
-                ?>
-                    <div class="col-md-12 px-1">
+                    <div class="col-md-12">
                         <div class="card mt-1">
                             <div class="table-responsive">
                                 <table class="table table-sm">
