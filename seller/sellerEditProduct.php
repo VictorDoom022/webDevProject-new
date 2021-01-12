@@ -30,8 +30,14 @@ if(isset($_GET['id'])){
 <head>
     <title></title>
     <?php echo $bootstrapCSS; echo $jQueryJS; echo $jQueryFormJS; echo $sweetAlert; echo $bootstrapJS; echo $fontAwsomeIcons ?>
+    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
 </head>
 <link rel="stylesheet" href="layouts/navBar.css"/>
+<style>
+    .ck-editor__editable_inline {
+        min-height: 300px;
+    }
+</style>
 <body>
     <?php
         $pageTitle = 'Edit Product';
@@ -105,7 +111,17 @@ if(isset($_GET['id'])){
         </div>
     </div>
 </body>
+<script src="../js/blockSpecialChar.js"></script>
 <script>
+ClassicEditor
+    .create( document.querySelector( 'textarea' ) )
+    .then( editor => {
+        console.log( editor );
+    } )
+    .catch( error => {
+        console.error( error );
+} );
+
     $(document).ready(function() {
         var prdt_available = document.getElementById('prdt_available_chkbox').value;
         if(prdt_available == '1'){

@@ -13,6 +13,7 @@ include_once('../functions/checkSession.php');
     <?php echo $bootstrapCSS; echo $jQueryJS; echo $sweetAlert; echo $bootstrapJS; echo $fontAwsomeIcons ?>
 </head>
     <link rel="stylesheet" href="layouts/navBar.css"/>
+    <link rel="stylesheet" href="layouts/styles.css"/>
 <body>
     <?php
         $pageName = $pageTitle = 'Promo';
@@ -34,7 +35,7 @@ include_once('../functions/checkSession.php');
                                 Lists of Promo Code
                             </div>
                             
-                            <div class="row">
+                            <div class="row px-3">
                                 <?php
                                     $sql = "SELECT promo.id AS id, promo.promo_code AS promo_code, promo.promo_startDate AS promo_startDate, promo.promo_dueDate AS promo_dueDate,promo.promo_desc AS promo_desc, promo.promo_discount AS promo_discount, promo.promo_seller AS promo_seller, product.prdt_name AS prdt_name
                                     FROM promo LEFT JOIN product ON promo.promo_prdt = product.id WHERE promo_seller = '".$_SESSION["user_id"]."'";
@@ -42,7 +43,7 @@ include_once('../functions/checkSession.php');
                                     if(mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
                                 ?>
-                                    <div class="col-md-3 mx-2 my-2">
+                                    <div class="col-md-3 ml-0 mr-0 my-2 px-1">
                                         <div class="card border-dark">
                                             <div class="card-body">
                                                 <h5 class="card-title">
@@ -50,7 +51,6 @@ include_once('../functions/checkSession.php');
                                                 </h5>
                                             
                                                 <div class="card-text">
-                                                    ID: <?php echo $row['id']; ?> <br>
                                                     Start Date: <?php echo $row['promo_startDate']; ?> <br>
                                                     Due Date: <?php echo $row['promo_dueDate'] ?> <br>
                                                     Promo Product: <?php echo $row['prdt_name']; ?> <br>

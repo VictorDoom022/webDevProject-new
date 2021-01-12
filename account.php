@@ -20,7 +20,7 @@ do_component_topnav($app_name);
     <div class="row justify-content-center">
         <div class="accordion col-9" id="accordionExample">
             <?php
-            $query = "SELECT id, date FROM orders WHERE ord_user_id = '$user_id'";
+            $query = "SELECT id, date FROM orders WHERE ord_user_id = '$user_id' order by id desc";
             $order_result = mysqli_query($conn, $query);
             
             if($order_result) {
@@ -52,10 +52,11 @@ do_component_topnav($app_name);
                         if($order_detail_result) {
                             $ord_detail_num_row = mysqli_num_rows($order_detail_result);
                             $ord_discount = 0;
+                            $ord_total = 0;
                             for ($j=0; $j < $ord_detail_num_row; $j++) { 
                                 $row = mysqli_fetch_assoc($order_detail_result);
                                 $ord_discount += $row['ord_discount'];
-                                $ord_total = $row['prdt_sellPrice'] * $row['ord_product_quantity'];
+                                $ord_total += $row['prdt_sellPrice'] * $row['ord_product_quantity'];
                                 // print_r($row);
                         ?>
                             <li class="list-group-item pl-0 py-3">
@@ -80,15 +81,15 @@ do_component_topnav($app_name);
                                         <div class="font-weight-bold pb-2 d-flex justify-content-between">Order Total</div>
                                         <div class="d-flex justify-content-between">
                                             <div>Subtotal</div>
-                                            <div><?= 'RM' . number_format($ord_total, '2') ?></div>
+                                            <div><?= 'RM ' . number_format($ord_total, '2') ?></div>
                                         </div>
                                         <div class="d-flex justify-content-between">
                                             <div>Discount</div>
-                                            <div><?= 'RM' . number_format($ord_discount, '2') ?></div>
+                                            <div><?= 'RM ' . number_format($ord_discount, '2') ?></div>
                                         </div>
                                         <div class="h6 d-flex justify-content-between border-top mt-2 py-1">
                                             <div>Total</div>
-                                            <div><?= 'RM' . number_format($ord_total - $ord_discount, '2') ?></div>
+                                            <div><?= 'RM ' . number_format($ord_total - $ord_discount, '2') ?></div>
                                         </div>
                                     </div>
                                 </div>

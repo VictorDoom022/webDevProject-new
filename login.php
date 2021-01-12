@@ -11,7 +11,7 @@ if(isset($_SESSION['username'])) {
 	}
 }
 
-do_html_head('APP NAME', $bootstrapCSS.'<link rel="stylesheet" type="text/css" href="css/style.css">', $bootstrapJS);
+do_html_head('APP NAME', $bootstrapCSS.'<link rel="stylesheet" type="text/css" href="css/style.css">', $jQueryJS.$bootstrapJS);
 do_component_topnav('APP NAME');
 ?>
 <style>
@@ -36,7 +36,7 @@ do_component_topnav('APP NAME');
 									</tr>
 									<tr>
 										<td style="bottom: 12px;position: relative;padding-bottom: 35px;">
-											<span class="word">Or</span> <a style="text-decoration: none;color: #c46a10;" href="guest/register.php" alt="Sign up now" title="Sign up now">Sign up now</a>
+											<span class="word">Or</span> <a style="text-decoration: none;color: #c46a10;" href="register.php" alt="Sign up now" title="Sign up now">Sign up now</a>
 										</td>
 									</tr>
 									<tr>
@@ -78,6 +78,7 @@ do_component_topnav('APP NAME');
 		</table>
 		</form>
     </div>
+	<script src="js/blockSpecialChar.js"></script>
 <?php
 do_html_end();
 ?>

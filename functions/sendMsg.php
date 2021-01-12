@@ -16,5 +16,8 @@ if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
     $sql = "INSERT INTO chat (cht_sender, cht_receiver, cht_msg, cht_sendDate)
         VALUES ('$sender', '$receiver', '$msg', NOW())";
     mysqli_query($conn, $sql);
+
+    mysqli_close($conn);
+    echo 'ok';
 }
 ?>

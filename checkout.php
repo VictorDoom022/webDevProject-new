@@ -47,7 +47,7 @@ if($result) {
                             $total_price = 0;
                             for($i = 0; $i < $num_row; $i++) {
                                 $row = mysqli_fetch_assoc($result);
-                                $total_price += $row['prdt_sellPrice'];
+                                $total_price += $row['prdt_sellPrice'] * $row['crt_quantity'];
                             ?>
                             <li class="list-group-item">
                                 <div class="row align-items-center">
@@ -63,9 +63,7 @@ if($result) {
                                     <div class="col-3">
                                         RM <?= number_format($row['prdt_sellPrice'], 2) ?>
                                     </div>
-                                    <div class="col-1">
-                                        <?= $row['crt_quantity'] ?>
-                                    </div>
+                                    <div class="col-1"><?= $row['crt_quantity'] ?></div>
                                 </div>
                             </li>
                             <?php
@@ -85,18 +83,17 @@ if($result) {
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <input id="promo_code" class="form-control" type="text" placeholder="Enter Promo Code">
-                                <button type="button" class="btn btn-dark ml-2">Apply</button>
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <div class="small text-muted">Total</div>
-                                <div style="color: #ff9326;"><p id="total"><?= number_format(floatval($total_price), 2) ?></p></div>
+                                <div style="color: #ff9326;"><p id="total"><?= number_format(floatval($total_price), 2, '.', '') ?></p></div>
                                 <div class="small text-muted">Discount Total</div>
                                 <div class="text-success">
                                     <p id="discount_total" name="discount_total">0</p>
                                 </div>
                             </div>
                             <div class="my-2">
-                                <input  id="btn_placeOrder" class="btn btn-warning btn-block" style="background-color: #ff9326;" type="submit" value="Place Order">
+                                <input  id="btn_placeOrder" class="btn btn-warning btn-block" style="background-color: #ff9326;" type="button" value="Place Order">
                             </div>
                         </form>
                     </div>
@@ -126,8 +123,8 @@ if($result) {
                         timer: 2500,
                         buttons: false,
                     }).then(function(){
-                        window.location.assign('../../viewCart.php');
-                    })
+                        window.location.assign('index.php');
+                    });
                 },
                 error: function(){
                     swal({
@@ -156,21 +153,24 @@ if($result) {
                         var product_ids =[];
 
                         $('.product_id').each(function(value){
-                            product_ids.push($(this).val());
+                            var quantity = $(this).parents('.row').find('.col-1').html();
+                            quantity = parseInt(quantity);
+                            product_ids.push([$(this).val(), quantity]);
                         });
+                        console.log(product_ids);
                         
                         for($i = 0; $i <product_ids.length; $i++){
-                            if(product_ids[$i] == parsedData.promo_prdt){
-                                promo_total += parseInt(parsedData.promo_discount);
+                            if(product_ids[$i][0] == parsedData.promo_prdt){
+                                promo_total += parseInt(parsedData.promo_discount) * product_ids[$i][1];
                             }
                         }
                         
-                        $('#discount_total').text(promo_total);
-                        total_value = parseFloat($('#total').text())-promo_total;
+                        $('#discount_total').html(promo_total);
+                        total_value = parseFloat($('#total').html()) - promo_total;
                         if(total_value < 0){
                             total_value = 0;
                         }
-                        $('#total').text(total_value);
+                        $('#total').html(total_value);
 
                     }else{
                         $('#promo_code').attr('class', 'form-control is-invalid');

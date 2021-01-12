@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2020 at 06:08 AM
+-- Generation Time: Jan 12, 2021 at 08:49 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -40,10 +40,6 @@ CREATE TABLE `cart` (
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `crt_user`, `crt_product`, `crt_quantity`, `crt_addDate`) VALUES
-(47, '3', '1', 1, '2020-12-26 17:39:44'),
-(48, '3', '1', 1, '2020-12-26 17:39:45');
-
 -- --------------------------------------------------------
 
 --
@@ -57,6 +53,27 @@ CREATE TABLE `chat` (
   `cht_msg` varchar(255) NOT NULL,
   `cht_sendDate` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chat`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `commission`
+--
+
+CREATE TABLE `commission` (
+  `id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL,
+  `total_revenue` int(100) NOT NULL,
+  `commission_rate` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `commission`
+--
 
 -- --------------------------------------------------------
 
@@ -74,11 +91,6 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `ord_user_id`, `date`) VALUES
-(1, 3, '2020-12-26 17:34:00'),
-(2, 3, '2020-12-26 17:35:01'),
-(3, 3, '2020-12-26 17:35:22');
-
 -- --------------------------------------------------------
 
 --
@@ -89,20 +101,18 @@ CREATE TABLE `order_detail` (
   `id` int(11) NOT NULL,
   `ord_id` int(11) NOT NULL,
   `ord_product_id` int(11) NOT NULL,
+  `seller_id` int(10) DEFAULT NULL,
   `ord_product_name` varchar(255) NOT NULL,
   `ord_product_quantity` int(5) NOT NULL,
-  `ord_product_unit_price` double(10,2) NOT NULL
+  `ord_product_unit_price` double(10,2) NOT NULL,
+  `ord_discount` varchar(10) DEFAULT NULL,
+  `ord_status` varchar(10) DEFAULT NULL,
+  `cms_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `order_detail`
 --
-
-INSERT INTO `order_detail` (`id`, `ord_id`, `ord_product_id`, `ord_product_name`, `ord_product_quantity`, `ord_product_unit_price`) VALUES
-(1, 1, 1, 'JJYY Phone', 8, 20.00),
-(2, 1, 1, 'JJYY Phone', 8, 20.00),
-(3, 2, 1, 'JJYY Phone', 6, 20.00),
-(4, 2, 1, 'JJYY Phone', 6, 20.00);
 
 -- --------------------------------------------------------
 
@@ -128,9 +138,6 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `prdt_code`, `prdt_name`, `prdt_type`, `prdt_oriPrice`, `prdt_sellPrice`, `prdt_desc`, `prdt_image`, `prdt_quantity`, `prdt_available`, `prdt_seller`) VALUES
-(1, '001', 'JJYY Phone', 'iphone', '15', '20', '400mb + 1GB\r\nDimensions	145 x 73.5 x 10.8 mm (5.71 x 2.89 x 0.43 in)\r\nWeight	165 g (5.82 oz)\r\nSIM	Dual SIM\r\nCPU Quad-core 1.3 GHz Cortex-A7', 'https://i.guim.co.uk/img/media/30ae6f657de5843fa3dfc463c8ecd317855d905e/171_0_1667_1000/master/1667.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=51da1c5eac08485557dfff1f396bd0fc', '4', 1, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -151,9 +158,6 @@ CREATE TABLE `promo` (
 --
 -- Dumping data for table `promo`
 --
-
-INSERT INTO `promo` (`id`, `promo_code`, `promo_startDate`, `promo_dueDate`, `promo_desc`, `promo_prdt`, `promo_discount`, `promo_seller`) VALUES
-(1, 'abc', '2020-12-23', '2020-12-31', 'Christmas Discount', '1', '20', 2);
 
 -- --------------------------------------------------------
 
@@ -235,7 +239,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `chat`
@@ -247,25 +251,25 @@ ALTER TABLE `chat`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `promo`
 --
 ALTER TABLE `promo`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

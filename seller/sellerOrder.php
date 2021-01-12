@@ -30,7 +30,7 @@ include_once('../functions/checkSession.php');
                                 Lists of Orders
                             </div>
 
-                            <div class="row">
+                            <div class="row px-3">
                                 <?php
                                     $sql = "SELECT * FROM orders 
                                     LEFT JOIN order_detail ON orders.id = order_detail.ord_id 
@@ -41,24 +41,28 @@ include_once('../functions/checkSession.php');
                                     if(mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
                                 ?>
-                                <div class="col-md-3 mx-2 my-2">
+                                <div class="col-md-3 ml-0 mr-0 my-2 px-1">
                                     <div class="card border-dark">
-                                        <div class="card-text">
-                                            Order ID: <?php echo $row['ord_id']; ?> <br>
-                                            Order product ID: <?php echo $row['prdt_code'] ?> <br>
-                                            Order quantity: <?php echo $row['ord_product_quantity'] ?> <br>
-                                            Customer name: <?php echo $row['username'] ?> <br>
-                                            Order date: <?php echo $row['date'] ?> <br>
+                                        <div class="card-body pb-1">
+                                            <div class="card-text">
+                                                Order ID: <?php echo $row['ord_id']; ?> <br>
+                                                Order product ID: <?php echo $row['prdt_code'] ?> <br>
+                                                Order quantity: <?php echo $row['ord_product_quantity'] ?> <br>
+                                                Customer name: <?php echo $row['username'] ?> <br>
+                                                Order date: <?php echo $row['date'] ?> <br>
+                                            
+                                                <div class="text-center mt-1">
+                                                    <input type="hidden" id="ord_status_select" value="<?php echo $row['ord_status'] ?>">
+                                                    <select onchange="updateStatus(this.value, <?php echo $row['ord_id']; ?>)" class="btn btn-outline-primary btn-sm" name="ord_status" id="ord_status">
+                                                        <option value="payed">Payed</option>
+                                                        <option value="processing">Processing</option>
+                                                        <option value="packed">Packed</option>
+                                                        <option value="delivered">Delivered</option>
+                                                    </select>
+                                                </div>
+                                            </div>    
                                         </div>
-                                        <div class="text-center my-1">
-                                            <input type="hidden" id="ord_status_select" value="<?php echo $row['ord_status'] ?>">
-                                            <select onchange="updateStatus(this.value, <?php echo $row['ord_id']; ?>)" class="btn btn-outline-primary btn-sm" name="ord_status" id="ord_status">
-                                                <option value="payed">Payed</option>
-                                                <option value="processing">Processing</option>
-                                                <option value="packed">Packed</option>
-                                                <option value="delivered">Delivered</option>
-                                            </select>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <?php

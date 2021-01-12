@@ -101,6 +101,7 @@ endif;
             </main>
         </div>
     </div>
+    <script src="../js/blockSpecialChar.js"></script>
     <script src="./../js/chat_function.js"></script>
     <script>
         $(document).ready(function() {

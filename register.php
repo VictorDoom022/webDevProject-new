@@ -11,11 +11,11 @@ if(isset($_SESSION['username'])) {
 	}
 }
 
-do_html_head('APP NAME', $bootstrapCSS.'<link rel="stylesheet" type="text/css" href="css/style.css">', $bootstrapJS);
+do_html_head('APP NAME', $bootstrapCSS.'<link rel="stylesheet" type="text/css" href="css/style.css">', $jQueryJS.$bootstrapJS);
 do_component_topnav('APP NAME');
 ?>
 <div class="login-box">
-	<form method="post" action="register_function.php">
+	<form method="post" action="./guest/register_function.php">
 		<table border="0" cellpadding="0" cellspacing="0" style="width: 100%;margin: auto;bottom: 15px;position: relative;">
 			<tr>
 				<td>
@@ -78,6 +78,7 @@ do_component_topnav('APP NAME');
 		</table>
 	</form>
 </div>
+<script src="js/blockSpecialChar.js"></script>
 <?php
 do_html_end();
 ?>
