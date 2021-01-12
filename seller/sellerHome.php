@@ -105,7 +105,7 @@ include_once('../functions/checkSession.php');
                                                 <div class="card-body px-1 py-1">
                                                     <div class="font-weight-lighter">
                                                         <h3 class="text-success">
-                                                            <?php echo ($row['total_revenue'] * ($row['commission_rate'])/100)?>
+                                                            RM<?php echo ($row['total_revenue'] * ($row['commission_rate'])/100)?>
                                                         </h3>
                                                         <h6 class="text-muted" style="font-size:13px;">
                                                             Given on: <?php echo $row['commission_date']; ?>

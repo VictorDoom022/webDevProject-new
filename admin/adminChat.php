@@ -2,6 +2,7 @@
 include_once('../config/bootstrap.php');
 require_once('../config/connect_db.php');
 session_start();
+include_once('../functions/checkSession.php');
 
 if(isset($_SESSION['username'])):
     $user_id = $_SESSION['user_id'];
