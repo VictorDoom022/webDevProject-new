@@ -37,41 +37,44 @@ if(isset($_GET['id'])){
         include 'layouts/adminSideNav.php';
         include 'layouts/adminTopNav.php';
     ?>
-<main>
-    <div class="seller-form container-fluid col-md-6 mt-4 ml-3">
-        <form action="../functions/admin/adminManageFunctions.php" method="POST">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
-            <table class="table border">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>
-                            <h5 class="mt-2">Update Seller Form</h5>
-                        </th>
-                    </tr>
-                </thead>
-                <tr>
-                    <td>
-                        <label>Username</label>
-                        <input type="text" name="username" class="form-control" 
-                        value="<?php echo $username;?>" placeholder="Enter your name">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Email</label>
-                        <input type="text" name="email" class="form-control" 
-                        value="<?php echo $email;?>" placeholder="Enter your email">
-                    </td>
-                </tr>
-                <tr class="text-center">
-                    <td>
-                        <button type="submit" name="update" class="btn btn-outline-primary">Update</button>
-                        <a href="adminManageSeller.php" name="cancel" class="btn btn-outline-danger">Cancel</a>
-                    </td>
-                </tr>
-            </table>
-        </form>
+<div class="container-fluid col-md-10">
+    <div class="row">
+        <div class="col-md-2"></div>
+            <main class="col-md-9 pt-3 ml-2">
+                <form action="../functions/admin/adminManageFunctions.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    <table class="table border">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>
+                                    <h5 class="mt-2">Update Seller Form</h5>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" 
+                                value="<?php echo $username;?>" placeholder="Enter your name">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Email</label>
+                                <input type="text" name="email" class="form-control" 
+                                value="<?php echo $email;?>" placeholder="Enter your email">
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <td>
+                                <button type="submit" name="update" class="btn btn-outline-primary">Update</button>
+                                <a href="adminManageSeller.php" name="cancel" class="btn btn-outline-warning">Cancel</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </main>
     <div>
-</main>
+</div>
 </body>
 </html>
