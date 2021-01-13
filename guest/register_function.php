@@ -26,22 +26,22 @@ unset($_SESSION['success']);
 
 if($num == 1){
     $_SESSION['register_error'] = "Username has taken";
-    header("location: register.php");
+    header("location:../register.php");
 }else if(empty($_POST["username"])){
     $_SESSION['register_error'] = "Please enter your Username";
-    header("location: register.php");
+    header("location:../register.php");
 }else if(empty($_POST["password"]) || empty($_POST["password2"])){
     $_SESSION['register_error'] = "Please Enter Password";
-    header("location: register.php");
+    header("location:../register.php");
 }else if($password != $password2){
     $_SESSION['register_error'] = "Password you entered do not match - Please Try Again";
-    header("location:register.php");
+    header("location:../register.php");
 }else if(empty($_POST["email"])){
     $_SESSION['register_error'] = "Please Enter Email";
-    header("location: register.php");
+    header("location:../register.php");
 }else if(!valid_email($email)){
     $_SESSION['register_error'] = "Email address is not valid - Please Try another email address";
-    header("location: register.php");
+    header("location:../register.php");
 }else if ($position == ''){
     echo"Please Enter Position";
 }else if(isset($_POST["username"]) && isset($_POST["password"]) && empty($_POST["term"])){

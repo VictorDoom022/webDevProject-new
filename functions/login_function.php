@@ -28,8 +28,7 @@ if(isset($_POST['login'])){
                 header('location: ../index.php');
             }else if(empty($_POST["term"])){
                 echo "no tick";
-            }
-            else{
+            }else{
                 echo "who da fuq are you";                
             }
         }else{
