@@ -48,7 +48,7 @@ if(isset($_POST['update'])){
     $email = $_POST['email'];
     $position = $_POST['position'];
 
-    $query = "UPDATE users SET username='$username',password = '$password',email = '$email',position = '$position' WHERE id=$id";
+    $query = "UPDATE users SET username='$username',email = '$email' WHERE id=$id";
     $result = mysqli_query($conn,$query);
     if(!$result) die ('Update data failed');
     header("location: ../../admin/adminManageSeller.php");
