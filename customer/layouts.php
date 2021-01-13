@@ -147,11 +147,11 @@ function do_component_topnav($appName)
 function do_component_product_card(Array $product, string $size="col-6 col-md-4 col-lg-4")
 {
 ?>
-    <div class="<?= $size ?>">
+    <div class="<?= $size ?> mb-3">
         <div class="card border-0 shadow">
             <div class="card-img">
                 <a href="detail.php?pid=<?= $product['id']; ?>" class="card-img-hover card-actions align-items-center">
-                    <img src="<?= $product['prdt_image'] ?>" alt="" class="card-img-top">
+                    <img src="<?= $product['prdt_image'] ?>" alt="" class="card-img-top" style="max-height: 200px;">
                 </a>
             </div>
             <div class="card-body">
