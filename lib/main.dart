@@ -53,7 +53,56 @@ class UsersLists extends StatelessWidget {
     return ListView.builder(
       itemCount: users.length,
         itemBuilder: (context, index){
-          return Text(users[index].username);
+          return Card(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  leading: Icon(Icons.account_circle),
+                  title: Text(
+                    users[index].username,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20
+                    ),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Position: '+users[index].position),
+                      Text('Email: '+users[index].email),
+                      Text('Create Date: '+users[index].create_date),
+
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton.icon(
+                                onPressed: null,
+                                icon: Icon(
+                                    Icons.settings_rounded,
+                                    color: Colors.greenAccent,
+                                ),
+                                label: Text('Edit')
+                            ),
+                            TextButton.icon(
+                                onPressed: null,
+                                icon: Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                ),
+                                label: Text('Delete')
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          );
         },
     );
     //   GridView.builder(
