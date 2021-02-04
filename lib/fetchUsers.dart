@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'model/userClass.dart';
 
 Future<List<Users>> fetchUsers(http.Client client) async {
-  final response = await client.get('http://192.168.0.181/WebDev/finalPrep/getUsers.php');
+  final response = await client.get('http://192.168.0.181/webDevProjectFlutter/getUsers.php');
 
   // Use the compute function to run parsePhotos in a separate isolate.
   return compute(parseUsers, response.body);
