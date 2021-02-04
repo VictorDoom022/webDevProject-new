@@ -105,16 +105,6 @@ class UsersLists extends StatelessWidget {
           );
         },
     );
-    //   GridView.builder(
-    //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //       crossAxisCount: 1
-    //     ),
-    //     itemCount: users.length,
-    //     itemBuilder: (context, index){
-    //       return Text(users[index].username);
-    //     }
-    // );
-
   }
 }
 //users[index].username
