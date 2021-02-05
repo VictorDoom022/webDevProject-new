@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:myapp/test.dart';
+import 'package:myapp/fetchUsers.dart';
 
 import 'model/userClass.dart';
+import 'deleteUser.dart';
 
 void main() => runApp(MyApp());
 
@@ -87,7 +88,32 @@ class UsersLists extends StatelessWidget {
                                 label: Text('Edit')
                             ),
                             TextButton.icon(
-                                onPressed: null,
+                                onPressed: (){
+                                  showDialog(
+                                      context: context,
+                                      builder: (context){
+                                        return AlertDialog(
+                                          title: Text('Confirm delete'),
+                                          content: Text('Are you sure you want to delete?'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                                child: Text('No'),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                }
+                                            ),
+                                            TextButton(
+                                                child: Text('Yes'),
+                                                onPressed: () async {
+                                                  Navigator.of(context).pop();
+                                                  await deleteUser(users[index].id);
+                                                }
+                                            ),
+                                          ],
+                                        );
+                                      }
+                                  );
+                                },
                                 icon: Icon(
                                     Icons.delete,
                                     color: Colors.red,
