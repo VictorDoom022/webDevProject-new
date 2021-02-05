@@ -87,19 +87,29 @@ class _userFormState extends State<userForm> {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                  child: DropdownButtonFormField(
-                    icon: Icon(Icons.accessibility),
-                    items:["Seller", "Customer"].map(
-                        (label) => DropdownMenuItem(
-                            child: Text(label),
-                            value: label,
-                        )
-                    ).toList(),
-                    onChanged: (value){
-                      setState(() {
-                        selected = value;
-                      });
-                    },
+                  child: Stack(
+                    children: [
+                      DropdownButtonFormField(
+                        items:["Seller", "Customer"].map(
+                                (label) => DropdownMenuItem(
+                              child: Text(label),
+                              value: label,
+                            )
+                        ).toList(),
+                        onChanged: (value){
+                          setState(() {
+                            selected = value;
+                          });
+                        },
+                      ),
+                      Container(
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+                            child: 
+                            Icon(Icons.accessibility)
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 Padding(
