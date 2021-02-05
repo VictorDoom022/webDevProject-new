@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:myapp/addUserPage.dart';
-import 'package:myapp/fetchUsers.dart';
+import 'file:///C:/Users/User/AndroidStudioProjects/FlutterProject/myapp/lib/views/addUserPage.dart';
+import 'controllers/fetchUsers.dart';
 
 import 'model/userClass.dart';
-import 'deleteUser.dart';
+import 'controllers/deleteUser.dart';
 
 void main() => runApp(MyApp());
 

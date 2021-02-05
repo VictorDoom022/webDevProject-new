@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'model/userClass.dart';
+import '../model/userClass.dart';
 
 Future<List<Users>> fetchUsers(http.Client client) async {
   final response = await client.get('http://192.168.0.181/webDevProjectFlutter/getUsers.php');
