@@ -21,6 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  pull_to_refresh: ^1.6.4
+  email_validator: '^1.0.5'
   http: ^0.12.2
   dio: ^3.0.10
   flutter:
