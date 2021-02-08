@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/model/userClass.dart';
@@ -9,19 +10,20 @@ Future<Users> addUser(String username, String password, String position,String e
   print("Received password: "+ password);
   print("Received position: "+ position);
   print("Received email: "+ email);
-  // final response = await http.post(
-  //   Uri.https('jsonplaceholder.typicode.com','albums'),
-  //   headers: <String, String>{
-  //     'Content-Type': 'application/json; charset=UTF-8',
-  //   },
-  //   body: jsonEncode(<String, String>{
-  //     'title': title,
-  //   }),
-  // );
-  //
-  // if (response.statusCode == 201) {
-  //   return Users.fromJson(jsonDecode(response.body));
-  // } else {
-  //   throw Exception('Failed to create album.');
-  // }
+
+  BaseOptions options = new BaseOptions(
+    connectTimeout: 10000,
+    receiveTimeout: 10000,
+  );
+
+  try{
+    Response response;
+    Dio dio = new Dio(options);
+
+    dio.options.contentType= Headers.formUrlEncodedContentType;
+    response = await dio.post("http://192.168.0.181/webDevProjectFlutter/addUser.php"  , data: {"username" : username, "password" : password, "position" : position, "email" : email });
+    print(response);
+  } catch(e){
+    throw (e);
+  }
 }
