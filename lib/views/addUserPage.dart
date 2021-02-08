@@ -110,7 +110,7 @@ class _userFormState extends State<userForm> {
                   child: Stack(
                     children: [
                       DropdownButtonFormField(
-                        items:["Seller", "Customer"].map(
+                        items:["seller", "customer"].map(
                                 (label) => DropdownMenuItem(
                               child: Text(label),
                               value: label,

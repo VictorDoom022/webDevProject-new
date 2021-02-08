@@ -1,8 +1,4 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:myapp/model/userClass.dart';
 
 Future<void> deleteUser(userID) async {
   BaseOptions options = new BaseOptions(

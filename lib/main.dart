@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'file:///C:/Users/User/AndroidStudioProjects/FlutterProject/myapp/lib/views/addUserPage.dart';
+import 'views/addUserPage.dart';
 import 'controllers/fetchUsers.dart';
 
 import 'model/userClass.dart';
