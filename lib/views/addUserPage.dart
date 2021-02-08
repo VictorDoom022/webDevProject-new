@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:myapp/model/userClass.dart';
+import 'package:myapp/controllers/addUser.dart';
 
 class addUserPage extends StatelessWidget {
   @override
@@ -25,11 +27,24 @@ class userForm extends StatefulWidget {
 class _userFormState extends State<userForm> {
 
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  Future<Users> _futureUser;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    usernameController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    String selected;
+    String selectedPosition;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -42,6 +57,7 @@ class _userFormState extends State<userForm> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                   child: TextFormField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                       icon: Icon(Icons.account_circle),
                       hintText: 'Enter Username'
@@ -57,6 +73,7 @@ class _userFormState extends State<userForm> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                   child: TextFormField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                         icon: Icon(Icons.lock_rounded),
@@ -73,13 +90,16 @@ class _userFormState extends State<userForm> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                   child: TextFormField(
+                    controller: emailController,
                     decoration: InputDecoration(
                         icon: Icon(Icons.mail),
                         hintText: 'Enter Email'
                     ),
                     validator: (value){
-                      if(value.isEmpty && (EmailValidator.validate(value) == null)){
+                      if(value.isEmpty){
                         return 'Please enter some stuff';
+                      }else if((EmailValidator.validate(value) == null)){
+                        return 'Please enter a valid email';
                       }
                       return null;
                     },
@@ -97,9 +117,7 @@ class _userFormState extends State<userForm> {
                             )
                         ).toList(),
                         onChanged: (value){
-                          setState(() {
-                            selected = value;
-                          });
+                            selectedPosition = value;
                         },
                       ),
                       Container(
@@ -117,7 +135,13 @@ class _userFormState extends State<userForm> {
                   child: SizedBox(
                     width: double.infinity,
                     child: RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if(_formKey.currentState.validate()){
+                          setState(() {
+                            _futureUser = addUser(usernameController.text,passwordController.text, selectedPosition ,emailController.text);
+                          });
+                        }
+                      },
                       child: Text('Add User'),
                     ),
                   ),
