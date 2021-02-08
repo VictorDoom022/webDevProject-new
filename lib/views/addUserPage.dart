@@ -64,7 +64,7 @@ class _userFormState extends State<userForm> {
                     ),
                     validator: (value){
                       if(value.isEmpty){
-                        return 'Please enter some stuff';
+                        return 'Please enter username';
                       }
                       return null;
                     },
@@ -81,7 +81,7 @@ class _userFormState extends State<userForm> {
                     ),
                     validator: (value){
                       if(value.trim().isEmpty){
-                        return 'Please enter some stuff';
+                        return 'Please enter password';
                       }
                       return null;
                     },
@@ -97,7 +97,7 @@ class _userFormState extends State<userForm> {
                     ),
                     validator: (value){
                       if(value.isEmpty){
-                        return 'Please enter some stuff';
+                        return 'Please enter email';
                       }else if((EmailValidator.validate(value) == null)){
                         return 'Please enter a valid email';
                       }
