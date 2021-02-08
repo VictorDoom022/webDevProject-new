@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/controllers/loginFunction.dart';
+import 'package:myapp/model/userClass.dart';
 
 class login extends StatelessWidget {
   @override
@@ -16,8 +18,20 @@ class loginForm extends StatefulWidget {
 
 class _loginFormState extends State<loginForm> {
 
+  Future<Users> _futureUser;
   final _formKey = GlobalKey<FormState>();
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +58,7 @@ class _loginFormState extends State<loginForm> {
                   ),
                   SizedBox(height: 10.0),
                   TextField(
+                    controller: usernameController,
                     style: style,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -55,6 +70,8 @@ class _loginFormState extends State<loginForm> {
                   ),
                   SizedBox(height: 10.0),
                   TextField(
+                    controller: passwordController,
+                    obscureText: true,
                     style: style,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -72,7 +89,13 @@ class _loginFormState extends State<loginForm> {
                     child: MaterialButton(
                       minWidth: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      onPressed: (){},
+                      onPressed: (){
+                        if(_formKey.currentState.validate()){
+                          setState(() {
+                            _futureUser = loginFunction(usernameController.text, passwordController.text);
+                          });
+                        }
+                      },
                       child: Text(
                         "Login",
                         textAlign: TextAlign.center,
