@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/views/userLists.dart';
+import 'package:myapp/views/login.dart';
 
 
-void main() => runApp(userList());
+void main() => runApp(login());
 
