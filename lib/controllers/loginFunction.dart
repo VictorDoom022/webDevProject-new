@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:myapp/model/userClass.dart';
+import 'package:myapp/views/userLists.dart';
 
-Future<Users> loginFunction(String username, String password) async {
+Future<Users> loginFunction(BuildContext context, String username, String password) async {
   print("Username : " + username);
   print("Password : " + password);
   BaseOptions options = new BaseOptions(
@@ -18,7 +20,10 @@ Future<Users> loginFunction(String username, String password) async {
     print(response.toString());
 
     if(response.toString() == "admin"){
-      print('The user is an admin');
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => userList())
+      );
     }else if(response.toString() == "seller") {
       print('The user is a seller');
     }else if(response.toString() == "customer") {

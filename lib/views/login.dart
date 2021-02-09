@@ -92,7 +92,7 @@ class _loginFormState extends State<loginForm> {
                       onPressed: (){
                         if(_formKey.currentState.validate()){
                           setState(() {
-                            _futureUser = loginFunction(usernameController.text, passwordController.text);
+                            _futureUser = loginFunction(context, usernameController.text, passwordController.text);
                           });
                         }
                       },
