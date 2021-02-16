@@ -3,6 +3,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:myapp/controllers/addUser.dart';
 
+import 'navDrawer.dart';
+
 class addUserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,7 @@ class addUserPage extends StatelessWidget {
           title: Text(appTitle),
         ),
         body: userForm(),
+        drawer: navDrawer(context),
       ),
     );
   }

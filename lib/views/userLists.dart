@@ -4,6 +4,7 @@ import 'package:myapp/controllers/deleteUser.dart';
 import 'package:myapp/controllers/fetchUsers.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:http/http.dart' as http;
+import 'package:myapp/views/navDrawer.dart';
 import 'addUserPage.dart';
 
 class userList extends StatelessWidget {
@@ -37,6 +38,7 @@ class MyHomePage extends StatelessWidget {
           return snapshot.hasData ? UsersLists(users: snapshot.data) : Center(child: CircularProgressIndicator());
         },
       ),
+      drawer: navDrawer(context),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.push(
