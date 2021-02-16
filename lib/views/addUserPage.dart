@@ -2,10 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:myapp/controllers/addUser.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'navDrawer.dart';
 
-class addUserPage extends StatelessWidget {
+class addUserPage extends StatefulWidget {
+  @override
+  _addUserPageState createState() => _addUserPageState();
+}
+
+class _addUserPageState extends State<addUserPage> {
+
+  SharedPreferences sharedPrefs;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SharedPreferences.getInstance().then((prefs) {
+      setState(() {
+        sharedPrefs = prefs;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Add Users';
@@ -16,7 +36,7 @@ class addUserPage extends StatelessWidget {
           title: Text(appTitle),
         ),
         body: userForm(),
-        drawer: navDrawer(context),
+        drawer: navDrawer(context, sharedPrefs.getString("username")),
       ),
     );
   }

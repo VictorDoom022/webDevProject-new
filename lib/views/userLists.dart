@@ -5,6 +5,7 @@ import 'package:myapp/controllers/fetchUsers.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/views/navDrawer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'addUserPage.dart';
 
 class userList extends StatelessWidget {
@@ -19,16 +20,35 @@ class userList extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   final String title;
 
   MyHomePage({Key key, this.title}) : super(key: key);
 
   @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  SharedPreferences sharedPrefs;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SharedPreferences.getInstance().then((prefs) {
+      setState(() {
+        sharedPrefs = prefs;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(widget.title),
       ),
       body: FutureBuilder<List<Users>>(
         future: fetchUsers(http.Client()),
@@ -38,7 +58,7 @@ class MyHomePage extends StatelessWidget {
           return snapshot.hasData ? UsersLists(users: snapshot.data) : Center(child: CircularProgressIndicator());
         },
       ),
-      drawer: navDrawer(context),
+      drawer: navDrawer(context, sharedPrefs.getString("username")),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.push(
