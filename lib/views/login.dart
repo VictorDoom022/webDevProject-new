@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/controllers/checkSession.dart';
 import 'package:myapp/controllers/loginFunction.dart';
 import 'package:myapp/model/userClass.dart';
 
 class login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    checkSession(context);
     return MaterialApp(
       home: loginForm(),
     );

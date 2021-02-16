@@ -22,6 +22,7 @@ environment:
 
 dependencies:
   pull_to_refresh: ^1.6.4
+  get: ^3.25.4
   flutter_session: ^0.1.1
   email_validator: '^1.0.5'
   http: ^0.12.2

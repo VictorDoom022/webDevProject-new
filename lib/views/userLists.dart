@@ -10,7 +10,7 @@ class userList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTitle = 'User List Demo';
-    checkSession();
+
     return MaterialApp(
       title: appTitle,
       home: MyHomePage(title: appTitle),
