@@ -24,12 +24,23 @@ Widget navDrawer(BuildContext context) {
         ListTile(
           title: Text('Log Out'),
           onTap: () {
+            logout();
+            Navigator.pop(context);
             MaterialPageRoute(builder: (context) => login());
           },
         )
       ],
     ),
   );
+}
+
+Future logout() async{
+  final prefs =  await SharedPreferences.getInstance();
+
+  prefs.remove("username");
+  prefs.remove("position");
+  prefs.remove("email");
+  prefs.remove("create_date");
 }
 
 Future userDetail() async{
