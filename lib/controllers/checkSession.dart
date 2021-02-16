@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:myapp/views/login.dart';
 import 'package:myapp/views/userLists.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> checkSession(BuildContext context) async {
-  dynamic username;
-  dynamic email;
-  dynamic position;
 
-  username = await FlutterSession().get("username");
-  email = await FlutterSession().get("email");
-  position = await FlutterSession().get("position");
-  print("Current log in position : " + await position);
+  final prefs = await SharedPreferences.getInstance();
+
+  final username = prefs.getString("username");
+  final email = prefs.getString("email");
+  final position = prefs.getString("position");
+  print("Current log in position : " +  position);
   if(username == null){
     Navigator.push(
         context,

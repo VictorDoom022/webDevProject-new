@@ -1,20 +1,18 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:myapp/views/userLists.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
 
-Widget navDrawer(BuildContext context){
-
-  dynamic username =  FlutterSession().get("username");
+Widget navDrawer(BuildContext context) {
 
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
       children: [
         DrawerHeader(
-          child: Text(username.toString()),
+          child: Text(userDetail().toString()),
         ),
         ListTile(
           title: Text('User Lists'),
@@ -32,4 +30,10 @@ Widget navDrawer(BuildContext context){
       ],
     ),
   );
+}
+
+Future userDetail() async{
+  final prefs =  await SharedPreferences.getInstance();
+  final username = prefs.getString("username");
+  return username;
 }

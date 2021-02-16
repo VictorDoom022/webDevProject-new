@@ -3,16 +3,16 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:myapp/controllers/fetchUsers.dart';
 import 'package:myapp/model/userClass.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Users> getLogInUser(username) async{
 
     Dio dio = new Dio();
     Response response;
 
-    var session = FlutterSession();
+    final prefs = await SharedPreferences.getInstance();
 
     dio.options.contentType = Headers.formUrlEncodedContentType;
     response = await dio.post("http://192.168.0.181/webDevProjectFlutter/getLoginUser.php", data: {"username" : username});
@@ -23,9 +23,9 @@ Future<Users> getLogInUser(username) async{
     final List<Users> user = temp;
 
     for(var datas in user){
-        await session.set("username", datas.username);
-        await session.set("email", datas.email);
-        await session.set("position", datas.position);
-        await session.set("create_date", datas.create_date);
+        prefs.setString("username", datas.username);
+        prefs.setString("email", datas.email);
+        prefs.setString("position", datas.position);
+        prefs.setString("create_date", datas.create_date);
     }
 }
