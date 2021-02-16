@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/controllers/checkSession.dart';
 import 'package:myapp/controllers/deleteUser.dart';
 import 'package:myapp/controllers/fetchUsers.dart';
 import 'package:myapp/model/userClass.dart';
@@ -9,7 +10,7 @@ class userList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTitle = 'User List Demo';
-
+    checkSession();
     return MaterialApp(
       title: appTitle,
       home: MyHomePage(title: appTitle),

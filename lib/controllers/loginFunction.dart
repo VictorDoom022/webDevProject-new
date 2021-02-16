@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/controllers/getLogInUser.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:myapp/views/userLists.dart';
 
@@ -24,6 +25,7 @@ Future<Users> loginFunction(BuildContext context, String username, String passwo
         context,
         MaterialPageRoute(builder: (context) => userList())
       );
+      getLogInUser(username);
     }else if(response.toString() == "seller") {
       print('The user is a seller');
     }else if(response.toString() == "customer") {
@@ -32,6 +34,6 @@ Future<Users> loginFunction(BuildContext context, String username, String passwo
       print('idk');
     }
   } catch(e){
-    throw (e);
+    //throw (e);
   }
 }
