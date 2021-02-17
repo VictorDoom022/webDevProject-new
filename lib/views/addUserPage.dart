@@ -13,19 +13,6 @@ class addUserPage extends StatefulWidget {
 
 class _addUserPageState extends State<addUserPage> {
 
-  SharedPreferences sharedPrefs;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    SharedPreferences.getInstance().then((prefs) {
-      setState(() {
-        sharedPrefs = prefs;
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Add Users';
