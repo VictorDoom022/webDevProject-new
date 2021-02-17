@@ -78,12 +78,15 @@ class _userFormState extends State<userForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                  padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
                   child: TextFormField(
                     controller: usernameController,
                     decoration: InputDecoration(
                       icon: Icon(Icons.account_circle),
-                      hintText: 'Enter Username'
+                      labelText: 'Enter Username',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                     ),
                     validator: (value){
                       if(value.isEmpty){
@@ -94,13 +97,16 @@ class _userFormState extends State<userForm> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                  padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
                   child: TextFormField(
                     controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                         icon: Icon(Icons.lock_rounded),
-                        hintText: 'Enter Password'
+                        labelText: 'Enter Password',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        ),
                     ),
                     validator: (value){
                       if(value.trim().isEmpty){
@@ -111,12 +117,16 @@ class _userFormState extends State<userForm> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                  padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
                   child: TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
                         icon: Icon(Icons.mail),
-                        hintText: 'Enter Email'
+                        labelText: 'Enter Email',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+
+                        ),
                     ),
                     validator: (value){
                       if(value.isEmpty){
@@ -129,7 +139,7 @@ class _userFormState extends State<userForm> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                  padding: EdgeInsets.fromLTRB(15, 10, 15, 0),
                   child: Stack(
                     children: [
                       DropdownButtonFormField(
@@ -158,6 +168,8 @@ class _userFormState extends State<userForm> {
                   child: SizedBox(
                     width: double.infinity,
                     child: RaisedButton(
+                      textColor: Colors.white,
+                      color: Colors.blue,
                       onPressed: () {
                         if(_formKey.currentState.validate()){
                           setState(() {
