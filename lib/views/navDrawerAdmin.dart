@@ -5,12 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
 
-class navDrawer extends StatefulWidget {
+class navDrawerAdmin extends StatefulWidget {
   @override
-  _navDrawerState createState() => _navDrawerState();
+  _navDrawerAdminState createState() => _navDrawerAdminState();
 }
 
-class _navDrawerState extends State<navDrawer> {
+class _navDrawerAdminState extends State<navDrawerAdmin> {
 
   SharedPreferences sharedPrefs;
   String username = "";

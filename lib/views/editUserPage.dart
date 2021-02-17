@@ -2,7 +2,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/controllers/addUser.dart';
 import 'package:myapp/model/userClass.dart';
-import 'package:myapp/views/navDrawer.dart';
+import 'package:myapp/views/navDrawerAdmin.dart';
 
 class editUserPage extends StatefulWidget {
 
@@ -30,7 +30,7 @@ class _editUserPageState extends State<editUserPage> {
           title: Text(appTitle),
         ),
         body: userEditForm(id: widget.data.id, username: widget.data.username, password: widget.data.password, email: widget.data.email ,position: widget.data.position),
-        drawer: navDrawer(),
+        drawer: navDrawerAdmin(),
       ),
     );
   }

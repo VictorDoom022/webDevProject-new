@@ -4,7 +4,7 @@ import 'package:myapp/model/userClass.dart';
 import 'package:myapp/controllers/addUser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'navDrawer.dart';
+import 'navDrawerAdmin.dart';
 
 class addUserPage extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _addUserPageState extends State<addUserPage> {
           title: Text(appTitle),
         ),
         body: userForm(),
-        drawer: navDrawer(),
+        drawer: navDrawerAdmin(),
       ),
     );
   }

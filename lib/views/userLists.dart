@@ -6,7 +6,7 @@ import 'package:myapp/controllers/fetchUsers.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/views/editUserPage.dart';
-import 'package:myapp/views/navDrawer.dart';
+import 'package:myapp/views/navDrawerAdmin.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'addUserPage.dart';
 
@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         },
       ),
-      drawer: navDrawer(),
+      drawer: navDrawerAdmin(),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.push(
