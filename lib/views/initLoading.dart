@@ -20,12 +20,17 @@ class _initLoadingState extends State<initLoading> {
     super.initState();
 
     sharedPrefsFunc().then((value) => {
-      username = value
+      username = value,
+      redirect(username)
     });
 
+  }
+
+  void redirect(username){
+    String tempUsername = username;
     //To redirect page before build method complete
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      if(username == ""){
+      if(tempUsername == "null"){
         Navigator.pushReplacementNamed(
             context,
             '/login'
@@ -37,7 +42,6 @@ class _initLoadingState extends State<initLoading> {
         );
       }
     });
-
   }
 
   Future<String> sharedPrefsFunc() async{
