@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:myapp/controllers/checkSession.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class initLoading extends StatefulWidget {

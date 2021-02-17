@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/controllers/checkSession.dart';
 import 'package:myapp/controllers/loginFunction.dart';
 import 'package:myapp/model/userClass.dart';
 

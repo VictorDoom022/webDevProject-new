@@ -1,8 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/User/AndroidStudioProjects/FlutterProject/myapp/lib/controllers/admin/addUser.dart';
+import 'package:myapp/controllers/admin/addUser.dart';
 import 'package:myapp/model/userClass.dart';
-import 'file:///C:/Users/User/AndroidStudioProjects/FlutterProject/myapp/lib/views/admin/navDrawerAdmin.dart';
+import 'package:myapp/views/admin/navDrawerAdmin.dart';
 
 class editUserPage extends StatefulWidget {
 
