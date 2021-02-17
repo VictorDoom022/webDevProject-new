@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/controllers/checkSession.dart';
 import 'package:myapp/views/initLoading.dart';
 import 'package:myapp/views/login.dart';
-import 'package:myapp/views/userLists.dart';
+import 'file:///C:/Users/User/AndroidStudioProjects/FlutterProject/myapp/lib/views/admin/userLists.dart';
 
 
 void main() => runApp(

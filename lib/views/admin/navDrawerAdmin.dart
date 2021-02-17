@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:myapp/views/userLists.dart';
+import 'package:myapp/views/admin/userLists.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'login.dart';
+import '../login.dart';
 
 class navDrawerAdmin extends StatefulWidget {
   @override

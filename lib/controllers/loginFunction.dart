@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/controllers/getLogInUser.dart';
 import 'package:myapp/model/userClass.dart';
-import 'package:myapp/views/userLists.dart';
+import 'package:myapp/views/admin/userLists.dart';
 
 Future<Users> loginFunction(BuildContext context, String username, String password) async {
   print("Username : " + username);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/views/login.dart';
-import 'package:myapp/views/userLists.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> checkSession(BuildContext context) async {

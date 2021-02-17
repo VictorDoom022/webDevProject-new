@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:myapp/controllers/admin/deleteUser.dart';
+import 'package:myapp/controllers/admin/fetchUsers.dart';
 import 'package:myapp/controllers/checkSession.dart';
-import 'package:myapp/controllers/deleteUser.dart';
-import 'package:myapp/controllers/fetchUsers.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:http/http.dart' as http;
-import 'package:myapp/views/editUserPage.dart';
-import 'package:myapp/views/navDrawerAdmin.dart';
+import 'package:myapp/views/admin/editUserPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'addUserPage.dart';
+import 'navDrawerAdmin.dart';
 
 class userList extends StatelessWidget {
   @override
