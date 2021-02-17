@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/controllers/addUser.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:myapp/views/navDrawer.dart';
 
@@ -10,10 +11,15 @@ class editUserPage extends StatefulWidget {
   editUserPage({Key key, this.data}) : super(key: key);
 
   @override
-  _editUserPageState createState() => _editUserPageState();
+  _editUserPageState createState() => _editUserPageState(data);
 }
 
 class _editUserPageState extends State<editUserPage> {
+
+  final data;
+
+  _editUserPageState(this.data);
+
   @override
   Widget build(BuildContext context) {
     final appTitle = 'Edit Users';
@@ -23,7 +29,7 @@ class _editUserPageState extends State<editUserPage> {
         appBar: AppBar(
           title: Text(appTitle),
         ),
-        body: userEditForm(),
+        body: userEditForm(id: widget.data.id, username: widget.data.username, password: widget.data.password, email: widget.data.email ,position: widget.data.position),
         drawer: navDrawer(),
       ),
     );
@@ -31,6 +37,11 @@ class _editUserPageState extends State<editUserPage> {
 }
 
 class userEditForm extends StatefulWidget {
+
+  final id, username, password, email, position;
+
+  const userEditForm({Key key, this.id, this.username, this.password, this.email, this.position}) : super(key: key);
+
   @override
   _userEditFormState createState() => _userEditFormState();
 }
@@ -56,6 +67,10 @@ class _userEditFormState extends State<userEditForm> {
   Widget build(BuildContext context) {
 
     String selectedPosition;
+
+    usernameController.text=widget.username;
+    passwordController.text=widget.password;
+    emailController.text=widget.email;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -131,6 +146,7 @@ class _userEditFormState extends State<userEditForm> {
                   child: Stack(
                     children: [
                       DropdownButtonFormField(
+                        value: selectedPosition,
                         items:["seller", "customer"].map(
                                 (label) => DropdownMenuItem(
                               child: Text(label),
@@ -161,11 +177,11 @@ class _userEditFormState extends State<userEditForm> {
                       onPressed: () {
                         if(_formKey.currentState.validate()){
                           setState(() {
-                            _futureUser = addUser(usernameController.text,passwordController.text, selectedPosition ,emailController.text);
+                            _futureUser = editUser(widget.id,usernameController.text,passwordController.text, selectedPosition ,emailController.text);
                           });
                         }
                       },
-                      child: Text('Add User'),
+                      child: Text('Edit User'),
                     ),
                   ),
                 ),
