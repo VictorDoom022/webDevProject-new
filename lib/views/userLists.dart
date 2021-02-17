@@ -5,6 +5,7 @@ import 'package:myapp/controllers/deleteUser.dart';
 import 'package:myapp/controllers/fetchUsers.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:http/http.dart' as http;
+import 'package:myapp/views/editUserPage.dart';
 import 'package:myapp/views/navDrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'addUserPage.dart';
@@ -108,7 +109,14 @@ class UsersLists extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton.icon(
-                              onPressed: null,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => editUserPage(data: users[index]),
+                                  )
+                                );
+                              },
                               icon: Icon(
                                 Icons.settings_rounded,
                                 color: Colors.greenAccent,
