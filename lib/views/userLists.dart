@@ -34,11 +34,20 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   SharedPreferences sharedPrefs;
+  Future<List<Users>> futureUsers;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    futureUsers = getUsers();
+  }
+
+  Future<void> pullRefresh() async{
+    List<Users> refreshedFutureUsers = await getUsers();
+    setState(() {
+      futureUsers = Future.value(refreshedFutureUsers);
+    });
   }
 
   @override
@@ -48,11 +57,19 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: FutureBuilder<List<Users>>(
-        future: fetchUsers(http.Client()),
+        future: futureUsers,
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
 
-          return snapshot.hasData ? UsersLists(users: snapshot.data) : Center(child: SpinKitCircle(color: Colors.cyan, size: 70.0,));
+          if (snapshot.hasData) {
+            return RefreshIndicator(
+                onRefresh: pullRefresh,
+                child: UsersLists(users: snapshot.data),
+
+            );
+          } else {
+            return Center(child: SpinKitCircle(color: Colors.cyan, size: 70.0,));
+          }
         },
       ),
       drawer: navDrawer(),
