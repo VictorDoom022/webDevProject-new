@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:myapp/controllers/checkSession.dart';
 import 'package:myapp/controllers/deleteUser.dart';
 import 'package:myapp/controllers/fetchUsers.dart';
@@ -50,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
 
-          return snapshot.hasData ? UsersLists(users: snapshot.data) : Center(child: CircularProgressIndicator());
+          return snapshot.hasData ? UsersLists(users: snapshot.data) : Center(child: SpinKitCircle(color: Colors.cyan, size: 70.0,));
         },
       ),
       drawer: navDrawer(),
