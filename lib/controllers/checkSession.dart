@@ -7,19 +7,19 @@ Future<void> checkSession(BuildContext context) async {
 
   final prefs = await SharedPreferences.getInstance();
 
-  final username = prefs.getString("username");
+  final username = prefs.getString("username").toString();
   final email = prefs.getString("email");
   final position = prefs.getString("position");
   print("Current log in position : " +  position);
-  if(username == null){
-    Navigator.push(
+  if(username.toString() == null){
+    Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(builder: (context) => login())
+        '/login'
     );
   }else{
-    Navigator.push(
+    Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(builder: (context) => userList())
+        '/userList'
     );
 
   }

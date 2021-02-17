@@ -6,7 +6,6 @@ import 'package:myapp/model/userClass.dart';
 class login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    checkSession(context);
     return MaterialApp(
       home: loginForm(),
     );

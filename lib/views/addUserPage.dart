@@ -36,7 +36,7 @@ class _addUserPageState extends State<addUserPage> {
           title: Text(appTitle),
         ),
         body: userForm(),
-        drawer: navDrawer(context, sharedPrefs.getString("username")),
+        drawer: navDrawer(),
       ),
     );
   }

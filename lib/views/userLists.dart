@@ -37,11 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    SharedPreferences.getInstance().then((prefs) {
-      setState(() {
-        sharedPrefs = prefs;
-      });
-    });
   }
 
   @override
@@ -58,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return snapshot.hasData ? UsersLists(users: snapshot.data) : Center(child: CircularProgressIndicator());
         },
       ),
-      drawer: navDrawer(context, sharedPrefs.getString("username")),
+      drawer: navDrawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.push(

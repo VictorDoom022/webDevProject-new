@@ -5,43 +5,67 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'login.dart';
 
-Widget navDrawer(BuildContext context, username) {
+class navDrawer extends StatefulWidget {
+  @override
+  _navDrawerState createState() => _navDrawerState();
+}
 
-  return Drawer(
-    child: ListView(
-      padding: EdgeInsets.zero,
-      children: [
-        DrawerHeader(
-          child: Center(
-            child: Text(
-              'Welcome, ' + username,
-              style: TextStyle(
-                fontSize: 30.0
+class _navDrawerState extends State<navDrawer> {
+
+  SharedPreferences sharedPrefs;
+  String username = "";
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    sharedPrefsFunc().then((value) => {
+      username = value
+    });
+  }
+
+  Future<String> sharedPrefsFunc() async{
+    sharedPrefs = await SharedPreferences.getInstance();
+    return sharedPrefs.getString("username");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            child: Center(
+              child: Text(
+                'Welcome, ' + username,
+                style: TextStyle(
+                    fontSize: 30.0
+                ),
               ),
             ),
           ),
-        ),
-        ListTile(
-          leading: Icon(Icons.list),
-          title: Text('User Lists'),
-          onTap: () {
-            Navigator.pop(context);
-            MaterialPageRoute(builder: (context) => userList());
-          },
-        ),
-        Divider(),
-        ListTile(
-          leading: Icon(Icons.exit_to_app),
-          title: Text('Log Out'),
-          onTap: () {
-            logout();
-            Navigator.pop(context);
-            MaterialPageRoute(builder: (context) => login());
-          },
-        )
-      ],
-    ),
-  );
+          ListTile(
+            leading: Icon(Icons.list),
+            title: Text('User Lists'),
+            onTap: () {
+              Navigator.pop(context);
+              MaterialPageRoute(builder: (context) => userList());
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.exit_to_app),
+            title: Text('Log Out'),
+            onTap: () {
+              logout();
+              Navigator.pop(context);
+              MaterialPageRoute(builder: (context) => login());
+            },
+          )
+        ],
+      ),
+    );
+  }
 }
 
 Future logout() async{
