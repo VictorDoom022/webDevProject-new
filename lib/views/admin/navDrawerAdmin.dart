@@ -47,7 +47,10 @@ class _navDrawerAdminState extends State<navDrawerAdmin> {
             title: Text('User Lists'),
             onTap: () {
               Navigator.pop(context);
-              MaterialPageRoute(builder: (context) => userList());
+              Navigator.push(
+                context,
+                new MaterialPageRoute(builder: (context) => userList())
+              );
             },
           ),
           Divider(),
@@ -57,7 +60,10 @@ class _navDrawerAdminState extends State<navDrawerAdmin> {
             onTap: () {
               logout();
               Navigator.pop(context);
-              MaterialPageRoute(builder: (context) => login());
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => login())
+              );
             },
           )
         ],
