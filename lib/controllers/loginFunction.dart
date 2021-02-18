@@ -19,7 +19,6 @@ Future<Users> loginFunction(BuildContext context, String username, String passwo
 
     dio.options.contentType= Headers.formUrlEncodedContentType;
     response = await dio.post("http://192.168.0.181/webDevProjectFlutter/login.php"  , data: {"username" : username, "password" : password});
-    getLogInUser(username);
     print(response.toString());
 
     if(response.toString() == "admin"){
@@ -27,11 +26,13 @@ Future<Users> loginFunction(BuildContext context, String username, String passwo
         context,
         MaterialPageRoute(builder: (context) => userList())
       );
+      getLogInUser(username);
     }else if(response.toString() == "seller") {
       Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => sellerHome())
       );
+      getLogInUser(username);
     }else if(response.toString() == "customer") {
       print('The user is a customer');
     }else{
