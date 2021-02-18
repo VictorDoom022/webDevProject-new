@@ -141,7 +141,7 @@ class HomeData extends StatelessWidget {
                           ),
                         ),
                         Text(
-                            homeData[index].totalSellPrice,
+                            "RM"+homeData[index].totalSellPrice,
                           style: TextStyle(
                             fontSize: 35,
                             fontWeight: FontWeight.bold,
