@@ -17,6 +17,9 @@ class _sellerHomeState extends State<sellerHome> {
     final appTitle = "Seller Home";
     return MaterialApp(
       title: appTitle,
+      theme: ThemeData(
+        primaryColor: Colors.black
+      ),
       home: sellerHomePage(),
     );
   }
@@ -52,7 +55,7 @@ class _sellerHomePageState extends State<sellerHomePage> {
           if(snapshot.hasData){
             return HomeData(homeData: snapshot.data);
           }else{
-            return Center(child: SpinKitCircle(color: Colors.cyan, size: 70.0,));
+            return Center(child: SpinKitCircle(color: Colors.black, size: 70.0,));
           }
         },
       ),
@@ -72,26 +75,133 @@ class HomeData extends StatelessWidget {
     return ListView.builder(
         itemCount: homeData.length,
         itemBuilder: (context, index){
-          return Row(
+          return Column(
             children: [
-              Card(
-                child: Center(
-                  child: Text('Total Orders' + homeData[index].totalOrders),
+              Container(
+                height: 110,
+                child: Card(
+                  color: Color.fromRGBO(23, 186, 26, 25),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)
+                  ),
+                  elevation: 10,
+                  child: Center(
+                    child: Column(
+                      children:[
+                        Text(
+                          'Total Orders',
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.white
+                          ),
+                        ),
+                        Text(
+                            homeData[index].totalOrders,
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              Card(
-                child: Center(
-                  child: Text('Total Sell Price' + homeData[index].totalSellPrice),
+              SizedBox(height: 5),
+              Container(
+                height: 110,
+                child: Card(
+                  color: Color.fromRGBO(255, 147, 0, 25),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)
+                  ),
+                  elevation: 10,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Total Sell Price',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.white
+                          ),
+                        ),
+                        Text(
+                            homeData[index].totalSellPrice,
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              Card(
-                child: Center(
-                  child: Text('Total Ori Price' + homeData[index].totalOriPrice),
+              SizedBox(height: 5),
+              Container(
+                height: 110,
+                child: Card(
+                  color: Color.fromRGBO(11, 50, 244, 25),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0)
+                  ),
+                  elevation: 10,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Text(
+                            'Total Ori Price',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.white
+                          ),
+                        ),
+                        Text(
+                            "RM"+homeData[index].totalOriPrice,
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              Card(
-                child: Center(
-                  child: Text('Total Discount' + homeData[index].totalDiscount),
+              SizedBox(height: 5),
+              Container(
+                height: 110,
+                child: Card(
+                  color: Color.fromRGBO(253, 3, 33, 25),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0)
+                  ),
+                  elevation: 10,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Text(
+                            'Total Discount',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.white
+                          ),
+                        ),
+                        Text(
+                            "RM"+homeData[index].totalDiscount,
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],
