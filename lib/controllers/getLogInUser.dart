@@ -19,6 +19,7 @@ Future<Users> getLogInUser(username) async{
     final List<Users> user = temp;
 
     for(var datas in user){
+        prefs.setString("id", datas.id);
         prefs.setString("username", datas.username);
         prefs.setString("email", datas.email);
         prefs.setString("position", datas.position);
