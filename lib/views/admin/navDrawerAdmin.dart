@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/views/admin/adminChat.dart';
 import 'package:myapp/views/admin/userLists.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../login.dart';
@@ -50,6 +51,17 @@ class _navDrawerAdminState extends State<navDrawerAdmin> {
               Navigator.push(
                 context,
                 new MaterialPageRoute(builder: (context) => userList())
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.message_outlined),
+            title: Text('Chat'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => adminChat())
               );
             },
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/views/admin/userLists.dart';
+import 'package:myapp/views/seller/sellerChat.dart';
 import 'package:myapp/views/seller/sellerHome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../login.dart';
@@ -51,6 +52,17 @@ class _navDrawerSellerState extends State<navDrawerSeller> {
               Navigator.push(
                   context,
                   new MaterialPageRoute(builder: (context) => sellerHome())
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.message),
+            title: Text('Chat'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => sellerChat())
               );
             },
           ),
