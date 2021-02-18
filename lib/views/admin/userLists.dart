@@ -5,6 +5,7 @@ import 'package:myapp/controllers/admin/fetchUsers.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:myapp/views/admin/editUserPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'addUserPage.dart';
 import 'navDrawerAdmin.dart';
 

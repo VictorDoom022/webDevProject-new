@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:myapp/controllers/seller/fetchSellerHomeData.dart';
 import 'package:myapp/model/sellerHomeData.dart';
@@ -41,6 +42,13 @@ class _sellerHomePageState extends State<sellerHomePage> {
     futureHomeData = fetchSellerHomeData();
   }
 
+  Future<void> pullRefresh() async{
+    List<sellerHomeData> refreshedFutureHomeData = await fetchSellerHomeData();
+    setState(() {
+      futureHomeData = Future.value(refreshedFutureHomeData);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +61,10 @@ class _sellerHomePageState extends State<sellerHomePage> {
           if(snapshot.hasError) print(snapshot.error);
 
           if(snapshot.hasData){
-            return HomeData(homeData: snapshot.data);
+            return EasyRefresh(
+                onRefresh: pullRefresh,
+                child: HomeData(homeData: snapshot.data)
+            );
           }else{
             return Center(child: SpinKitCircle(color: Colors.black, size: 70.0,));
           }
@@ -73,6 +84,8 @@ class HomeData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
         itemCount: homeData.length,
         itemBuilder: (context, index){
           return Column(
