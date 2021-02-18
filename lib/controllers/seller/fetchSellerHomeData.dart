@@ -2,15 +2,20 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:myapp/model/sellerHomeData.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<List<sellerHomeData>> fetchSellerHomeData() async{
+  SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+  String userID;
   Dio dio = new Dio();
   Response response;
 
-  dio.options.contentType = Headers.formUrlEncodedContentType;
-  response = await dio.get("http://192.168.0.181/webDevProjectFlutter/getSellerHome.php");
+  userID = sharedPrefs.getString("id");
 
-  final parsed = jsonDecode(response.data).cast<Map<String, dynamic>>();
+  dio.options.contentType = Headers.formUrlEncodedContentType;
+  response = await dio.post("http://192.168.0.181/webDevProjectFlutter/getSellerHome.php", data: {"sellerID" : userID });
+
+  final parsed = jsonDecode(response.toString()).cast<Map<String, dynamic>>();
   final temp = parsed.map<sellerHomeData>((json) => sellerHomeData.fromJson(json)).toList();
 
   final List<sellerHomeData> user = temp;
