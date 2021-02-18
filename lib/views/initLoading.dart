@@ -11,7 +11,7 @@ class initLoading extends StatefulWidget {
 class _initLoadingState extends State<initLoading> {
 
   SharedPreferences sharedPrefs;
-  String username = "";
+  String position = "";
 
   @override
   void initState() {
@@ -19,25 +19,30 @@ class _initLoadingState extends State<initLoading> {
     super.initState();
 
     sharedPrefsFunc().then((value) => {
-      username = value,
-      redirect(username)
+      position = value,
+      redirect(position)
     });
 
   }
 
-  void redirect(username){
-    String tempUsername = username;
+  void redirect(position){
+    String tempPosition = position;
     //To redirect page before build method complete
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      if(tempUsername == "null"){
+      if(tempPosition == "null"){
         Navigator.pushReplacementNamed(
             context,
             '/login'
         );
-      }else{
+      }else if(tempPosition == "admin"){
         Navigator.pushReplacementNamed(
             context,
             '/userList'
+        );
+      }else if(tempPosition == "seller"){
+        Navigator.pushReplacementNamed(
+            context,
+            '/sellerHome'
         );
       }
     });
