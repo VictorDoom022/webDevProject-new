@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/views/admin/userLists.dart';
+import 'package:myapp/views/seller/sellerHome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../login.dart';
 
@@ -47,7 +48,10 @@ class _navDrawerSellerState extends State<navDrawerSeller> {
             title: Text('Home'),
             onTap: () {
               Navigator.pop(context);
-              MaterialPageRoute(builder: (context) => userList());
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => sellerHome())
+              );
             },
           ),
           Divider(),
@@ -57,7 +61,10 @@ class _navDrawerSellerState extends State<navDrawerSeller> {
             onTap: () {
               logout();
               Navigator.pop(context);
-              MaterialPageRoute(builder: (context) => login());
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (context) => login())
+              );
             },
           )
         ],
