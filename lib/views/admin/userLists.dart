@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
           if (snapshot.hasError) print(snapshot.error);
 
           if (snapshot.hasData) {
-            return RefreshIndicator(
+            return EasyRefresh(
                 onRefresh: pullRefresh,
                 child: UsersLists(users: snapshot.data),
 
@@ -97,6 +97,8 @@ class UsersLists extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
       itemCount: users.length,
       itemBuilder: (context, index){
         return Card(
