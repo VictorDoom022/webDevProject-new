@@ -4,6 +4,7 @@ import 'package:myapp/controllers/getLogInUser.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:myapp/views/admin/userLists.dart';
 import 'package:myapp/views/seller/sellerHome.dart';
+import 'package:myapp/views/showAlertDialog.dart';
 
 Future<Users> loginFunction(BuildContext context, String username, String password) async {
   print("Username : " + username);
@@ -34,11 +35,26 @@ Future<Users> loginFunction(BuildContext context, String username, String passwo
       );
       getLogInUser(username);
     }else if(response.toString() == "customer") {
-      print('The user is a customer');
+      showDialog(
+          context: context,
+          builder: (context){
+            return showAlertDialog(AlertTitle: 'Notice' ,AlertMessage: 'Not Available Yet');
+          }
+      );
     }else{
-      print('idk');
+      showDialog(
+        context: context,
+        builder: (context){
+          return showAlertDialog(AlertTitle: 'Notice', AlertMessage: 'Invalid Password');
+        }
+      );
     }
   } catch(e){
-    //throw (e);
+    showDialog(
+        context: context,
+        builder: (context){
+          return showAlertDialog(AlertMessage: e);
+        }
+    );
   }
 }
