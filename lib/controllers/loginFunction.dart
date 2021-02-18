@@ -7,8 +7,7 @@ import 'package:myapp/views/seller/sellerHome.dart';
 import 'package:myapp/views/showAlertDialog.dart';
 
 Future<Users> loginFunction(BuildContext context, String username, String password) async {
-  print("Username : " + username);
-  print("Password : " + password);
+
   BaseOptions options = new BaseOptions(
     connectTimeout: 10000,
     receiveTimeout: 10000,
