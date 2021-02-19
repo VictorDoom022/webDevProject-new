@@ -12,10 +12,10 @@ class Chats {
   factory Chats.fromJson(Map<String, dynamic> json){
     return Chats(
         chatSender: json['chatSender'] as String,
-        chatReceiver: json['chatSender'] as String,
-        chatMsg: json['chatSender'] as String,
-        chatSendDate: json['chatSender'] as String,
-        whoSend: json['chatSender'] as String
+        chatReceiver: json['chatReceiver'] as String,
+        chatMsg: json['chatMsg'] as String,
+        chatSendDate: json['chatSendDate'] as String,
+        whoSend: json['whoSend'] as String
     );
   }
 }
