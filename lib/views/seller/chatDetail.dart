@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:myapp/controllers/getChatData.dart';
+import 'package:myapp/controllers/sendMessage.dart';
 import 'package:myapp/model/chatClass.dart';
 import 'package:myapp/views/seller/navDrawerSeller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -107,7 +108,7 @@ class _chatsState extends State<chats> {
           if(snapshot.hasError) print(snapshot.error);
 
           if(snapshot.hasData){
-            return chatBoxes(chatData: snapshot.data);
+            return chatBoxes(chatData: snapshot.data, userID: userID, loggedInUserId: loggedInUserId);
           }else{
             return Center(child: SpinKitCircle(color: Colors.black, size: 70.0,));
           }
@@ -120,11 +121,15 @@ class _chatsState extends State<chats> {
 class chatBoxes extends StatelessWidget {
 
   final List<Chats> chatData;
+  final userID, loggedInUserId;
 
-  const chatBoxes({Key key, this.chatData}) : super(key: key);
+  const chatBoxes({Key key, this.chatData, this.userID, this.loggedInUserId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    final TextEditingController messageController = TextEditingController();
+
     return Stack(
       children: [
         ListView.builder(
@@ -165,6 +170,7 @@ class chatBoxes extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: TextField(
+                    controller: messageController,
                     decoration: InputDecoration(
                         hintText: "Write message...",
                         hintStyle: TextStyle(color: Colors.black54),
@@ -174,7 +180,9 @@ class chatBoxes extends StatelessWidget {
                 ),
                 SizedBox(width: 15,),
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    sendMessage(loggedInUserId, userID, messageController.text);
+                  },
                   child: Icon(Icons.send,color: Colors.white,size: 18,),
                   backgroundColor: Colors.blue,
                   elevation: 0,
