@@ -118,13 +118,18 @@ class _chatsState extends State<chats> {
   }
 }
 
-class chatBoxes extends StatelessWidget {
+class chatBoxes extends StatefulWidget {
 
   final List<Chats> chatData;
   final userID, loggedInUserId;
 
   const chatBoxes({Key key, this.chatData, this.userID, this.loggedInUserId}) : super(key: key);
 
+  @override
+  _chatBoxesState createState() => _chatBoxesState();
+}
+
+class _chatBoxesState extends State<chatBoxes> {
   @override
   Widget build(BuildContext context) {
 
@@ -133,7 +138,7 @@ class chatBoxes extends StatelessWidget {
     return Stack(
       children: [
         ListView.builder(
-            itemCount: chatData.length,
+            itemCount: widget.chatData.length,
             shrinkWrap: true,
             reverse: false,
             physics: NeverScrollableScrollPhysics(),
@@ -141,15 +146,15 @@ class chatBoxes extends StatelessWidget {
               return Container(
                 padding: EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
                 child: Align(
-                  alignment: (chatData[index].whoSend=="receiver"?Alignment.topLeft:Alignment.topRight),
+                  alignment: (widget.chatData[index].whoSend=="receiver"?Alignment.topLeft:Alignment.topRight),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: (chatData[index].whoSend=="receiver"?Colors.grey.shade200:Colors.blue[200]),
+                      color: (widget.chatData[index].whoSend=="receiver"?Colors.grey.shade200:Colors.blue[200]),
                     ),
                     padding: EdgeInsets.all(16),
                     child: Text(
-                      chatData[index].chatMsg,
+                      widget.chatData[index].chatMsg,
                       style: TextStyle(
                         fontSize: 15
                       ),
@@ -181,7 +186,7 @@ class chatBoxes extends StatelessWidget {
                 SizedBox(width: 15,),
                 FloatingActionButton(
                   onPressed: (){
-                    sendMessage(loggedInUserId, userID, messageController.text);
+                    sendMessage(widget.loggedInUserId, widget.userID, messageController.text);
                   },
                   child: Icon(Icons.send,color: Colors.white,size: 18,),
                   backgroundColor: Colors.blue,
