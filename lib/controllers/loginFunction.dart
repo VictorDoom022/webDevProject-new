@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/backendDirSetup.dart';
 import 'package:myapp/controllers/getLogInUser.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:myapp/views/admin/userLists.dart';
@@ -18,7 +19,7 @@ Future<Users> loginFunction(BuildContext context, String username, String passwo
     Dio dio = new Dio(options);
 
     dio.options.contentType= Headers.formUrlEncodedContentType;
-    response = await dio.post("http://192.168.0.181/webDevProjectFlutter/login.php"  , data: {"username" : username, "password" : password});
+    response = await dio.post(path()+"login.php"  , data: {"username" : username, "password" : password});
     print(response.toString());
 
     if(response.toString() == "admin"){

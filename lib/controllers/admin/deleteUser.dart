@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:myapp/backendDirSetup.dart';
 
 Future<void> deleteUser(userID) async {
   BaseOptions options = new BaseOptions(
@@ -11,7 +12,7 @@ Future<void> deleteUser(userID) async {
     Dio dio = new Dio(options);
 
     dio.options.contentType= Headers.formUrlEncodedContentType;
-    response = await dio.post("http://192.168.0.181/webDevProjectFlutter/deleteUser.php"  , data: {"id" : userID });
+    response = await dio.post(path()+"deleteUser.php"  , data: {"id" : userID });
     print(response);
   } catch(e){
     throw (e);
