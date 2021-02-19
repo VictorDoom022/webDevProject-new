@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  dash_chat: ^1.1.15
   flutter_spinkit: ^4.1.2+1
   shared_preferences: ^0.5.12+4
   flutter_easyrefresh: ^2.1.8

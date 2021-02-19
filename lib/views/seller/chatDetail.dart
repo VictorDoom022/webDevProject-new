@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:myapp/controllers/getChatData.dart';
+import 'package:myapp/model/chatClass.dart';
 import 'package:myapp/views/seller/navDrawerSeller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dash_chat/dash_chat.dart';
 
 class chatDetail extends StatefulWidget {
 
@@ -54,6 +58,8 @@ class _chatsState extends State<chats> {
 
   _chatsState(this.userID, this.username);
 
+  Future<List<Chats>> futureChats;
+
   String loggedInUser;
   String loggedInUserId;
   SharedPreferences sharedPreferences;
@@ -66,6 +72,7 @@ class _chatsState extends State<chats> {
       })
     });
 
+    futureChats = fetchChatData(userID);
   }
 
   Future<String>getPrefsID() async{
@@ -93,7 +100,72 @@ class _chatsState extends State<chats> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: FutureBuilder<List<Chats>>(
+        future: futureChats,
+        builder: (context, snapshot){
+          if(snapshot.hasError) print(snapshot.error);
+
+          if(snapshot.hasData){
+            return chatBoxes(chatData: snapshot.data);
+          }else{
+            return Center(child: SpinKitCircle(color: Colors.black, size: 70.0,));
+          }
+        },
+      ),
+    );
   }
 }
+
+class chatBoxes extends StatelessWidget {
+
+  final List<Chats> chatData;
+
+  const chatBoxes({Key key, this.chatData}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ListView.builder(
+            itemCount: chatData.length,
+            reverse: true,
+            itemBuilder: (context, index){
+              return Container();
+            }
+        ),
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: Container(
+            padding: EdgeInsets.only(left: 10,bottom: 10,top: 10),
+            height: 60,
+            width: double.infinity,
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                        hintText: "Write message...",
+                        hintStyle: TextStyle(color: Colors.black54),
+                        border: InputBorder.none
+                    ),
+                  ),
+                ),
+                SizedBox(width: 15,),
+                FloatingActionButton(
+                  onPressed: (){},
+                  child: Icon(Icons.send,color: Colors.white,size: 18,),
+                  backgroundColor: Colors.blue,
+                  elevation: 0,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ]
+    );
+  }
+}
+
 
