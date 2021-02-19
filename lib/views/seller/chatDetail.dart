@@ -129,9 +129,29 @@ class chatBoxes extends StatelessWidget {
       children: [
         ListView.builder(
             itemCount: chatData.length,
-            reverse: true,
+            shrinkWrap: true,
+            reverse: false,
+            physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index){
-              return Container();
+              return Container(
+                padding: EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
+                child: Align(
+                  alignment: (chatData[index].whoSend=="receiver"?Alignment.topLeft:Alignment.topRight),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: (chatData[index].whoSend=="receiver"?Colors.grey.shade200:Colors.blue[200]),
+                    ),
+                    padding: EdgeInsets.all(16),
+                    child: Text(
+                      chatData[index].chatMsg,
+                      style: TextStyle(
+                        fontSize: 15
+                      ),
+                    ),
+                  ),
+                ),
+              );
             }
         ),
         Align(
