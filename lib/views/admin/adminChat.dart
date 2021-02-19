@@ -3,6 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:myapp/controllers/admin/fetchUsers.dart';
 import 'package:myapp/model/userClass.dart';
 import 'package:myapp/views/admin/navDrawerAdmin.dart';
+import 'package:myapp/views/seller/chatDetail.dart';
 
 class adminChat extends StatefulWidget {
   @override
@@ -73,7 +74,12 @@ class adminUserChatList extends StatelessWidget {
           return Card(
             child: InkWell(
               onTap: (){
-                print('Tap');
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => chatDetail(userID: users[index].id,username:  users[index].username),
+                    )
+                );
               },
               child: Container(
                 height: 80,
