@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:myapp/controllers/getChatData.dart';
 import 'package:myapp/controllers/sendMessage.dart';
@@ -76,6 +77,13 @@ class _chatsState extends State<chats> {
     futureChats = fetchChatData(userID);
   }
 
+  Future<void> pullRefresh() async{
+    List<Chats> refreshedFutureChat = await fetchChatData(userID);
+    setState(() {
+      futureChats = Future.value(refreshedFutureChat);
+    });
+  }
+
   Future<String>getPrefsID() async{
     sharedPreferences = await SharedPreferences.getInstance();
     loggedInUser = sharedPreferences.getString("username");
@@ -108,7 +116,9 @@ class _chatsState extends State<chats> {
           if(snapshot.hasError) print(snapshot.error);
 
           if(snapshot.hasData){
-            return chatBoxes(chatData: snapshot.data, userID: userID, loggedInUserId: loggedInUserId);
+            return RefreshIndicator(
+                onRefresh: pullRefresh,
+                child: chatBoxes(chatData: snapshot.data, userID: userID, loggedInUserId: loggedInUserId));
           }else{
             return Center(child: SpinKitCircle(color: Colors.black, size: 70.0,));
           }
@@ -141,7 +151,6 @@ class _chatBoxesState extends State<chatBoxes> {
             itemCount: widget.chatData.length,
             shrinkWrap: true,
             reverse: false,
-            physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index){
               return Container(
                 padding: EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
